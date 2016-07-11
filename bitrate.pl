@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 
 
+use warnings FATAL => 'all';
 use Net::SNMP qw(snmp_dispatcher ticks_to_time);
    use Time::HiRes qw(usleep gettimeofday);
    use JSON;
