@@ -1,7 +1,12 @@
    #!/usr/bin/perl
 
 
+<<<<<<< HEAD
    use Net::SNMP qw(snmp_dispatcher ticks_to_time);
+=======
+#use warnings FATAL => 'all';
+use Net::SNMP qw(snmp_dispatcher ticks_to_time);
+>>>>>>> df511d447ef54ae170009c70d76b5f152ad850f1
    use Time::HiRes qw(usleep gettimeofday);
    use JSON;
 
