@@ -16,10 +16,13 @@ func main() {
 	}
 	defer file.Close()
 
+	var lines_d01 []string
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		fmt.Println(scanner.Text())
+
+		lines_d01 =  append(lines_d01,scanner.Text())
 	}
+	fmt.Println(lines_d01)
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
