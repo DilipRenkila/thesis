@@ -16,4 +16,4 @@
  $OUT2="1.3.6.1.2.1.2.2.1.16.2";
  @oid1 =($OID_sysUpTime,$in1,$out1,$in8,$out8);
  @oid2 =($OID_sysUpTime,$IN1,$OUT1,$IN2,$OUT2); 
- 
+

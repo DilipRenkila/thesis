@@ -1,8 +1,5 @@
 #!/usr/bin/perl
-
-
-use warnings FATAL => 'all';
-use Net::SNMP qw(snmp_dispatcher ticks_to_time);
+   use Net::SNMP qw(snmp_dispatcher ticks_to_time);
    use Time::HiRes qw(usleep gettimeofday);
    use JSON;
 
@@ -18,8 +15,8 @@ use Net::SNMP qw(snmp_dispatcher ticks_to_time);
    my $path ="/home/ats/dire15/thesis/config.pl";
    do "$path";
    ($second, $microsecond) = gettimeofday;
-   open FILE1, ">>", "/home/ats/dire15/thesis/logs/log-ingress-$second-$ip1-$delay.txt" or die $!;
-   open FILE2, ">>", "/home/ats/dire15/thesis/logs/log-egress-$second-$ip2-$delay.txt" or die $!;
+   open FILE1, ">>", "/home/ats/dire15/thesis/logs/log-ingress_$second _$ip1 _$delay.txt" or die $!;
+   open FILE2, ">>", "/home/ats/dire15/thesis/logs/log-egress_$second _$ip2 _$delay.txt" or die $!;
    $i1=1;$i2=2;
    my ($session1, $error1) = Net::SNMP->session(
       -hostname     => $ip1,
@@ -88,8 +85,8 @@ sub table_callback()
       my $InOctet="1.3.6.1.2.1.2.2.1.10";
       my $list = $session->var_bind_list();
       ($seconds, $microseconds) = gettimeofday;
-      open FILE1, ">>", "/home/ats/dire15/thesis/logs/log-ingress-$x-$ip1-$delay.txt" or die $!;
-      open FILE2, ">>", "/home/ats/dire15/thesis/logs/log-egress-$x-$ip2-$delay.txt" or die $!;
+      open FILE1, ">>", "/home/ats/dire15/thesis/logs/log-ingress_$x _$ip1 _$delay.txt" or die $!;
+      open FILE2, ">>", "/home/ats/dire15/thesis/logs/log-egress_$x _$ip2 _$delay.txt" or die $!;
       if (!defined $list) {
          printf "ERROR: %s\n", $session->error();
          return;

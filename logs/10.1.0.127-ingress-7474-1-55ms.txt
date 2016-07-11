@@ -1,0 +1,3 @@
+{"IN_Interface_1":3971239309,"OUT_Interface_1":881488448,"Uptime":11930487.9,"unixtime":1468154330,"OUT_Interface_8":4013259238,"Switch_IP":"10.1.0.127","IN_Interface_8":861175695}
+{"IN_Interface_1":3984138049,"Uptime":11930488.96,"OUT_Interface_1":881489106,"Switch_IP":"10.1.0.127","IN_Interface_8":861176353,"unixtime":1468154331,"OUT_Interface_8":4026157978}
+{"unixtime":1468154332,"OUT_Interface_8":4037674480,"Switch_IP":"10.1.0.127","IN_Interface_8":861176947,"IN_Interface_1":3995654551,"OUT_Interface_1":881489700,"Uptime":11930489.9}

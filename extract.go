@@ -1,19 +1,25 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-	"io/ioutil"
+	"log"
+	"os"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-
-
 func main() {
-	dat,err :=ioutil.ReadFile("newservice.go")
-	check (err)
-	fmt.Print(string(dat))
+	file, err := os.Open("~/dire15/thesis/logs/trace-7474-1.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		fmt.Println(scanner.Text())
+	}
+
+	if err := scanner.Err(); err != nil {
+		log.Fatal(err)
+	}
 }
