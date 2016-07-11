@@ -9,7 +9,8 @@ import (
 
 
 func main() {
-	file, err := os.Open("dire15/thesis/logs/trace-7474-1.txt")
+	pwd, _ := os.Getwd()
+	file, err := os.Open(pwd + "/logs/trace-7474-1.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
