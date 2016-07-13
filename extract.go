@@ -54,6 +54,7 @@ func main() {
 		//fmt.Println(i,in[3],out[3],delay)
 	}
 	fmt.Println(average_delay)
+	fmt.Println(len(lines_d01))
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
