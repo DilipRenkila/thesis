@@ -29,7 +29,6 @@ func main() {
 
 	var lines_d01 []string
 	var lines_d10 []string
-	var delay []float64
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		if re_1.MatchString(scanner.Text()) == true  {
@@ -48,7 +47,7 @@ func main() {
 		out := strings.Split(lines_d10[i], ":")
 		In, _ := strconv.ParseFloat(in[3], 64)
 		Out,_ := strconv.ParseFloat(out[3], 64)
-		delay = Out - In
+		delay := Out - In
 		fmt.Println(i,in[3],out[3],delay)
 	}
 
