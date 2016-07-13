@@ -40,9 +40,11 @@ func main() {
 
 	}
 	//fmt.Println(lines_d01)
-	for i, line := range lines_d10 {
-		fmt.Println(i, line)
+	for i,_ := range lines_d10 {
+		//fmt.Println(i, line)
+		fmt.Println(i,lines_d10[i])
 	}
+
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
