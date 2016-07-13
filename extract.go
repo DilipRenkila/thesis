@@ -29,8 +29,8 @@ func main() {
 
 	var lines_d01 []string
 	var lines_d10 []string
-	var average_delay []float64
-	average_delay = 0.0
+	//var average_delay []float64
+	average_delay := 0.0
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		if re_1.MatchString(scanner.Text()) == true  {
