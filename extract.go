@@ -53,7 +53,7 @@ func main() {
 		average_delay = average_delay + delay
 	//	fmt.Println(i,in[3],out[3],delay)
 	}
-	x := len(lines_d01)
+	x := float64(len(lines_d01))
 	fmt.Println(average_delay / x)
 	//fmt.Println(len(lines_d01),len(lines_d10))
 
