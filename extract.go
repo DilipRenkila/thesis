@@ -45,7 +45,7 @@ func main() {
 		//fmt.Println(i, lines_d01[i])
 		in := strings.Split(lines_d01[i], ":")
 		out := strings.Split(lines_d10[i], ":")
-		delay := out - in
+		delay := out[3] - in[3]
 		fmt.Print(i, delay)
 	}
 
