@@ -30,7 +30,7 @@ func main() {
 	var lines_d01 []string
 	var lines_d10 []string
 	var average_delay []float64
-	average_delay = 0
+	average_delay = 0.0
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		if re_1.MatchString(scanner.Text()) == true  {
@@ -50,7 +50,7 @@ func main() {
 		In, _ := strconv.ParseFloat(in[3], 64)
 		Out,_ := strconv.ParseFloat(out[3], 64)
 		delay := Out - In
-		average_delay += delay
+		average_delay = average_delay + delay
 		//fmt.Println(i,in[3],out[3],delay)
 	}
 	fmt.Println(average_delay)
