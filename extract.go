@@ -22,7 +22,10 @@ func main() {
 
 		lines_d01 =  append(lines_d01,scanner.Text())
 	}
-	fmt.Println(lines_d01)
+	//fmt.Println(lines_d01)
+	for i, line := range lines_d01 {
+		fmt.Println(i, line)
+	}
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
