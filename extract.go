@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"regexp"
+	"strings"
 )
 
 
@@ -40,8 +41,12 @@ func main() {
 
 	}
 	//fmt.Println(lines_d01)
-	for i, line := range lines_d01 {
-		fmt.Println(i, line)
+	for i, _ := range lines_d01 {
+		//fmt.Println(i, lines_d01[i])
+		in := strings.Split(lines_d01[i], ":")
+		out := strings.Split(lines_d10[i], ":")
+		delay := out - in
+		fmt.Print(i, delay)
 	}
 
 	if err := scanner.Err(); err != nil {
