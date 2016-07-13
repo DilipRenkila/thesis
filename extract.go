@@ -51,10 +51,10 @@ func main() {
 		Out,_ := strconv.ParseFloat(out[3], 64)
 		delay := Out - In
 		average_delay = average_delay + delay
-		//fmt.Println(i,in[3],out[3],delay)
+	//	fmt.Println(i,in[3],out[3],delay)
 	}
-	fmt.Println(average_delay)
-	fmt.Println(len(lines_d01),len(lines_d10))
+	fmt.Println(average_delay/len(lines_d01))
+	//fmt.Println(len(lines_d01),len(lines_d10))
 
 
 	if err := scanner.Err(); err != nil {
