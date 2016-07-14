@@ -11,8 +11,7 @@ import (
 )
 
 func read_file (path string) ([]string, error) {
-	pwd , _ := os.Getwd()
-	fmt.Println(pwd)
+	pwd :="/home/ats/dire15/thesis"
 	file, err := os.Open(pwd + path)
 	if err != nil {
 		return nil, err
@@ -27,8 +26,8 @@ func read_file (path string) ([]string, error) {
 }
 
 func append_file(lines string) error {
-
-	file, err := os.OpenFile("results.txt", os.O_APPEND|os.O_WRONLY, 0600)
+	pwd :="/home/ats/dire15/thesis"
+	file, err := os.OpenFile(pwd + "results.txt", os.O_APPEND|os.O_WRONLY, 0600)
 	if err != nil {
     		return err
 	}
