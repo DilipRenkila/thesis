@@ -43,10 +43,7 @@ func append_file(lines string) error {
 
 func main() {
 
-	lines ,err := read_file("/logs/trace-7474-1.txt")
-	if err != nil {
-		log.Fatalf("read_file: %s",err)
-	}
+
 	delay,err := read_file("/delay.txt")
 	if err != nil {
 		log.Fatalf("read_file: %s",err)
@@ -58,6 +55,11 @@ func main() {
 	}
 
 	runid,err := read_file("/runid.txt")
+	if err != nil {
+		log.Fatalf("read_file: %s",err)
+	}
+
+	lines ,err := read_file(fmt.Sprintf("/logs/trace-%s-%s.txt",expid[0],runid[0]))
 	if err != nil {
 		log.Fatalf("read_file: %s",err)
 	}
@@ -95,7 +97,7 @@ func main() {
 	x := float64(len(lines_d01))
 	average_delay = average_delay/x
 	fmt.Println(average_delay)
-	err = append_file(fmt.Sprintf("expid:%s runid:%s delay:%s average_delay:%f",expid[0],runid,delay,average_delay))
+	err = append_file(fmt.Sprintf("expid:%s runid:%s delay:%s average_delay:%f",expid,runid,delay,average_delay))
 	if err != nil {
 		log.Fatalf("append_file: %s",err)
 	}
