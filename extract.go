@@ -27,7 +27,7 @@ func read_file (path string) ([]string, error) {
 
 func append_file(lines string) error {
 	pwd :="/home/ats/dire15/thesis"
-	file, err := os.OpenFile(pwd + "results.txt", os.O_APPEND|os.O_WRONLY, 0600)
+	file, err := os.OpenFile(pwd + "/results.txt", os.O_APPEND|os.O_WRONLY, 0600)
 	if err != nil {
     		return err
 	}
