@@ -93,8 +93,9 @@ func main() {
 		average_delay = average_delay + delay
 	}
 	x := float64(len(lines_d01))
-	fmt.Println(average_delay / x)
-	err = append_file(fmt.Sprintf("expid:%s runid:%s delay:%s average_delay:%s",expid,runid,delay,average_delay))
+	average_delay = average_delay/x
+	fmt.Println(average_delay)
+	err = append_file(fmt.Sprintf("expid:%s runid:%s delay:%s average_delay:%f",expid,runid,delay,average_delay))
 	if err != nil {
 		log.Fatalf("append_file: %s",err)
 	}
