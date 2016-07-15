@@ -8,6 +8,7 @@ import (
 	"regexp"
 	"strings"
 	"strconv"
+	"os/exec"
 )
 
 func read_file (path string) ([]string, error) {
@@ -58,6 +59,11 @@ func main() {
 	if err != nil {
 		log.Fatalf("read_file: %s",err)
 	}
+
+	//converting tracefile to a text file
+	tracefile := fmt.Sprintf("/mnt/LONTAS/traces/trace-%s-%s.cap",expid[0],runid[0])
+	tracedestiny := fmt.Sprintf("/home/ats/dire15/thesis/logs/trace-%s-%s.txt",expid[0],runid[0])
+	exec.Command("capshow",tracefile,">>",tracedestiny)
 
 	lines ,err := read_file(fmt.Sprintf("/logs/trace-%s-%s.txt",expid[0],runid[0]))
 	if err != nil {
