@@ -4,13 +4,14 @@ import (
     "log"
 //    "fmt"
     "golang.org/x/exp/inotify"
-		"bufio"
+	"bufio"
 	"fmt"
 	"os"
 	"regexp"
 	"strings"
 	"strconv"
 	"os/exec"
+	"time"
 )
 func read_file (path string) ([]string, error) {
 	pwd :="/home/ats/dire15/thesis"
@@ -167,7 +168,8 @@ func main() {
 			    continue
 		    }
 		    log.Println("Reloading configuration")
-                    log.Println(ev.Name)
+                    log.Println("%s is changed \n",ev.Name)
+			time.Sleep(200 * time.Second)
 		    mains()
 
             case err := <-watcher.Error:
