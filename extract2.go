@@ -33,8 +33,7 @@ func printOutput(outs []byte,filename string) {
     defer file.Close()
 
     // Write bytes to file
-
-    bytesWritten, err := file.Write(string(outs))
+    bytesWritten, err := file.Write(outs)
     if err != nil {
         log.Fatal(err)
     }
