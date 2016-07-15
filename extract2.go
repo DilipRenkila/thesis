@@ -20,7 +20,7 @@ func printError(err error) {
 
 func printOutput(outs []byte,filename string) {
   if len(outs) > 0 {
-   // fmt.Printf("==> Output: %s\n", string(outs))
+    fmt.Printf("==> Output: %s\n", string(outs))
 	  pwd := "/home/ats/dire15/thesis/logs"
 	  file, err := os.OpenFile(
         pwd + "filename",
