@@ -40,7 +40,39 @@ func append_file(lines string) error {
 
 	return err
 }
+func printCommand(cmd *exec.Cmd) {
+  fmt.Printf("==> Executing: %s\n", strings.Join(cmd.Args, " "))
+}
 
+func printError(err error) {
+  if err != nil {
+    os.Stderr.WriteString(fmt.Sprintf("==> Error: %s\n", err.Error()))
+  }
+}
+
+func printOutput(outs []byte,filename string) {
+  if len(outs) > 0 {
+    fmt.Printf("==> Output: %s\n", string(outs))
+	//  pwd := "/home/ats/dire15/thesis/logs"
+	  file, err := os.OpenFile(
+         filename,
+        os.O_WRONLY|os.O_TRUNC|os.O_CREATE,
+        0666,
+    )
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer file.Close()
+
+    // Write bytes to file
+    bytesWritten, err := file.Write(outs)
+    if err != nil {
+        log.Fatal(err)
+    }
+    log.Printf("Wrote %d bytes to %s .\n", bytesWritten,filename)
+
+  }
+}
 
 func main() {
 
@@ -61,9 +93,16 @@ func main() {
 	}
 
 	//converting tracefile to a text file
-	tracefile := fmt.Sprintf("/mnt/LONTAS/traces/trace-%s-%s.cap",expid[0],runid[0])
-	tracedestiny := fmt.Sprintf("/home/ats/dire15/thesis/logs/trace-%s-%s.txt",expid[0],runid[0])
-	exec.Command("capshow",tracefile,">>",tracedestiny)
+	tracefile := fmt.Sprintf("/mnt/LONTAS/traces/trace-%d-%d.cap",expid[0],runid[0])
+	tracedestiny := fmt.Sprintf("/home/ats/dire15/thesis/logs/trace-%d-%d.txt",expid[0],runid[0])
+	cmd :=exec.Command("capshow",tracefile)
+	// Create an *exec.Cmd for executing os commands
+	// Combine stdout and stderr
+	printCommand(cmd)
+	output, err := cmd.CombinedOutput()
+	printError(err)
+	printOutput(output,tracedestiny)
+
 
 	lines ,err := read_file(fmt.Sprintf("/logs/trace-%s-%s.txt",expid[0],runid[0]))
 	if err != nil {

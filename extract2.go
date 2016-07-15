@@ -44,8 +44,8 @@ func printOutput(outs []byte,filename string) {
 func main() {
 	expid :=7482 ; runid := 1
 	//converting tracefile to a text file
-	tracefile := fmt.Sprintf("/mnt/LONTAS/traces/trace-%d-%d.cap",expid,runid)
-	tracedestiny := fmt.Sprintf("/home/ats/dire15/thesis/logs/trace-%d-%d.txt",expid,runid)
+	tracefile := fmt.Sprintf("/mnt/LONTAS/traces/trace-%d-%d.cap",expid[0],runid[0])
+	tracedestiny := fmt.Sprintf("/home/ats/dire15/thesis/logs/trace-%d-%d.txt",expid[0],runid[0])
 	cmd :=exec.Command("capshow",tracefile)
 	// Create an *exec.Cmd for executing os commands
 	// Combine stdout and stderr
