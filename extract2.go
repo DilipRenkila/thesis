@@ -26,7 +26,7 @@ func main() {
 	expid :=7482 ; runid := 1
 	//converting tracefile to a text file
 	tracefile := fmt.Sprintf("/mnt/LONTAS/traces/trace-%s-%s.cap",expid,runid)
-	tracedestiny := fmt.Sprintf("/home/ats/dire15/thesis/logs/trace-%s-%s.txt",expid,runid)
+	tracedestiny := fmt.Sprintf("/home/ats/dire15/thesis/logs/trace-%d-%d.txt",expid,runid)
 	cmd :=exec.Command("capshow",tracefile,">>",tracedestiny)
 	// Create an *exec.Cmd
 	// Combine stdout and stderr
