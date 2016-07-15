@@ -96,9 +96,10 @@ func exp_delay(w http.ResponseWriter, r *http.Request) {
 func exp_expid(w http.ResponseWriter, r *http.Request) {
      vars := mux.Vars(r)
      delay := vars["delay"]
+        pwd :="/home/ats/dire15/thesis/expid"
     // Open a new file for writing only
     file, err := os.OpenFile(
-        "expid.txt",
+        pwd + "/expid.txt",
         os.O_WRONLY|os.O_TRUNC|os.O_CREATE,
         0666,
     )

@@ -68,7 +68,7 @@ func main() {
 	re_2,err := regexp.Compile(`d10`)
 
 	if err != nil {
-		fmt.Printf("There is problem with your regexp.\n")
+		fmt.Printf("There is a problem with your regexp.\n")
 		return
 	}
 
