@@ -49,7 +49,7 @@ func main() {
 		log.Fatalf("read_file: %s",err)
 	}
 
-	expid,err := read_file("/expid.txt")
+	expid,err := read_file("/expid/expid.txt")
 	if err != nil {
 		log.Fatalf("read_file: %s",err)
 	}
