@@ -20,7 +20,7 @@ func printError(err error) {
 
 func printOutput(outs []byte,filename string) {
   if len(outs) > 0 {
-    fmt.Printf("==> Output: %s\n", string(outs))
+   // fmt.Printf("==> Output: %s\n", string(outs))
 	  pwd := "/home/ats/dire15/thesis/logs"
 	  file, err := os.OpenFile(
         pwd + "filename",
@@ -45,7 +45,7 @@ func main() {
 	expid :=7482 ; runid := 1
 	//converting tracefile to a text file
 	tracefile := fmt.Sprintf("/mnt/LONTAS/traces/trace-%d-%d.cap",expid,runid)
-	tracedestiny := fmt.Sprintf("/trace-%d-%d.txt",expid,runid)
+	tracedestiny := fmt.Sprintf("trace-%d-%d.txt",expid,runid)
 	cmd :=exec.Command("capshow",tracefile)
 	// Create an *exec.Cmd for executing os commands
 	// Combine stdout and stderr
