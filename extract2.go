@@ -1,52 +1,37 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"log"
 	"os"
-	"regexp"
+	"os/exec"
+	"strings"
 )
 
+func printCommand(cmd *exec.Cmd) {
+  fmt.Printf("==> Executing: %s\n", strings.Join(cmd.Args, " "))
+}
 
+func printError(err error) {
+  if err != nil {
+    os.Stderr.WriteString(fmt.Sprintf("==> Error: %s\n", err.Error()))
+  }
+}
+
+func printOutput(outs []byte) {
+  if len(outs) > 0 {
+    fmt.Printf("==> Output: %s\n", string(outs))
+  }
+}
 func main() {
-	pwd, _ := os.Getwd()
-	file, err := os.Open(pwd + "/logs/trace-7474-1.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
-
-	re_1,err := regexp.Compile(`d01`)
-	re_2,err := regexp.Compile(`d10`)
-
-	if err != nil {
-		fmt.Printf("There is problem with your regexp.\n")
-		return
-	}
-
-	var lines_d01 []string
-	var lines_d10 []string
-
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		if re_1.MatchString(scanner.Text()) == true  {
-			lines_d01 =  append(lines_d01,scanner.Text())
-		}
-
-		if re_2.MatchString(scanner.Text()) == true {
-			lines_d10 = append(lines_d10,scanner.Text())
-		}
-
-	}
-	//fmt.Println(lines_d01)
-	for i,_ := range lines_d10 {
-		//fmt.Println(i, line)
-		fmt.Println(i,lines_d10[i])
-	}
-
-
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
-	}
+	expid :=7482 ; runid := 1
+	//converting tracefile to a text file
+	tracefile := fmt.Sprintf("/mnt/LONTAS/traces/trace-%s-%s.cap",expid,runid)
+	tracedestiny := fmt.Sprintf("/home/ats/dire15/thesis/logs/trace-%s-%s.txt",expid,runid)
+	cmd :=exec.Command("capshow",tracefile,">>",tracedestiny)
+	// Create an *exec.Cmd
+	// Combine stdout and stderr
+	printCommand(cmd)
+	output, err := cmd.CombinedOutput()
+	printError(err)
+	printOutput(output)
 }
