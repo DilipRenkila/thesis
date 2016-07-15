@@ -37,7 +37,7 @@ func printOutput(outs []byte,filename string) {
     if err != nil {
         log.Fatal(err)
     }
-    log.Printf("Wrote %d bytes.\n", bytesWritten)
+    log.Printf("Wrote %d bytes to %s .\n", bytesWritten,filename)
 
   }
 }
