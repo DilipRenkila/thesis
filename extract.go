@@ -135,6 +135,7 @@ func main() {
 		in := strings.Split(lines_d01[i], ":")
 		out := strings.Split(lines_d10[i], ":")
 		In, _ := strconv.ParseFloat(in[3], 64)
+		fmt.Println(out)
 		Out,_ := strconv.ParseFloat(out[3], 64)
 		delay := Out - In
 		average_delay = average_delay + delay
