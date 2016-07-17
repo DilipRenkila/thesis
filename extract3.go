@@ -89,6 +89,6 @@ func main() {
 
 	x := float64(number_of_packets)
 	average_delay = average_delay/x
-	fmt.Println(average_delay)
+	fmt.Println(average_delay*1000)
 
 }
