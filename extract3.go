@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 	"regexp"
-	"strconv"
+	//"strconv"
 	"os"
 	"bufio"
 )
@@ -31,7 +31,7 @@ func main() {
 	}
 
 	re_1, err := regexp.Compile(`d01`)
-	re_2, err := regexp.Compile(`d10`)
+	//re_2, err := regexp.Compile(`d10`)
 
 	if err != nil {
 		fmt.Printf("There is a problem with your regexp.\n")
@@ -39,31 +39,26 @@ func main() {
 	}
 
 	var lines_d01 []string
-	var lines_d10 []string
+	//var lines_d10 []string
 
 	for _, line := range lines {
 		if re_1.MatchString(line) == true {
 			lines_d01 = append(lines_d01, line)
 		}
 
-		if re_2.MatchString(line) == true {
-			lines_d10 = append(lines_d10, line)
-		}
+	//	if re_2.MatchString(line) == true {
+	//		lines_d10 = append(lines_d10, line)
+	//	}
 	}
+	m := make(map[string]string)
 
 	for i, _ := range lines_d01 {
 		in := strings.Split(lines_d01[i], ":")
 		d01_checksum_string := strings.Split(lines_d01[i], "=")
-		for j, _ := range lines_d10 {
-			d10_checksum_string := strings.Split(lines_d10[j], "=")
-			out := strings.Split(lines_d10[j], ":")
-			if d01_checksum_string[3] == d10_checksum_string[3] {
-				In, _ := strconv.ParseFloat(in[3], 64)
-				Out, _ := strconv.ParseFloat(out[3], 64)
-				fmt.Println(d01_checksum_string[3], Out - In)
+		m[d01_checksum_string[2]] = in[3]
+
 
 			}
-		}
-	}
+	fmt.Println("map:", m)
 
 }
