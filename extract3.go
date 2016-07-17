@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 	"regexp"
-	//"strconv"
+	"strconv"
 	"os"
 	"bufio"
 )
@@ -50,12 +50,13 @@ func main() {
 	//		lines_d10 = append(lines_d10, line)
 	//	}
 	}
-	m := make(map[string]string)
+	m := make(map[string]float64)
 
 	for i, _ := range lines_d01 {
 		in := strings.Split(lines_d01[i], ":")
 		d01_checksum_string := strings.Split(lines_d01[i], "=")
-		m[d01_checksum_string[2]] = in[3]
+		In, _ := strconv.ParseFloat(in[3], 64)
+		m[d01_checksum_string[2]] = In
 
 
 			}
