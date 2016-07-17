@@ -73,7 +73,9 @@ func main() {
 			In := m[checksum]
 			delay := Out - In
 			average_delay = average_delay + delay
-			fmt.Println(delay,lines_d10[j])
+			if delay < 0 {
+				fmt.Println(delay,lines_d10[j])
+			}
 
         	} else {
                 	fmt.Println("key not found")
