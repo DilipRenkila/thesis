@@ -57,15 +57,17 @@ func main() {
 		in := strings.Split(lines_d01[i], ":")
 		d01_checksum_string := strings.Split(lines_d01[i], "=")
 		In, _ := strconv.ParseFloat(in[3], 64)
-		m[d01_checksum_string[2]] = In
+		checksum, _ := strconv.Atoi(d01_checksum_string[2])
+		m[checksum] = In
 
 	}
 
 	for i, _ := range lines_d10 {
 		out := strings.Split(lines_d10[i], ":")
 		d10_checksum_string := strings.Split(lines_d10[i], "=")
+		checksum,_ := strconv.Atoi(d10_checksum_string[2])
 		Out, _ := strconv.ParseFloat(out[3], 64)
-		In := m[d10_checksum_string[2]]
+		In := m[checksum]
 		delay := Out - In
 		average_delay = average_delay + delay
 	}
