@@ -67,8 +67,7 @@ func main() {
 		d10_checksum_string := strings.Split(lines_d10[j], "=")
 		checksum := d10_checksum_string[2]
 		Out, _ := strconv.ParseFloat(out[3], 64)
-		_, ok := m[checksum]
-        	if ok {
+		if _, ok := m[checksum]; ok {
 			In := m[checksum]
 			delay := Out - In
 			average_delay = average_delay + delay
