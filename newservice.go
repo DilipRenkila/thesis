@@ -19,7 +19,7 @@ func main() {
     router.HandleFunc("/export_delay/{delay}",exp_delay)
     router.HandleFunc("/export_expid/{delay}",exp_expid)
     router.HandleFunc("/export_runid/{delay}",exp_runid)
-        router.HandleFunc("/export_wait_time/{delay}",exp_wait_time)
+    router.HandleFunc("/export_wait_time/{delay}",exp_wait_time)
     log.Fatal(http.ListenAndServe(":8080", router))
 }
 
