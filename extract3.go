@@ -25,7 +25,7 @@ func read_file (path string) ([]string, error) {
 
 func main() {
 
-	lines, err := read_file(fmt.Sprintf("/logs/trace-7474-1.txt"))
+	lines, err := read_file(fmt.Sprintf("/logs/trace-7471-1.txt"))
 	if err != nil {
 		log.Fatalf("read_file: %s", err)
 	}
