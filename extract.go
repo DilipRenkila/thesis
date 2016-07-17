@@ -93,15 +93,15 @@ func main() {
 	}
 
 	//converting tracefile to a text file
-	tracefile := fmt.Sprintf("/mnt/LONTAS/traces/trace-%s-%s.cap",expid[0],runid[0])
-	tracedestiny := fmt.Sprintf("/home/ats/dire15/thesis/logs/trace-%s-%s.txt",expid[0],runid[0])
-	cmd :=exec.Command("capshow",tracefile)
+	//tracefile := fmt.Sprintf("/mnt/LONTAS/traces/trace-%s-%s.cap",expid[0],runid[0])
+	//tracedestiny := fmt.Sprintf("/home/ats/dire15/thesis/logs/trace-%s-%s.txt",expid[0],runid[0])
+	//cmd :=exec.Command("capshow",tracefile)
 	// Create an *exec.Cmd for executing os commands
 	// Combine stdout and stderr
-	printCommand(cmd)
-	output, err := cmd.CombinedOutput()
-	printError(err)
-	printOutput(output,tracedestiny)
+	//printCommand(cmd)
+	//output, err := cmd.CombinedOutput()
+	//printError(err)
+	//printOutput(output,tracedestiny)
 
 
 	lines ,err := read_file(fmt.Sprintf("/logs/trace-%s-%s.txt",expid[0],runid[0]))
