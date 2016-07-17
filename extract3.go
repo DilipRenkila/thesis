@@ -65,13 +65,14 @@ func main() {
 	for j, _ := range lines_d10 {
 		out := strings.Split(lines_d10[j], ":")
 		d10_checksum_string := strings.Split(lines_d10[j], "=")
-		checksum:= d10_checksum_string[2]
+		checksum := d10_checksum_string[2]
 		Out, _ := strconv.ParseFloat(out[3], 64)
 		_, ok := m[checksum]
         	if ok {
 			In := m[checksum]
 			delay := Out - In
 			average_delay = average_delay + delay
+			fmt.Println("key found")
         	} else {
                 	fmt.Println("key not found")
         	}
