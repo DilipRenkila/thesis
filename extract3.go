@@ -51,7 +51,7 @@ func main() {
 			lines_d10 = append(lines_d10, line)
 		}
 	}
-	m := make(map[int]float64)
+	m := make(map[string]float64)
 
 	for i, _ := range lines_d01 {
 		in := strings.Split(lines_d01[i], ":")
