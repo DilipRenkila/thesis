@@ -25,7 +25,7 @@ func read_file (path string) ([]string, error) {
 
 func main() {
 
-	lines, err := read_file(fmt.Sprintf("/logs/trace-7474-1.txt"))
+	lines, err := read_file(fmt.Sprintf("/logs/trace-7485-1.txt"))
 	if err != nil {
 		log.Fatalf("read_file: %s", err)
 	}
@@ -55,27 +55,27 @@ func main() {
 	}
 	m := make(map[string]float64)
 
-	for i, _ := range lines_d10 {
-		in := strings.Split(lines_d10[i], ":")
-		d10_checksum_string := strings.Split(lines_d10[i], "=")
+	for i, _ := range lines_d01 {
+		in := strings.Split(lines_d01[i], ":")
+		d01_checksum_string := strings.Split(lines_d01[i], "=")
 		In, _ := strconv.ParseFloat(in[3], 64)
 		//fmt.Println(d01_checksum_string)
-		checksum := d10_checksum_string[2]
+		checksum := d01_checksum_string[2]
 		m[checksum] = In
 
 	}
-
-	for j, _ := range lines_d01 {
-		out := strings.Split(lines_d01[j], ":")
-		d01_checksum_string := strings.Split(lines_d01[j], "=")
+	fmt.Println(len(lines_d01),len(lines_d10))
+	for j, _ := range lines_d10 {
+		out := strings.Split(lines_d10[j], ":")
+		d10_checksum_string := strings.Split(lines_d10[j], "=")
 		//fmt.Println(d10_checksum_string)
 
-		checksum := d01_checksum_string[2]
+		checksum := d10_checksum_string[2]
 		Out, _ := strconv.ParseFloat(out[3], 64)
 		if _, ok := m[checksum]; ok {
 			number_of_packets = number_of_packets + 1
 			In := m[checksum]
-			delay := Out - In
+			delay := In - Out
 			average_delay = average_delay + delay
 			if delay < 0 {
 				fmt.Println(delay,In,lines_d10[j])
