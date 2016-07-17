@@ -75,7 +75,7 @@ func main() {
 		if _, ok := m[checksum]; ok {
 			number_of_packets = number_of_packets + 1
 			In := m[checksum]
-			delay := Out - In
+			delay := In - Out
 			average_delay = average_delay + delay
 			if delay < 0 {
 				fmt.Println(delay,In,lines_d10[j])
