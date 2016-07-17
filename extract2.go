@@ -197,12 +197,12 @@ func main() {
 		    }
 		    log.Println("Reloading configuration")
                     log.Println(ev.Name)
-		    wait_time,err := read_file("/expid/expid.txt")
-			if err != nil {
-				log.Fatalf("read_file: %s",err)
-			}
+		    //wait_time,err := read_file("/expid/expid.txt")
+			//if err != nil {
+			//	log.Fatalf("read_file: %s",err)
+			//}
 
-	    		time.Sleep(time.Second*wait_time[0])
+	    		time.Sleep(time.Second*60)
 		    extract()
 
             case err := <-watcher.Error:
