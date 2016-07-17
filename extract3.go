@@ -58,6 +58,7 @@ func main() {
 		in := strings.Split(lines_d01[i], ":")
 		d01_checksum_string := strings.Split(lines_d01[i], "=")
 		In, _ := strconv.ParseFloat(in[3], 64)
+		fmt.Println(d01_checksum_string)
 		checksum := d01_checksum_string[2]
 		m[checksum] = In
 
