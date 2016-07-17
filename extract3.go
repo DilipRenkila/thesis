@@ -73,7 +73,7 @@ func main() {
 		Out, _ := strconv.ParseFloat(out[3], 64)
 		if _, ok := m[checksum]; ok {
 			In := m[checksum]
-			delay := Out - In
+			delay := In - Out
 			average_delay = average_delay + delay
 			if delay < 0 {
 				fmt.Println(delay,In,lines_d10[j])

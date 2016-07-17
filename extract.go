@@ -137,7 +137,7 @@ func main() {
 		In, _ := strconv.ParseFloat(in[3], 64)
 		fmt.Println(out)
 		Out,_ := strconv.ParseFloat(out[3], 64)
-		delay := In - Out
+		delay := Out - In
 		average_delay = average_delay + delay
 	}
 	x := float64(len(lines_d01))
