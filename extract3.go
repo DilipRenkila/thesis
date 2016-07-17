@@ -62,9 +62,9 @@ func main() {
 
 	}
 
-	for i, _ := range lines_d10 {
-		out := strings.Split(lines_d10[i], ":")
-		d10_checksum_string := strings.Split(lines_d10[i], "=")
+	for j, _ := range lines_d10 {
+		out := strings.Split(lines_d10[j], ":")
+		d10_checksum_string := strings.Split(lines_d10[j], "=")
 		checksum,_ := strconv.Atoi(d10_checksum_string[2])
 		Out, _ := strconv.ParseFloat(out[3], 64)
 		In := m[checksum]
