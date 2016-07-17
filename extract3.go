@@ -68,6 +68,7 @@ func main() {
 		checksum,_ := strconv.Atoi(d10_checksum_string[2])
 		Out, _ := strconv.ParseFloat(out[3], 64)
 		In := m[checksum]
+		fmt.Println(In)
 		delay := Out - In
 		average_delay = average_delay + delay
 	}
