@@ -11,6 +11,7 @@ import (
 	"strings"
 	"strconv"
 	"os/exec"
+	"time"
 )
 func read_file (path string) ([]string, error) {
 	pwd :="/home/ats/dire15/thesis"
@@ -75,7 +76,7 @@ func printOutput(outs []byte,filename string) {
   }
 }
 
-func mains() {
+func extract() {
 
 
 	delay,err := read_file("/delay.txt")
@@ -196,7 +197,13 @@ func main() {
 		    }
 		    log.Println("Reloading configuration")
                     log.Println(ev.Name)
-		    mains()
+		    wait_time,err := read_file("/expid/expid.txt")
+			if err != nil {
+				log.Fatalf("read_file: %s",err)
+			}
+
+	    		time.Sleep(time.Second*wait_time[0])
+		    extract()
 
             case err := <-watcher.Error:
                 log.Println("error:", err)

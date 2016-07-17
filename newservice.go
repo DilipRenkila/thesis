@@ -19,6 +19,7 @@ func main() {
     router.HandleFunc("/export_delay/{delay}",exp_delay)
     router.HandleFunc("/export_expid/{delay}",exp_expid)
     router.HandleFunc("/export_runid/{delay}",exp_runid)
+        router.HandleFunc("/export_wait_time/{delay}",exp_wait_time)
     log.Fatal(http.ListenAndServe(":8080", router))
 }
 
@@ -125,6 +126,31 @@ func exp_runid(w http.ResponseWriter, r *http.Request) {
     // Open a new file for writing only
     file, err := os.OpenFile(
         "runid.txt",
+        os.O_WRONLY|os.O_TRUNC|os.O_CREATE,
+        0666,
+    )
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer file.Close()
+
+    // Write bytes to file
+    byteSlice := []byte(delay)
+    bytesWritten, err := file.Write(byteSlice)
+    if err != nil {
+        log.Fatal(err)
+    }
+    log.Printf("Wrote %d bytes.\n", bytesWritten)
+
+     fmt.Fprintln(w,delay)
+}
+
+func exp_wait_time(w http.ResponseWriter, r *http.Request) {
+     vars := mux.Vars(r)
+     delay := vars["delay"]
+    // Open a new file for writing only
+    file, err := os.OpenFile(
+        "wait_time.txt",
         os.O_WRONLY|os.O_TRUNC|os.O_CREATE,
         0666,
     )
