@@ -67,10 +67,15 @@ func main() {
 		d10_checksum_string := strings.Split(lines_d10[j], "=")
 		checksum:= d10_checksum_string[2]
 		Out, _ := strconv.ParseFloat(out[3], 64)
-		In := m[checksum]
-	//	fmt.Println(j,Out,checksum,In)
-		delay := Out - In
-		average_delay = average_delay + delay
+		_, ok := m[checksum]
+        	if ok {
+			In := m[checksum]
+			delay := Out - In
+			average_delay = average_delay + delay
+        	} else {
+                	fmt.Println("key not found")
+        	}
+
 	}
 
 	x := float64(len(lines_d10))
