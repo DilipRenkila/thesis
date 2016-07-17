@@ -74,7 +74,7 @@ func main() {
 			delay := Out - In
 			average_delay = average_delay + delay
 			if delay < 0 {
-				fmt.Println(delay,lines_d10[j])
+				fmt.Println(delay,In,lines_d10[j])
 			}
 
         	} else {
