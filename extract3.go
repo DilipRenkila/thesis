@@ -59,7 +59,7 @@ func main() {
 		In, _ := strconv.ParseFloat(in[3], 64)
 		checksum := d01_checksum_string[2]
 		m[checksum] = In
-:
+
 	}
 
 	for j, _ := range lines_d10 {
