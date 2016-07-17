@@ -31,7 +31,7 @@ func main() {
 	}
 
 	re_1, err := regexp.Compile(`d01`)
-	//re_2, err := regexp.Compile(`d10`)
+	re_2, err := regexp.Compile(`d10`)
 
 	if err != nil {
 		fmt.Printf("There is a problem with your regexp.\n")
@@ -39,16 +39,17 @@ func main() {
 	}
 
 	var lines_d01 []string
-	//var lines_d10 []string
+	var lines_d10 []string
+	average_delay := 0.0
 
 	for _, line := range lines {
 		if re_1.MatchString(line) == true {
 			lines_d01 = append(lines_d01, line)
 		}
 
-	//	if re_2.MatchString(line) == true {
-	//		lines_d10 = append(lines_d10, line)
-	//	}
+		if re_2.MatchString(line) == true {
+			lines_d10 = append(lines_d10, line)
+		}
 	}
 	m := make(map[string]float64)
 
@@ -58,8 +59,19 @@ func main() {
 		In, _ := strconv.ParseFloat(in[3], 64)
 		m[d01_checksum_string[2]] = In
 
+	}
 
-			}
-	fmt.Println("map:", m)
+	for i, _ := range lines_d10 {
+		out := strings.Split(lines_d10[i], ":")
+		d10_checksum_string := strings.Split(lines_d10[i], "=")
+		Out, _ := strconv.ParseFloat(out[3], 64)
+		In := m[d10_checksum_string[2]]
+		delay := Out - In
+		average_delay = average_delay + delay
+	}
+
+	x := float64(len(lines_d10))
+	average_delay = average_delay/x
+	fmt.Println(average_delay)
 
 }
