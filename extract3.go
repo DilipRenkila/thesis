@@ -42,6 +42,7 @@ func main() {
 	var lines_d01 []string
 	var lines_d10 []string
 	average_delay := 0.0
+	number_of_packets := 0
 
 	for _, line := range lines {
 		if re_1.MatchString(line) == true && re.MatchString(line) == true {
@@ -72,6 +73,7 @@ func main() {
 		checksum := d10_checksum_string[2]
 		Out, _ := strconv.ParseFloat(out[3], 64)
 		if _, ok := m[checksum]; ok {
+			number_of_packets = number_of_packets + 1
 			In := m[checksum]
 			delay := In - Out
 			average_delay = average_delay + delay
@@ -85,7 +87,7 @@ func main() {
 
 	}
 
-	x := float64(len(lines_d10))
+	x := float64(number_of_packets)
 	average_delay = average_delay/x
 	fmt.Println(average_delay)
 
