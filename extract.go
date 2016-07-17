@@ -101,6 +101,7 @@ func main() {
 	//printCommand(cmd)
 	//output, err := cmd.CombinedOutput()
 	//printError(err)
+
 	//printOutput(output,tracedestiny)
 
 
