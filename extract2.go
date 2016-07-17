@@ -203,7 +203,7 @@ func main() {
 			//	log.Fatalf("read_file: %s",err)
 			//}
 
-	    		time.Sleep(time.Second*60)
+	    		time.Sleep(time.Second*300)
 		    extract()
 
             case err := <-watcher.Error:
