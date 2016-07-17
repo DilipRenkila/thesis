@@ -31,7 +31,7 @@ func main() {
 	}
 
 	re_1, err := regexp.Compile(`d01`)
-	re, err := regexp.Compile(`packets read.`)
+	re, err := regexp.Compile(`UDP`)
 	re_2, err := regexp.Compile(`d10`)
 
 	if err != nil {
@@ -44,11 +44,11 @@ func main() {
 	average_delay := 0.0
 
 	for _, line := range lines {
-		if re_1.MatchString(line) == true && re.MatchString(line) == false {
+		if re_1.MatchString(line) == true && re.MatchString(line) == true {
 			lines_d01 = append(lines_d01, line)
 		}
 
-		if re_2.MatchString(line) == true && re.MatchString(line) == false {
+		if re_2.MatchString(line) == true && re.MatchString(line) == true {
 			lines_d10 = append(lines_d10, line)
 		}
 	}
@@ -58,7 +58,7 @@ func main() {
 		in := strings.Split(lines_d01[i], ":")
 		d01_checksum_string := strings.Split(lines_d01[i], "=")
 		In, _ := strconv.ParseFloat(in[3], 64)
-		fmt.Println(d01_checksum_string)
+		//fmt.Println(d01_checksum_string)
 		checksum := d01_checksum_string[2]
 		m[checksum] = In
 
