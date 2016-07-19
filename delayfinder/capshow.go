@@ -4,7 +4,7 @@ import "os/exec"
 import "log"
 
 func main() {
-	cmd :=exec.Command("capshow.sh")
+	cmd :=exec.Command("/bin/bash","capshow.sh")
 	log.Println(cmd)
 
 }
