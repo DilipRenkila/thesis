@@ -41,3 +41,4 @@ my $sampling_interval = $sampling[1];
 #my ($second,$microsecond)=gettimeofday;
 #open FILE1, ">>",""
 print "$expid\n";
+print "$runid\n";
