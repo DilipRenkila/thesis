@@ -10,19 +10,6 @@ import (
     "github.com/gorilla/mux"
 )
 
-func main() {
-
-    router := mux.NewRouter().StrictSlash(true)
-    router.HandleFunc("/", Index)
-    router.HandleFunc("/start", Start)
-    router.HandleFunc("/stop", Stop)
-    router.HandleFunc("/export_delay/{delay}",exp_delay)
-    router.HandleFunc("/export_expid/{delay}",exp_expid)
-    router.HandleFunc("/export_runid/{delay}",exp_runid)
-    router.HandleFunc("/export_wait_time/{delay}",exp_wait_time)
-    log.Fatal(http.ListenAndServe(":8080", router))
-}
-
 func printCommand(cmd *exec.Cmd) {
   fmt.Printf("==> Executing: %s\n", strings.Join(cmd.Args, " "))
 }
@@ -57,7 +44,7 @@ printOutput(output)
 }
 
 func Stop(w http.ResponseWriter, r *http.Request) {
-    
+
 // Create an *exec.Cmd
 cmd := exec.Command("/etc/init.d/thesis","stop")
 
@@ -69,103 +56,13 @@ printOutput(output)
         fmt.Fprintln(w,"Successfully stopped thesis daemon")
 }
 
-func exp_delay(w http.ResponseWriter, r *http.Request) {
-     vars := mux.Vars(r)
-     delay := vars["delay"]   
-    // Open a new file for writing only
-    file, err := os.OpenFile(
-        "delay.txt",
-        os.O_WRONLY|os.O_TRUNC|os.O_CREATE,
-        0666,
-    )
-    if err != nil {
-        log.Fatal(err)
-    }
-    defer file.Close()
 
-    // Write bytes to file
-    byteSlice := []byte(delay)
-    bytesWritten, err := file.Write(byteSlice)
-    if err != nil {
-        log.Fatal(err)
-    }
-    log.Printf("Wrote %d bytes.\n", bytesWritten)
+func main() {
 
-     fmt.Fprintln(w,delay)
+    router := mux.NewRouter().StrictSlash(true)
+    router.HandleFunc("/", Index)
+    router.HandleFunc("/start", Start)
+    router.HandleFunc("/stop", Stop)
+    log.Fatal(http.ListenAndServe(":8080", router))
 }
 
-func exp_expid(w http.ResponseWriter, r *http.Request) {
-     vars := mux.Vars(r)
-     delay := vars["delay"]
-        pwd :="/home/ats/dire15/thesis/expid"
-    // Open a new file for writing only
-    file, err := os.OpenFile(
-        pwd + "/expid.txt",
-        os.O_WRONLY|os.O_TRUNC|os.O_CREATE,
-        0666,
-    )
-    if err != nil {
-        log.Fatal(err)
-    }
-    defer file.Close()
-
-    // Write bytes to file
-    byteSlice := []byte(delay)
-    bytesWritten, err := file.Write(byteSlice)
-    if err != nil {
-        log.Fatal(err)
-    }
-    log.Printf("Wrote %d bytes.\n", bytesWritten)
-
-     fmt.Fprintln(w,delay)
-}
-
-func exp_runid(w http.ResponseWriter, r *http.Request) {
-     vars := mux.Vars(r)
-     delay := vars["delay"]
-    // Open a new file for writing only
-    file, err := os.OpenFile(
-        "runid.txt",
-        os.O_WRONLY|os.O_TRUNC|os.O_CREATE,
-        0666,
-    )
-    if err != nil {
-        log.Fatal(err)
-    }
-    defer file.Close()
-
-    // Write bytes to file
-    byteSlice := []byte(delay)
-    bytesWritten, err := file.Write(byteSlice)
-    if err != nil {
-        log.Fatal(err)
-    }
-    log.Printf("Wrote %d bytes.\n", bytesWritten)
-
-     fmt.Fprintln(w,delay)
-}
-
-func exp_wait_time(w http.ResponseWriter, r *http.Request) {
-     vars := mux.Vars(r)
-     delay := vars["delay"]
-    // Open a new file for writing only
-    file, err := os.OpenFile(
-        "wait_time.txt",
-        os.O_WRONLY|os.O_TRUNC|os.O_CREATE,
-        0666,
-    )
-    if err != nil {
-        log.Fatal(err)
-    }
-    defer file.Close()
-
-    // Write bytes to file
-    byteSlice := []byte(delay)
-    bytesWritten, err := file.Write(byteSlice)
-    if err != nil {
-        log.Fatal(err)
-    }
-    log.Printf("Wrote %d bytes.\n", bytesWritten)
-
-     fmt.Fprintln(w,delay)
-}
