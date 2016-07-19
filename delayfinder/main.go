@@ -21,7 +21,8 @@ func main() {
 		    if ev.Mask&inotify.IN_MODIFY != inotify.IN_MODIFY {
 			    continue
 		    }
-		    log.Println("Reloading configuration")
+                log.Println("Executing ....")
+                capshow()
             case err := <-watcher.Error:
                 log.Println("error:", err)
             }
