@@ -33,7 +33,7 @@ close FOO;
 my @words = split / /,$last;
 my @exp = split (':',$words[0]);
 my @run = split (':',$words[1]);
-my @sampling = split(':',$words[6])
+my @sampling = split(':',$words[6]);
 my $runid = $run[1];
 my $expid = $exp[1];
 my $sampling_interval = $sampling[1];
