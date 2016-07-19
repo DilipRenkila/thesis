@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-use strict;
+#use strict;
 use warnings;
  my $ip1="10.1.0.127"; # 10.1.0.127
  my $p1=161;
