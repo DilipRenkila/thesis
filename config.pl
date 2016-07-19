@@ -29,5 +29,7 @@ my $first = <FOO>;
 while (<FOO>) { $last = $_ }
 close FOO;
 my @words = split / /,$last;
-print "$words[0]\n";
+my @expid = split (':',$words[0]);
+my @runid = split (':',$words[1]);
+print "$runid[1]\n";
 
