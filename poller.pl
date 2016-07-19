@@ -79,14 +79,14 @@ if (!defined $session2) {
 
 while(1) {
 
-    my $result1 = $session1->get_request(-varbindlist => \@oid1,-callback =>[ \&table_callback ,$i1,$second]);
+    my $result1 = $session1->get_request(-varbindlist => \@oid1,-callback =>[ \&table_callback ,$i1]);
     if (!defined $result1) {
       printf "ERROR: %s.\n", $session1->error();
       $session1->close();
       exit 1;
    }
 
-    my $result2 = $session2->get_request(-varbindlist => \@oid2,-callback =>[ \&table_callback ,$i2,$second]);
+    my $result2 = $session2->get_request(-varbindlist => \@oid2,-callback =>[ \&table_callback ,$i2]);
     if (!defined $result2) {
       printf "ERROR: %s.\n", $session2->error();
       $session2->close();
