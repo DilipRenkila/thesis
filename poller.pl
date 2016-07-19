@@ -116,6 +116,7 @@ sub table_callback()
     my $InOctet="1.3.6.1.2.1.2.2.1.10";
     my $list = $session->var_bind_list();
     my ($second, $microsecond) = gettimeofday;
+    my $time = sprintf('%d.%d',$second,$microsecond);
     open FOO, ">>",$foo or die $!;
     open BAR, ">>",$bar or die $!;
     if (!defined $list) {
@@ -132,7 +133,7 @@ sub table_callback()
         my $Out8    = $list->{$out8};
         my $uptime = $list->{$OID_sysUpTime}; # in microseconds
            $uptime = $uptime*0.01;
-        my $Output = {Switch_IP=>$ip1,Uptime=>$uptime,unixtime=>$second,IN_Interface_1=>$In1,OUT_Interface_1=>$Out1,IN_Interface_8=>$In8,OUT_Interface_8=>$Out8};
+        my $Output = {Switch_IP=>$ip1,Uptime=>$uptime,unixtime=>$time,IN_Interface_1=>$In1,OUT_Interface_1=>$Out1,IN_Interface_8=>$In8,OUT_Interface_8=>$Out8};
         my $json = $JSON->encode($Output) ;
         print FOO "$json\n";
     }
@@ -145,7 +146,7 @@ sub table_callback()
         my $Out2    = $list->{$OUT2};
         my $uptime = $list->{$OID_sysUpTime}; # in microseconds
            $uptime = $uptime*0.01;
-        my $Output = {Switch_IP=>$ip2,Uptime=>$uptime,unixtime=>$second,IN_Interface_1=>$In1,OUT_Interface_1=>$Out1,IN_Interface_2=>$In2,OUT_Interface_2=>$Out2};
+        my $Output = {Switch_IP=>$ip2,Uptime=>$uptime,unixtime=>$time,IN_Interface_1=>$In1,OUT_Interface_1=>$Out1,IN_Interface_2=>$In2,OUT_Interface_2=>$Out2};
         my $json = $JSON->encode($Output) ;
 #       print "$json\n";
         print BAR "$json\n";
