@@ -4,7 +4,7 @@ import "os/exec"
 import "log"
 
 func main() {
-	cmd :=exec.Command("/home/ats/dire15/thesis/delayfinder/capshow.sh")
+	cmd :=exec.Command("bash capshow.sh")
 	log.Println(cmd)
 
 }
