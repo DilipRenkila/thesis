@@ -29,7 +29,11 @@ my $first = <FOO>;
 while (<FOO>) { $last = $_ }
 close FOO;
 my @words = split / /,$last;
-my @expid = split (':',$words[0]);
-my @runid = split (':',$words[1]);
-print "$runid[1]\n";
+my @exp = split (':',$words[0]);
+my @run = split (':',$words[1]);
+my @sampling = split(':',$words[6])
+my $runid = $run[1];
+my $expid = $exp[1];
+my $sampling_interval = $sampling[1];
+
 

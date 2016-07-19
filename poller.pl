@@ -6,5 +6,6 @@ use Time::HiRes qw(usleep gettimeofday);
 use JSON;
 my $script="/home/ats/dire15/thesis/config.pl";
 do "$script";
-my ($second,$microsecond)=gettimeofday;
-open FILE1, ">>",""
+#my ($second,$microsecond)=gettimeofday;
+#open FILE1, ">>",""
+print "$expid\n";
