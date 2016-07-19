@@ -37,8 +37,8 @@ my @sampling = split(':',$words[6]);
 my $runid = $run[1];
 my $expid = $exp[1];
 my $sampling_interval = $sampling[1];
-
+my $foo = sprintf "/mnt/LONTAS/ExpControl/dire15/logs/in-%d-%d.txt",$expid,$runid;
+print "$foo\n";
 #my ($second,$microsecond)=gettimeofday;
-#open FILE1, ">>",""
-print "$expid\n";
-print "$runid\n";
+#open FOO, ">>",""
+
