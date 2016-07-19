@@ -28,6 +28,6 @@ my $first = <FOO>;
 
 while (<FOO>) { $last = $_ }
 close FOO;
-my @words = split /[= ]/,$last;
-print "@words\n";
+my @words = split / /,$last;
+print "$words[0]\n";
 
