@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-use strict;
+#use strict;
 use warnings;
 use Net::SNMP qw(snmp_dispatcher ticks_to_time);
 use Time::HiRes qw(usleep gettimeofday);
