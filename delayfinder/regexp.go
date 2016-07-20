@@ -12,8 +12,20 @@ import ("fmt"
 func secondmain() {
 	info , _ := read_file(fmt.Sprintf("/info/details.txt"))
 	infoarray  := strings.Split(info[len(info)-1], " ")
+	del := strings.Split(infoarray[2], ":")
 	exp := strings.Split(infoarray[0], ":")
 	run := strings.Split(infoarray[1], ":")
+	pack := strings.Split(infoarray[3], ":")
+	packlen := strings.Split(infoarray[4], ":")
+	sampint := strings.Split(infoarray[5], ":")
+	dest := strings.Split(infoarray[6], ":")
+	interframe := strings.Split(infoarray[7], ":")
+	delayonshaper := del[1]
+	packets := pack[1]
+	packetlength := packlen[1]
+	samplinginterval := sampint[1]
+	destination := dest[1]
+	interframegap := interframe[1]
 	expid := exp[1]
 	runid := run[1]
 	lines ,err := read_file(fmt.Sprintf("/logs/trace-%s-%s.txt",expid,runid))
@@ -62,8 +74,7 @@ func secondmain() {
 		if _, ok := m[checksum]; ok {
 			number_of_packets = number_of_packets + 1
 			In := m[checksum]
-			delay := Out - In
-			fmt.Println(delay)
+			delay := In - Out
 			average_delay = average_delay + delay
 
         	} else {
@@ -74,15 +85,14 @@ func secondmain() {
 
 	x := float64(number_of_packets)
 	average_delay = average_delay/x
-	drop := len(lines_d01) - len(lines_d10)
 	delay_in_ms := average_delay*1000
-	fmt.Println(delay_in_ms,drop)
+	fmt.Println(delay_in_ms)
 
 
-//	err = append_file(fmt.Sprintf("expid:%s runid:%s delay:%s average_delay:%f dropped_packets:%d\n",expid[0],runid[0],delay[0],delay_in_ms,drop))
-//	if err != nil {
-//		log.Fatalf("append_file: %s",err)
-//	}
+	err = append_file(fmt.Sprintf("expid:%s runid:%s delay-on-shaper:%s average_delay:%f packets_sent:%s packets_on_d01:%d packets_packet_d10:%d packet_length:%s sampling_interval_in_sec:%s destination:%s interframegap:%s\n",expid,runid,delayonshaper,delay_in_ms,packets,len(lines_d01),len(lines_d10),packetlength,samplinginterval,destination,interframegap))
+	if err != nil {
+		log.Fatalf("append_file: %s",err)
+	}
 
 	return 
 }
