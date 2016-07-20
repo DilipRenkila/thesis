@@ -45,7 +45,7 @@ func append_file(lines string) error {
 func main() {
 
 
-	lines ,err := read_file(fmt.Sprintf("/logs/trace-7538-1.txt"))
+	lines ,err := read_file(fmt.Sprintf("/logs/trace-7537-1.txt"))
 	if err != nil {
 		log.Fatalf("read_file: %s", err)
 	}
@@ -94,7 +94,7 @@ func main() {
 			number_of_packets = number_of_packets + 1
 			In := m[checksum]
 			delay := Out - In
-			fmt.Println(delay)
+			//fmt.Println(delay)
 			average_delay = average_delay + delay
 
         	} else {
