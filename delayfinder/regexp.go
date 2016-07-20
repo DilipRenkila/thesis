@@ -12,14 +12,15 @@ import ("fmt"
 func secondmain() {
 	info , _ := read_file(fmt.Sprintf("/info/details.txt"))
 	infoarray  := strings.Split(info[len(info)-1], " ")
-	del := strings.Split(infoarray[2], ":")
+	
 	exp := strings.Split(infoarray[0], ":")
 	run := strings.Split(infoarray[1], ":")
-	pack := strings.Split(infoarray[3], ":")
-	packlen := strings.Split(infoarray[4], ":")
-	sampint := strings.Split(infoarray[5], ":")
-	dest := strings.Split(infoarray[6], ":")
-	interframe := strings.Split(infoarray[7], ":")
+	del := strings.Split(infoarray[3], ":")
+	pack := strings.Split(infoarray[4], ":")
+	packlen := strings.Split(infoarray[5], ":")
+	sampint := strings.Split(infoarray[6], ":")
+	dest := strings.Split(infoarray[7], ":")
+	interframe := strings.Split(infoarray[8], ":")
 	delayonshaper := del[1]
 	packets := pack[1]
 	packetlength := packlen[1]
