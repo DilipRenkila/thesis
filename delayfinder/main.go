@@ -22,8 +22,8 @@ func main() {
 		    if ev.Mask&inotify.IN_MODIFY != inotify.IN_MODIFY {
 			    continue
 		    }
-                log.Println("Sleep for 30 seconds ....")
-                time.Sleep(time.Second*30)
+                log.Println("Sleep for 180 seconds ....")
+                time.Sleep(time.Second*180)
             case err := <-watcher.Error:
                 log.Println("error:", err)
             }
