@@ -23,6 +23,7 @@ func main() {
 			    continue
 		    }
                 log.Println("Sleep for 180 seconds ....")
+                secondmain()
                 time.Sleep(time.Second*180)
             case err := <-watcher.Error:
                 log.Println("error:", err)
