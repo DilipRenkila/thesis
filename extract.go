@@ -103,7 +103,7 @@ func main() {
 
 	}
 
-	x := float64(number_of_packets)
+	x := float64(len(lines_d01))
 	average_delay = average_delay/x
 	drop := len(lines_d01) - len(lines_d10)
 	delay_in_ms := average_delay*1000
