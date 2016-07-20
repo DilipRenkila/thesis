@@ -3,6 +3,7 @@ package main
 import (
     "log"
     "golang.org/x/exp/inotify"
+    "time"
 )
 
 func main() {
@@ -21,15 +22,15 @@ func main() {
 		    if ev.Mask&inotify.IN_MODIFY != inotify.IN_MODIFY {
 			    continue
 		    }
-                log.Println("Executing ....")
-                capshow()
+                log.Println("Sleep for 30 seconds ....")
+                time.Sleep(time.Second*30)
             case err := <-watcher.Error:
                 log.Println("error:", err)
             }
         }
     }()
 
-    err = watcher.Watch("/mnt/LONTAS/ExpControl/dire15/info")
+    err = watcher.Watch("/mnt/LONTAS/ExpControl/dire15/status")
     if err != nil {
         log.Fatal(err)
     }

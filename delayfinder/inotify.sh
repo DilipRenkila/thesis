@@ -1,6 +1,6 @@
 #!/bin/bash
-inotifywait -q -m -e close_write /mnt/LONTAS/ExpControl/dire15//info/details.txt |
+inotifywait -q -m -e close_write /mnt/LONTAS/ExpControl/dire15/status/status |
 while read -r filename event; do
-  sleep 120
+  sleep 15
   ./capshow.sh         # or "./$filename"
 done
