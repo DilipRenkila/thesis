@@ -66,9 +66,10 @@ func main() {
 	number_of_packets := 0
 
 	for _, line := range lines {
+		fmt.Println(line)
 		if re_1.MatchString(line) == true && re.MatchString(line) == true && reg.MatchString(line )== false{
 			lines_d01 = append(lines_d01, line)
-			fmt.Println(line)
+
 		}
 
 		if re_2.MatchString(line) == true && re.MatchString(line) == true && reg.MatchString(line )== false {
