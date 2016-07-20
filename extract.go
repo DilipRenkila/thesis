@@ -12,7 +12,7 @@ import (
 )
 
 func read_file (path string) ([]string, error) {
-	pwd :="/home/ats/dire15/thesis"
+	pwd :="/mnt/LONTAS/ExpControl/dire15"
 	file, err := os.Open(pwd + path)
 	if err != nil {
 		return nil, err
