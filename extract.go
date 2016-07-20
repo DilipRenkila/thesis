@@ -68,6 +68,7 @@ func main() {
 	for _, line := range lines {
 		if re_1.MatchString(line) == true && re.MatchString(line) == true && reg.MatchString(line )== false{
 			lines_d01 = append(lines_d01, line)
+			fmt.Println(line)
 		}
 
 		if re_2.MatchString(line) == true && re.MatchString(line) == true && reg.MatchString(line )== false {
