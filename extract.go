@@ -104,9 +104,9 @@ func main() {
 
 	x := float64(number_of_packets)
 	average_delay = average_delay/x
-	drop := len(lines_d01) - len(lines_d10)
-	delay_in_ms := average_delay*1000
-	fmt.Println(delay_in_ms,drop)
+//	drop := len(lines_d01) - len(lines_d10)
+//	delay_in_ms := average_delay*1000
+//	fmt.Println(delay_in_ms,drop)
 
 
 //	err = append_file(fmt.Sprintf("expid:%s runid:%s delay:%s average_delay:%f dropped_packets:%d\n",expid[0],runid[0],delay[0],delay_in_ms,drop))
