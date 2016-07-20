@@ -79,7 +79,6 @@ func main() {
 
 	for i, _ := range lines_d01 {
 		in := strings.Split(lines_d01[i], ":")
-		fmt.Println(lines_d01[i])
 		d01_checksum_string := strings.Split(lines_d01[i], "=")
 		In, _ := strconv.ParseFloat(in[3], 64)
 		checksum := d01_checksum_string[2]
@@ -95,6 +94,7 @@ func main() {
 			number_of_packets = number_of_packets + 1
 			In := m[checksum]
 			delay := Out - In
+			fmt.Println(delay)
 			average_delay = average_delay + delay
 
         	} else {
