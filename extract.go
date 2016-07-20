@@ -45,7 +45,7 @@ func append_file(lines string) error {
 func main() {
 
 
-	lines ,err := read_file(fmt.Sprintf("/logs/trace-7541-1.txt"))
+	lines ,err := read_file(fmt.Sprintf("/logs/trace-7538-1.txt"))
 	if err != nil {
 		log.Fatalf("read_file: %s", err)
 	}
@@ -66,7 +66,6 @@ func main() {
 	number_of_packets := 0
 
 	for _, line := range lines {
-		fmt.Println(line)
 		if re_1.MatchString(line) == true && re.MatchString(line) == true && reg.MatchString(line )== false{
 			lines_d01 = append(lines_d01, line)
 
@@ -106,9 +105,9 @@ func main() {
 
 	x := float64(number_of_packets)
 	average_delay = average_delay/x
-//	drop := len(lines_d01) - len(lines_d10)
-//	delay_in_ms := average_delay*1000
-//	fmt.Println(delay_in_ms,drop)
+	drop := len(lines_d01) - len(lines_d10)
+	delay_in_ms := average_delay*1000
+	fmt.Println(delay_in_ms,drop)
 
 
 //	err = append_file(fmt.Sprintf("expid:%s runid:%s delay:%s average_delay:%f dropped_packets:%d\n",expid[0],runid[0],delay[0],delay_in_ms,drop))
