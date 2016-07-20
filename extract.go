@@ -114,4 +114,3 @@ func main() {
 //		log.Fatalf("append_file: %s",err)
 	}
 
-}
