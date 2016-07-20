@@ -63,6 +63,7 @@ func secondmain() {
 			number_of_packets = number_of_packets + 1
 			In := m[checksum]
 			delay := Out - In
+			fmt.Println(delay)
 			average_delay = average_delay + delay
 
         	} else {
