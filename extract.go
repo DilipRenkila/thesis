@@ -45,7 +45,7 @@ func append_file(lines string) error {
 func main() {
 
 
-	lines ,err := read_file(fmt.Sprintf("/logs/trace-7541-1.txt")
+	lines ,err := read_file(fmt.Sprintf("/logs/trace-7541-1.txt"))
 	if err != nil {
 		log.Fatalf("read_file: %s", err)
 	}
