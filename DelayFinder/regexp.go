@@ -58,10 +58,6 @@ func main() {
 	x := float64(number_of_packets)
 	average_delay = average_delay/x
 	delay_in_ms := average_delay*1000
-	fmt.Println(average_delay)
-	fmt.Println(delay_in_ms)
-
-
 	err = append_file(fmt.Sprintf("expid:%s runid:%s delay-on-shaper:%s average_delay:%f packets_sent:%s packets_received:%d packet_length:%s sampling_interval_in_sec:%s destination:%s interframegap:%s\n",expid,runid,delayonshaper,delay_in_ms,packets,number_of_packets,packetlength,samplinginterval,destination,interframegap))
 	if err != nil {
 		log.Fatalf("append_file: %s",err)
