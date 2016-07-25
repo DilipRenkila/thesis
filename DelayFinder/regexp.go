@@ -49,7 +49,7 @@ func main() {
 
 			in := strings.Split(line, ";")
 			fmt.Println(in[5])
-			delay, _ := strconv.ParseFloat(in[6], 64)
+			delay, _ := strconv.ParseFloat(in[5], 64)
 			number_of_packets = number_of_packets + 1
 			average_delay = average_delay + delay
 		}
