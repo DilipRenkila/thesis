@@ -48,7 +48,7 @@ func main() {
 		if re_1.MatchString(line) == true && re_2.MatchString(line) == true {
 
 			in := strings.Split(line, ";")
-			fmt.Println(in[5])
+
 			delay, _ := strconv.ParseFloat(in[5], 64)
 			number_of_packets = number_of_packets + 1
 			average_delay = average_delay + delay
@@ -58,6 +58,7 @@ func main() {
 	x := float64(number_of_packets)
 	average_delay = average_delay/x
 	delay_in_ms := average_delay*1000
+	fmt.Println(average_delay)
 	fmt.Println(delay_in_ms)
 
 
