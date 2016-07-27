@@ -5,5 +5,5 @@ while read -r filename event; do
   sleep 150
   bash /home/ats/dire15/thesis/DelayFinder/onewaydelay.sh
   /home/ats/dire15/thesis/DelayFinder/DelayFinder
-
 done
+wait
