@@ -1,6 +1,6 @@
 #!/bin/bash
-inotifywait -m /mnt/LONTAS/traces -e create -e moved_to |
-while read action file; do
-        echo "The file '$file' appeared in directory '$path' via '$action'"
+inotifywait -m /mnt/LONTAS/ExpControl/dire15/logs/ -e create  |
+while read file; do
+        echo "The file '$file' appeared in directory "
 done
 wait
