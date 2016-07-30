@@ -1,6 +1,6 @@
 #!/bin/bash
-inotifywait -m /mnt/LONTAS/ExpControl/dire15/logs/ -e create  |
+MONITORDIR="/mnt/LONTAS/traces/"
+inotifywait -m -e create --format '%w%f' "${MONITORDIR}"   |
 while read file; do
         echo "The file '$file' appeared in directory "
 done
-wait
