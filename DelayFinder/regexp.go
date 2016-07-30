@@ -7,8 +7,8 @@ import ("fmt"
 	"strconv"
 
 )
-type info struct {
-  expid,runid,interframegap,destination,samplinginterval,packetlength,packets,delayonshaper,packets string
+type Info struct {
+  expid,runid,interframegap,destination,samplinginterval,packetlength,packets,delayonshaper  string
 }
 
 func main() {
@@ -23,7 +23,7 @@ func main() {
 	sampint := strings.Split(infoarray[6], ":")
 	dest := strings.Split(infoarray[7], ":")
 	interframe := strings.Split(infoarray[8], ":")
-	Info := info{exp[1],run[1],interframe[1],dest[1],sampint[1],packlen[1],del[1],pack[1]}
+	Info  := Info{exp[1],run[1],interframe[1],dest[1],sampint[1],packlen[1],pack[1],del[1]}
 
 	lines ,err := read_file(fmt.Sprintf("/logs/trace-%s-%s.txt",Info.expid,Info.runid))
 	if err != nil {
