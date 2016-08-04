@@ -15,8 +15,8 @@ my $ingress_interface = $yaml->[0]->{ingress_switch_details}->{interface_id};
 my $egress_interface = $yaml->[0]->{egress_switch_details}->{interface_id};
 
 my $sysUpTime = '1.3.6.1.2.1.1.3.0';
-my @ingress_oid = ($sysUpTime,sprintf "1.3.6.1.2.1.2.2.1.10.%s",$ingress_interface);
-my @egress_oid =  ($sysUpTime,sprintf "1.3.6.1.2.1.2.2.1.16.%s",$egress_interface);
+my @ingress_oid = ($sysUpTime,(sprintf "1.3.6.1.2.1.2.2.1.10.%s",$ingress_interface));
+my @egress_oid =  ($sysUpTime,(sprintf "1.3.6.1.2.1.2.2.1.16.%s",$egress_interface));
 
 open (FOO,"/mnt/LONTAS/ExpControl/dire15/info/details.txt") ||
     die "ERROR Unable to open file: $!\n";
