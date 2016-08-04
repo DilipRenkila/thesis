@@ -1,4 +1,3 @@
-
 ingress_switch_details :
   switch_name: procurve2
   switch_management_ip : 10.1.0.123

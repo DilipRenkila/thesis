@@ -6,14 +6,14 @@ use Net::SNMP qw(snmp_dispatcher ticks_to_time);
 use Time::HiRes qw(usleep gettimeofday);
 
 # Open the config yaml file
-my $yaml = YAML::Tiny->read( '/mnt/LONTAS/ExpControl/dire15/thesis/config.yml' );
+my $yaml = YAML::Tiny->read( '/mnt/LONTAS/ExpControl/dire15/thesis/poller/config.yml' );
 
 # Storing the properties of yaml file into variables
 my $ingress_switch  = $yaml->[0]->{ingress_switch_details}->{switch_management_ip};
 my $egress_switch  = $yaml->[0]->{egress_switch_details}->{switch_management_ip};
 my $ingress_interface = $yaml->[0]->{ingress_switch_details}->{interface_id};
 my $egress_interface = $yaml->[0]->{egress_switch_details}->{interface_id};
-print "$egress_switch\n";
+print "$egress_switch\n"
 my $sysUpTime = '1.3.6.1.2.1.1.3.0';
 my @ingress_oid = ($sysUpTime,(sprintf "1.3.6.1.2.1.2.2.1.10.%s",$ingress_interface));
 my @egress_oid =  ($sysUpTime,(sprintf "1.3.6.1.2.1.2.2.1.16.%s",$egress_interface));
