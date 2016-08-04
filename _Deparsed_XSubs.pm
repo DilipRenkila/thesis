@@ -852,102 +852,6 @@ sub is_utf8;
 package Clone {
 sub clone($;$) ;
 }
-package Compress::Raw::Bunzip2 {
-sub DESTROY;
-sub DispStream;
-sub bzinflate;
-sub compressedBytes;
-sub inflateCount;
-sub new;
-sub status;
-sub total_in_lo32;
-sub total_out_lo32;
-sub uncompressedBytes;
-}
-package Compress::Raw::Bzip2 {
-sub DESTROY;
-sub DispStream;
-sub bzclose;
-sub bzdeflate;
-sub bzflush;
-sub bzlibversion;
-sub compressedBytes;
-sub constant;
-sub new;
-sub total_in_lo32;
-sub total_out_lo32;
-sub uncompressedBytes;
-}
-package Compress::Raw::Zlib {
-sub ZLIB_VERNUM;
-sub _deflateInit;
-sub _inflateInit;
-sub _inflateScanInit;
-sub adler32;
-sub adler32_combine;
-sub constant;
-sub crc32;
-sub crc32_combine;
-sub zlibCompileFlags;
-sub zlib_version;
-}
-package Compress::Raw::Zlib::deflateStream {
-sub DESTROY;
-sub DispStream;
-sub _deflateParams;
-sub adler32;
-sub compressedBytes;
-sub crc32;
-sub deflate;
-sub deflateReset;
-sub deflateTune;
-sub dict_adler;
-sub flush;
-sub get_Bufsize;
-sub get_Level;
-sub get_Strategy;
-sub msg;
-sub status;
-sub total_in;
-sub total_out;
-sub uncompressedBytes;
-}
-package Compress::Raw::Zlib::inflateScanStream {
-sub DESTROY;
-sub DispStream;
-sub _createDeflateStream;
-sub adler32;
-sub compressedBytes;
-sub crc32;
-sub getEndOffset;
-sub getLastBlockOffset;
-sub getLastBufferOffset;
-sub inflateCount;
-sub inflateReset;
-sub resetLastBlockByte;
-sub scan;
-sub status;
-sub uncompressedBytes;
-}
-package Compress::Raw::Zlib::inflateStream {
-sub DESTROY;
-sub DispStream;
-sub adler32;
-sub compressedBytes;
-sub crc32;
-sub dict_adler;
-sub get_Bufsize;
-sub inflate;
-sub inflateCount;
-sub inflateReset;
-sub inflateSync;
-sub msg;
-sub set_Append;
-sub status;
-sub total_in;
-sub total_out;
-sub uncompressedBytes;
-}
 package Config {
 sub AUTOLOAD;
 }
@@ -969,170 +873,9 @@ sub fastcwd;
 sub getcwd;
 sub realpath;
 }
-package DB_File {
-sub DELETE;
-sub DESTROY;
-sub DoTie_;
-sub EXISTS;
-sub FETCH;
-sub FETCHSIZE;
-sub FIRSTKEY;
-sub NEXTKEY;
-sub O_ALIAS() ;
-sub O_DEFER() ;
-sub O_EXLOCK() ;
-sub O_NOINHERIT() ;
-sub O_RANDOM() ;
-sub O_RAW() ;
-sub O_RSRC() ;
-sub O_SEQUENTIAL() ;
-sub O_SHLOCK() ;
-sub O_TEMPORARY() ;
-sub POP;
-sub PUSH;
-sub SHIFT;
-sub STORE;
-sub UNSHIFT;
-sub constant;
-sub del;
-sub fd;
-sub filter_fetch_key;
-sub filter_fetch_value;
-sub filter_store_key;
-sub filter_store_value;
-sub get;
-sub length;
-sub pop;
-sub push;
-sub put;
-sub seq;
-sub shift;
-sub sync;
-sub unshift;
-}
 package Data::Alias {
 sub alias;
 sub copy;
-}
-package Data::Dumper {
-sub Dumpxs($;$$) ;
-sub _vstring($) ;
-}
-package Devel::Peek {
-sub CvGV;
-sub DeadCode;
-sub Dump;
-sub DumpArray;
-sub DumpProg;
-sub SvREFCNT(\[$@%&*]) ;
-sub fill_mstats;
-sub mstat;
-sub mstats2hash($\%;$) ;
-sub mstats_fillhash(\%;$) ;
-sub runops_debug;
-}
-package Digest::MD5 {
-sub DESTROY;
-sub add;
-sub addfile;
-sub b64digest;
-sub clone;
-sub context;
-sub digest;
-sub hexdigest;
-sub md5;
-sub md5_base64;
-sub md5_hex;
-sub new;
-sub reset;
-}
-package Digest::SHA {
-sub DESTROY($) ;
-sub F_ALLOCSP() ;
-sub F_ALLOCSP64() ;
-sub F_COMPAT() ;
-sub F_DUP2FD() ;
-sub F_FREESP() ;
-sub F_FREESP64() ;
-sub F_FSYNC() ;
-sub F_FSYNC64() ;
-sub F_NODNY() ;
-sub F_POSIX() ;
-sub F_RDACC() ;
-sub F_RDDNY() ;
-sub F_RWACC() ;
-sub F_RWDNY() ;
-sub F_SHARE() ;
-sub F_UNSHARE() ;
-sub F_WRACC() ;
-sub F_WRDNY() ;
-sub O_ALIAS() ;
-sub O_DEFER() ;
-sub O_EXLOCK() ;
-sub O_NOINHERIT() ;
-sub O_RANDOM() ;
-sub O_RAW() ;
-sub O_RSRC() ;
-sub O_SEQUENTIAL() ;
-sub O_SHLOCK() ;
-sub O_TEMPORARY() ;
-sub _addfilebin($$) ;
-sub _addfileuniv($$) ;
-sub _getstate($) ;
-sub _putstate($$) ;
-sub add($;@) ;
-sub algorithm($) ;
-sub b64digest($) ;
-sub clone($) ;
-sub digest($) ;
-sub hashsize($) ;
-sub hexdigest($) ;
-sub hmac_sha1(;@) ;
-sub hmac_sha1_base64(;@) ;
-sub hmac_sha1_hex(;@) ;
-sub hmac_sha224(;@) ;
-sub hmac_sha224_base64(;@) ;
-sub hmac_sha224_hex(;@) ;
-sub hmac_sha256(;@) ;
-sub hmac_sha256_base64(;@) ;
-sub hmac_sha256_hex(;@) ;
-sub hmac_sha384(;@) ;
-sub hmac_sha384_base64(;@) ;
-sub hmac_sha384_hex(;@) ;
-sub hmac_sha512(;@) ;
-sub hmac_sha512224(;@) ;
-sub hmac_sha512224_base64(;@) ;
-sub hmac_sha512224_hex(;@) ;
-sub hmac_sha512256(;@) ;
-sub hmac_sha512256_base64(;@) ;
-sub hmac_sha512256_hex(;@) ;
-sub hmac_sha512_base64(;@) ;
-sub hmac_sha512_hex(;@) ;
-sub newSHA($$) ;
-sub sha1(;@) ;
-sub sha1_base64(;@) ;
-sub sha1_hex(;@) ;
-sub sha224(;@) ;
-sub sha224_base64(;@) ;
-sub sha224_hex(;@) ;
-sub sha256(;@) ;
-sub sha256_base64(;@) ;
-sub sha256_hex(;@) ;
-sub sha384(;@) ;
-sub sha384_base64(;@) ;
-sub sha384_hex(;@) ;
-sub sha512(;@) ;
-sub sha512224(;@) ;
-sub sha512224_base64(;@) ;
-sub sha512224_hex(;@) ;
-sub sha512256(;@) ;
-sub sha512256_base64(;@) ;
-sub sha512256_hex(;@) ;
-sub sha512_base64(;@) ;
-sub sha512_hex(;@) ;
-sub shainit($$) ;
-sub sharewind($) ;
-sub shawrite($$$) ;
 }
 package Digest::SHA1 {
 sub DESTROY;
@@ -1189,39 +932,6 @@ sub is_8bit;
 sub is_utf8($;$) ;
 sub utf8_downgrade;
 sub utf8_upgrade;
-}
-package Encode::CN::HZ {
-sub FB_CROAK() ;
-sub FB_DEFAULT() ;
-sub FB_HTMLCREF() ;
-sub FB_PERLQQ() ;
-sub FB_QUIET() ;
-sub FB_WARN() ;
-sub FB_XMLCREF() ;
-}
-package Encode::JP::JIS7 {
-sub FB_CROAK() ;
-sub FB_DEFAULT() ;
-sub FB_HTMLCREF() ;
-sub FB_PERLQQ() ;
-sub FB_QUIET() ;
-sub FB_WARN() ;
-sub FB_XMLCREF() ;
-}
-package Encode::KR::2022_KR {
-sub FB_CROAK() ;
-sub FB_DEFAULT() ;
-sub FB_HTMLCREF() ;
-sub FB_PERLQQ() ;
-sub FB_QUIET() ;
-sub FB_WARN() ;
-sub FB_XMLCREF() ;
-}
-package Encode::Unicode {
-sub decode;
-sub decode_xs;
-sub encode;
-sub encode_xs;
 }
 package Encode::XS {
 sub cat_decode($$$$$;$) ;
@@ -1323,9 +1033,6 @@ sub S_ISLNK;
 sub S_ISREG;
 sub S_ISSOCK;
 sub S_ISTXT() ;
-}
-package File::DosGlob {
-sub _callsite;
 }
 package File::FcntlLock {
 sub ARG_MAX() ;
@@ -1768,32 +1475,6 @@ sub _fn_catfile;
 sub canonpath;
 sub catdir;
 sub catfile;
-}
-package Filter::Util::Call {
-sub filter_del() ;
-sub filter_read(;$) ;
-sub real_import($$$) ;
-sub unimport(;$@) ;
-}
-package GDBM_File {
-sub AUTOLOAD;
-sub DELETE;
-sub DESTROY;
-sub EXISTS;
-sub FETCH;
-sub FIRSTKEY;
-sub GDBM_OPENMASK() ;
-sub NEXTKEY;
-sub STORE;
-sub TIEHASH;
-sub close;
-sub filter_fetch_key;
-sub filter_fetch_value;
-sub filter_store_key;
-sub filter_store_value;
-sub reorganize;
-sub setopt;
-sub sync;
 }
 package Glib {
 sub CHECK_VERSION;
@@ -6939,22 +6620,6 @@ sub hv_store(\%$$) ;
 sub legal_ref_keys;
 sub reftype($) ;
 }
-package Hash::Util::FieldHash {
-sub CLONE;
-sub _active_fields;
-sub _fieldhash($$) ;
-sub _test_uvar_get;
-sub _test_uvar_same;
-sub _test_uvar_set;
-sub id($) ;
-sub id_2obj($) ;
-sub reftype($) ;
-sub register($@) ;
-}
-package I18N::Langinfo {
-sub AUTOLOAD;
-sub langinfo(_) ;
-}
 package IO::File {
 sub O_ALIAS() ;
 sub O_DEFER() ;
@@ -7251,25 +6916,467 @@ sub O_SHLOCK() ;
 sub O_TEMPORARY() ;
 sub ttyname;
 }
-package IPC::Msg::stat {
-sub pack($) ;
-sub unpack($$) ;
-}
-package IPC::Semaphore::stat {
-sub pack($) ;
-sub unpack($$) ;
-}
-package IPC::SharedMem::stat {
-sub pack($) ;
-sub unpack($$) ;
-}
-package IPC::SysV {
-sub _constant($) ;
-sub ftok($;$) ;
-sub memread($$$$) ;
-sub memwrite($$$$) ;
-sub shmat($$$) ;
-sub shmdt($) ;
+package Image::Magick::Q16 {
+sub AcquireImagePixels($;@) ;
+sub AdaptiveBlur($;@) ;
+sub AdaptiveBlurImage($;@) ;
+sub AdaptiveResize($;@) ;
+sub AdaptiveResizeImage($;@) ;
+sub AdaptiveSharpen($;@) ;
+sub AdaptiveSharpenImage($;@) ;
+sub AdaptiveThreshold($;@) ;
+sub AdaptiveThresholdImage($;@) ;
+sub AddNoise($;@) ;
+sub AddNoiseImage($;@) ;
+sub AffineTransform($;@) ;
+sub AffineTransformImage($;@) ;
+sub Animate($;@) ;
+sub AnimateImage($;@) ;
+sub Annotate($;@) ;
+sub AnnotateImage($;@) ;
+sub Append($;@) ;
+sub AppendImage($;@) ;
+sub AutoGamma($;@) ;
+sub AutoGammaImage($;@) ;
+sub AutoLevel($;@) ;
+sub AutoLevelImage($;@) ;
+sub AutoOrient($;@) ;
+sub AutoOrientImage($;@) ;
+sub Average($) ;
+sub AverageImage($) ;
+sub BlackThreshold($;@) ;
+sub BlackThresholdImage($;@) ;
+sub BlobToImage($;@) ;
+sub BlueShift($;@) ;
+sub BlueShiftImage($;@) ;
+sub Blur($;@) ;
+sub BlurImage($;@) ;
+sub Border($;@) ;
+sub BorderImage($;@) ;
+sub BrightnessContrast($;@) ;
+sub BrightnessContrastImage($;@) ;
+sub CLONE($;@) ;
+sub CannyEdge($;@) ;
+sub CannyEdgeImage($;@) ;
+sub Channel($;@) ;
+sub ChannelImage($;@) ;
+sub Charcoal($;@) ;
+sub CharcoalImage($;@) ;
+sub Chop($;@) ;
+sub ChopImage($;@) ;
+sub Clamp($;@) ;
+sub ClampImage($;@) ;
+sub Clip($;@) ;
+sub ClipImage($;@) ;
+sub ClipMask($;@) ;
+sub ClipMaskImage($;@) ;
+sub Clone($) ;
+sub CloneImage($) ;
+sub Clut($;@) ;
+sub ClutImage($;@) ;
+sub Coalesce($) ;
+sub CoalesceImage($) ;
+sub Color($;@) ;
+sub ColorDecisionList($;@) ;
+sub ColorDecisionListImage($;@) ;
+sub ColorFloodfill($;@) ;
+sub ColorFloodfillImage($;@) ;
+sub ColorImage($;@) ;
+sub ColorMatrix($;@) ;
+sub ColorMatrixImage($;@) ;
+sub Colorize($;@) ;
+sub ColorizeImage($;@) ;
+sub Comment($;@) ;
+sub CommentImage($;@) ;
+sub Compare($;@) ;
+sub CompareImage($;@) ;
+sub CompareImageLayers($) ;
+sub CompareLayers($) ;
+sub ComplexImages($) ;
+sub Composite($;@) ;
+sub CompositeImage($;@) ;
+sub ConnectedComponents($;@) ;
+sub ConnectedComponentsImage($;@) ;
+sub Contrast($;@) ;
+sub ContrastImage($;@) ;
+sub ContrastStretch($;@) ;
+sub ContrastStretchImage($;@) ;
+sub Convolve($;@) ;
+sub ConvolveImage($;@) ;
+sub CopyImage($) ;
+sub Crop($;@) ;
+sub CropImage($;@) ;
+sub CycleColormap($;@) ;
+sub CycleColormapImage($;@) ;
+sub DESTROY($) ;
+sub Decipher($;@) ;
+sub DecipherImage($;@) ;
+sub Deconstruct($;@) ;
+sub DeconstructImage($;@) ;
+sub Describe($;@) ;
+sub DescribeImage($;@) ;
+sub Deskew($;@) ;
+sub DeskewImage($;@) ;
+sub Despeckle($;@) ;
+sub DespeckleImage($;@) ;
+sub Difference($;@) ;
+sub DifferenceImage($;@) ;
+sub Display($;@) ;
+sub DisplayImage($;@) ;
+sub Distort($;@) ;
+sub DistortImage($;@) ;
+sub Draw($;@) ;
+sub DrawImage($;@) ;
+sub Edge($;@) ;
+sub EdgeImage($;@) ;
+sub Emboss($;@) ;
+sub EmbossImage($;@) ;
+sub Encipher($;@) ;
+sub EncipherImage($;@) ;
+sub Enhance($;@) ;
+sub EnhanceImage($;@) ;
+sub Equalize($;@) ;
+sub EqualizeImage($;@) ;
+sub Evaluate($;@) ;
+sub EvaluateImage($;@) ;
+sub EvaluateImages($) ;
+sub Extent($;@) ;
+sub ExtentImage($;@) ;
+sub Features($;@) ;
+sub FeaturesImage($;@) ;
+sub Filter($;@) ;
+sub FilterImage($;@) ;
+sub Flatten($) ;
+sub FlattenImage($) ;
+sub Flip($;@) ;
+sub FlipImage($;@) ;
+sub FloodfillPaint($;@) ;
+sub FloodfillPaintImage($;@) ;
+sub Flop($;@) ;
+sub FlopImage($;@) ;
+sub ForwardFourierTransform($;@) ;
+sub ForwardFourierTransformImage($;@) ;
+sub Frame($;@) ;
+sub FrameImage($;@) ;
+sub Function($;@) ;
+sub FunctionImage($;@) ;
+sub Fx($;@) ;
+sub FxImage($;@) ;
+sub Gamma($;@) ;
+sub GammaImage($;@) ;
+sub GaussianBlur($;@) ;
+sub GaussianBlurImage($;@) ;
+sub Get($;@) ;
+sub GetAttribute($;@) ;
+sub GetAttributes($;@) ;
+sub GetAuthenticIndexQueue($;@) ;
+sub GetAuthenticPixels($;@) ;
+sub GetImagePixels($;@) ;
+sub GetIndexes($;@) ;
+sub GetPixel($;@) ;
+sub GetPixels($;@) ;
+sub GetVirtualIndexQueue($;@) ;
+sub GetVirtualPixels($;@) ;
+sub Grayscale($;@) ;
+sub GrayscaleImage($;@) ;
+sub HaldClut($;@) ;
+sub HaldClutImage($;@) ;
+sub Histogram($;@) ;
+sub HistogramImage($;@) ;
+sub HoughLine($;@) ;
+sub HoughLineImage($;@) ;
+sub Identify($;@) ;
+sub IdentifyImage($;@) ;
+sub ImageToBlob($;@) ;
+sub Implode($;@) ;
+sub ImplodeImage($;@) ;
+sub InverseFourierTransform($;@) ;
+sub InverseFourierTransformImage($;@) ;
+sub Kuwahara($;@) ;
+sub KuwaharaImage($;@) ;
+sub Label($;@) ;
+sub LabelImage($;@) ;
+sub Layers($;@) ;
+sub Level($;@) ;
+sub LevelColors($;@) ;
+sub LevelColorsImage($;@) ;
+sub LevelImage($;@) ;
+sub LinearStretch($;@) ;
+sub LinearStretchImage($;@) ;
+sub LiquidRescale($;@) ;
+sub LiquidRescaleImage($;@) ;
+sub MagickToMime($$) ;
+sub Magnify($;@) ;
+sub MagnifyImage($;@) ;
+sub Map($;@) ;
+sub MapImage($;@) ;
+sub Mask($;@) ;
+sub MaskImage($;@) ;
+sub MatteFloodfill($;@) ;
+sub MatteFloodfillImage($;@) ;
+sub MeanShift($;@) ;
+sub MeanShiftImage($;@) ;
+sub MedianFilter($;@) ;
+sub MedianFilterImage($;@) ;
+sub Minify($;@) ;
+sub MinifyImage($;@) ;
+sub Mode($;@) ;
+sub ModeImage($;@) ;
+sub Modulate($;@) ;
+sub ModulateImage($;@) ;
+sub Mogrify($;@) ;
+sub MogrifyRegion($;@) ;
+sub Montage($;@) ;
+sub MontageImage($;@) ;
+sub Morph($;@) ;
+sub MorphImage($;@) ;
+sub Morphology($;@) ;
+sub MorphologyImage($;@) ;
+sub Mosaic($) ;
+sub MosaicImage($) ;
+sub MotionBlur($;@) ;
+sub MotionBlurImage($;@) ;
+sub Negate($;@) ;
+sub NegateImage($;@) ;
+sub Normalize($;@) ;
+sub NormalizeImage($;@) ;
+sub NumberColors($;@) ;
+sub NumberColorsImage($;@) ;
+sub OilPaint($;@) ;
+sub OilPaintImage($;@) ;
+sub Opaque($;@) ;
+sub OpaqueImage($;@) ;
+sub OptimizeImageLayers($;@) ;
+sub OrderedDither($;@) ;
+sub OrderedDitherImage($;@) ;
+sub Perceptible($;@) ;
+sub PerceptibleImage($;@) ;
+sub Ping($;@) ;
+sub PingImage($;@) ;
+sub Polaroid($;@) ;
+sub PolaroidImage($;@) ;
+sub Poly($;@) ;
+sub PolyImage($;@) ;
+sub Posterize($;@) ;
+sub PosterizeImage($;@) ;
+sub Preview($;@) ;
+sub PreviewImage($;@) ;
+sub Profile($;@) ;
+sub ProfileImage($;@) ;
+sub Quantize($;@) ;
+sub QuantizeImage($;@) ;
+sub QueryColor($;@) ;
+sub QueryColorname($;@) ;
+sub QueryFont($;@) ;
+sub QueryFontMetrics($;@) ;
+sub QueryFormat($;@) ;
+sub QueryMultilineFontMetrics($;@) ;
+sub QueryOption($;@) ;
+sub Raise($;@) ;
+sub RaiseImage($;@) ;
+sub Read($;@) ;
+sub ReadImage($;@) ;
+sub Recolor($;@) ;
+sub RecolorImage($;@) ;
+sub ReduceNoise($;@) ;
+sub ReduceNoiseImage($;@) ;
+sub Remap($;@) ;
+sub RemapImage($;@) ;
+sub Remote($;@) ;
+sub RemoteCommand($;@) ;
+sub Resample($;@) ;
+sub ResampleImage($;@) ;
+sub Resize($;@) ;
+sub ResizeImage($;@) ;
+sub Roll($;@) ;
+sub RollImage($;@) ;
+sub Rotate($;@) ;
+sub RotateImage($;@) ;
+sub RotationalBlur($;@) ;
+sub RotationalBlurImage($;@) ;
+sub Sample($;@) ;
+sub SampleImage($;@) ;
+sub Sans0($;@) ;
+sub Sans0Image($;@) ;
+sub Sans1($;@) ;
+sub Sans1Image($;@) ;
+sub Scale($;@) ;
+sub ScaleImage($;@) ;
+sub Segment($;@) ;
+sub SegmentImage($;@) ;
+sub SelectiveBlur($;@) ;
+sub SelectiveBlurImage($;@) ;
+sub Separate($;@) ;
+sub SeparateImage($;@) ;
+sub SepiaTone($;@) ;
+sub SepiaToneImage($;@) ;
+sub Set($;@) ;
+sub SetAttribute($;@) ;
+sub SetAttributes($;@) ;
+sub SetPixel($;@) ;
+sub Shade($;@) ;
+sub ShadeImage($;@) ;
+sub Shadow($;@) ;
+sub ShadowImage($;@) ;
+sub Sharpen($;@) ;
+sub SharpenImage($;@) ;
+sub Shave($;@) ;
+sub ShaveImage($;@) ;
+sub Shear($;@) ;
+sub ShearImage($;@) ;
+sub SigmoidalContrast($;@) ;
+sub SigmoidalContrastImage($;@) ;
+sub Signature($;@) ;
+sub SignatureImage($;@) ;
+sub Sketch($;@) ;
+sub SketchImage($;@) ;
+sub Smush($;@) ;
+sub SmushImage($;@) ;
+sub Solarize($;@) ;
+sub SolarizeImage($;@) ;
+sub SparseColor($;@) ;
+sub SparseColorImage($;@) ;
+sub Splice($;@) ;
+sub SpliceImage($;@) ;
+sub Spread($;@) ;
+sub SpreadImage($;@) ;
+sub Statistic($;@) ;
+sub StatisticImage($;@) ;
+sub Statistics($;@) ;
+sub StatisticsImage($;@) ;
+sub Stegano($;@) ;
+sub SteganoImage($;@) ;
+sub Stereo($;@) ;
+sub StereoImage($;@) ;
+sub Strip($;@) ;
+sub StripImage($;@) ;
+sub Swirl($;@) ;
+sub SwirlImage($;@) ;
+sub Sync($;@) ;
+sub SyncAuthenticPixels($;@) ;
+sub SyncImage($;@) ;
+sub SyncImagePixels($;@) ;
+sub Syncauthenticpixels($;@) ;
+sub Texture($;@) ;
+sub TextureImage($;@) ;
+sub Threshold($;@) ;
+sub ThresholdImage($;@) ;
+sub Thumbnail($;@) ;
+sub ThumbnailImage($;@) ;
+sub Tint($;@) ;
+sub TintImage($;@) ;
+sub Transform($;@) ;
+sub TransformImage($;@) ;
+sub Transparent($;@) ;
+sub TransparentImage($;@) ;
+sub Transpose($;@) ;
+sub TransposeImage($;@) ;
+sub Transverse($;@) ;
+sub TransverseImage($;@) ;
+sub Trim($;@) ;
+sub TrimImage($;@) ;
+sub UNLOAD() ;
+sub UniqueColors($;@) ;
+sub UniqueColorsImage($;@) ;
+sub UnsharpMask($;@) ;
+sub UnsharpMaskImage($;@) ;
+sub Vignette($;@) ;
+sub VignetteImage($;@) ;
+sub Wave($;@) ;
+sub WaveImage($;@) ;
+sub WhiteThreshold($;@) ;
+sub WhiteThresholdImage($;@) ;
+sub Write($;@) ;
+sub WriteImage($;@) ;
+sub Zoom($;@) ;
+sub ZoomImage($;@) ;
+sub acquireimagepixels($;@) ;
+sub animate($;@) ;
+sub animateimage($;@) ;
+sub append($;@) ;
+sub appendimage($;@) ;
+sub average($) ;
+sub averageimage($) ;
+sub blob($;@) ;
+sub blobto($;@) ;
+sub blobtoimage($;@) ;
+sub clone($) ;
+sub cloneimage($) ;
+sub coalesce($) ;
+sub coalesceimage($) ;
+sub compare($;@) ;
+sub compareimage($;@) ;
+sub compareimagelayers($) ;
+sub comparelayers($) ;
+sub compleximages($) ;
+sub constant($$) ;
+sub copy($) ;
+sub copyimage($) ;
+sub display($;@) ;
+sub displayimage($;@) ;
+sub evaluateimages($) ;
+sub features($;@) ;
+sub featuresimage($;@) ;
+sub flatten($) ;
+sub flattenimage($) ;
+sub fx($;@) ;
+sub fximage($;@) ;
+sub get($;@) ;
+sub getPixel($;@) ;
+sub getPixels($;@) ;
+sub getattribute($;@) ;
+sub getattributes($;@) ;
+sub getauthenticindexqueue($;@) ;
+sub getauthenticpixels($;@) ;
+sub getimagepixels($;@) ;
+sub getindexes($;@) ;
+sub getpixel($;@) ;
+sub getpixels($;@) ;
+sub getvirtualindexqueue($;@) ;
+sub getvirtualpixels($;@) ;
+sub histogram($;@) ;
+sub histogramimage($;@) ;
+sub imagetoblob($;@) ;
+sub layers($;@) ;
+sub magicktomime($$) ;
+sub montage($;@) ;
+sub montageimage($;@) ;
+sub morph($;@) ;
+sub morphimage($;@) ;
+sub mosaic($) ;
+sub mosaicimage($) ;
+sub optimizeimagelayers($;@) ;
+sub optimizelayers($;@) ;
+sub ping($;@) ;
+sub pingimage($;@) ;
+sub preview($;@) ;
+sub previewimage($;@) ;
+sub querycolor($;@) ;
+sub querycolorname($;@) ;
+sub queryfont($;@) ;
+sub queryfontmetrics($;@) ;
+sub queryformat($;@) ;
+sub querymultilinefontmetrics($;@) ;
+sub queryoption($;@) ;
+sub read($;@) ;
+sub readimage($;@) ;
+sub remote($;@) ;
+sub remoteCommand($;@) ;
+sub set($;@) ;
+sub setPixel($;@) ;
+sub setattribute($;@) ;
+sub setattributes($;@) ;
+sub setpixel($;@) ;
+sub smush($;@) ;
+sub smushimage($;@) ;
+sub statistics($;@) ;
+sub statisticsimage($;@) ;
+sub syncimagepixels($;@) ;
+sub toblob($;@) ;
+sub transform($;@) ;
+sub transformimage($;@) ;
+sub write($;@) ;
+sub writeimage($;@) ;
 }
 package Internals {
 sub SvREADONLY(\[$%@];$) ;
@@ -7651,52 +7758,6 @@ sub localeconv;
 sub ngettext;
 sub setlocale;
 sub textdomain;
-}
-package MIME::Base64 {
-sub decode($) ;
-sub decode_base64($) ;
-sub decoded_base64_length($) ;
-sub encode($;$) ;
-sub encode_base64($;$) ;
-sub encoded_base64_length($;$) ;
-}
-package MIME::QuotedPrint {
-sub decode_qp($) ;
-sub encode_qp($;$$) ;
-}
-package Math::BigInt::FastCalc {
-sub __strip_zeros;
-sub _acmp;
-sub _copy;
-sub _dec;
-sub _inc;
-sub _is_even;
-sub _is_odd;
-sub _is_one;
-sub _is_ten;
-sub _is_two;
-sub _is_zero;
-sub _len;
-sub _new;
-sub _one;
-sub _ten;
-sub _two;
-sub _zero;
-}
-package NDBM_File {
-sub DELETE;
-sub DESTROY;
-sub FETCH;
-sub FIRSTKEY;
-sub NEXTKEY;
-sub STORE;
-sub TIEHASH;
-sub clearerr;
-sub error;
-sub filter_fetch_key;
-sub filter_fetch_value;
-sub filter_store_key;
-sub filter_store_value;
 }
 package Net::DBus::Binding::Bus {
 sub _open($) ;
@@ -8621,38 +8682,6 @@ sub want_write;
 sub write($$) ;
 sub write_partial($$$$) ;
 }
-package ODBM_File {
-sub DELETE;
-sub DESTROY;
-sub FETCH;
-sub FIRSTKEY;
-sub NEXTKEY;
-sub STORE;
-sub TIEHASH;
-sub filter_fetch_key;
-sub filter_fetch_value;
-sub filter_store_key;
-sub filter_store_value;
-}
-package Opcode {
-sub _safe_call_sv($$$) ;
-sub _safe_pkg_prep($) ;
-sub define_optag($$) ;
-sub deny($;@) ;
-sub deny_only($;@) ;
-sub empty_opset() ;
-sub full_opset() ;
-sub invert_opset($) ;
-sub opcodes() ;
-sub opdesc(;@) ;
-sub opmask() ;
-sub opmask_add($) ;
-sub opset(;@) ;
-sub opset_to_ops($;$) ;
-sub permit($;@) ;
-sub permit_only($;@) ;
-sub verify_opset($;$) ;
-}
 package POSIX {
 sub ARG_MAX() ;
 sub CHILD_MAX() ;
@@ -9405,22 +9434,6 @@ sub find;
 package Regexp {
 sub DESTROY() ;
 }
-package SDBM_File {
-sub DELETE;
-sub DESTROY;
-sub EXISTS;
-sub FETCH;
-sub FIRSTKEY;
-sub NEXTKEY;
-sub STORE;
-sub TIEHASH;
-sub error;
-sub filter_fetch_key;
-sub filter_fetch_value;
-sub filter_store_key;
-sub filter_store_value;
-sub sdbm_clearerr;
-}
 package Scalar::Util {
 sub blessed($) ;
 sub dualvar($$) ;
@@ -9559,19 +9572,6 @@ sub pack_sockaddr_in6_all;
 sub unpack_sockaddr_in6;
 sub unpack_sockaddr_in6_all;
 }
-package Storable {
-sub dclone($) ;
-sub init_perinterp() ;
-sub is_retrieving() ;
-sub is_storing() ;
-sub last_op_in_netorder() ;
-sub mretrieve($) ;
-sub mstore($) ;
-sub net_mstore($) ;
-sub net_pstore($$) ;
-sub pretrieve($) ;
-sub pstore($$) ;
-}
 package Sub::Name {
 sub subname;
 }
@@ -9579,125 +9579,6 @@ package Sub::Util {
 sub set_prototype;
 sub set_subname;
 sub subname;
-}
-package Sys::Hostname {
-sub ghname;
-}
-package Sys::Syslog {
-sub AF_802() ;
-sub AF_AAL() ;
-sub AF_CCITT() ;
-sub AF_CHAOS() ;
-sub AF_CTF() ;
-sub AF_DATAKIT() ;
-sub AF_DLI() ;
-sub AF_ECMA() ;
-sub AF_GOSIP() ;
-sub AF_HYLINK() ;
-sub AF_IMPLINK() ;
-sub AF_ISO() ;
-sub AF_LAST() ;
-sub AF_LAT() ;
-sub AF_LINK() ;
-sub AF_NBS() ;
-sub AF_NIT() ;
-sub AF_NS() ;
-sub AF_OSI() ;
-sub AF_OSINET() ;
-sub AF_PUP() ;
-sub AF_USER() ;
-sub AF_WAN() ;
-sub EAI_BADHINTS() ;
-sub EAI_PROTOCOL() ;
-sub IPTOS_LOWDELAY() ;
-sub IPTOS_MINCOST() ;
-sub IPTOS_RELIABILITY() ;
-sub IPTOS_THROUGHPUT() ;
-sub LOG_FAC;
-sub LOG_MAKEPRI;
-sub LOG_MASK;
-sub LOG_PRI;
-sub LOG_UPTO;
-sub MSG_BCAST() ;
-sub MSG_BTAG() ;
-sub MSG_CTLFLAGS() ;
-sub MSG_CTLIGNORE() ;
-sub MSG_EOF() ;
-sub MSG_ETAG() ;
-sub MSG_MAXIOVLEN() ;
-sub MSG_MCAST() ;
-sub MSG_URG() ;
-sub MSG_WIRE() ;
-sub PF_802() ;
-sub PF_AAL() ;
-sub PF_CCITT() ;
-sub PF_CHAOS() ;
-sub PF_CTF() ;
-sub PF_DATAKIT() ;
-sub PF_DLI() ;
-sub PF_ECMA() ;
-sub PF_GOSIP() ;
-sub PF_HYLINK() ;
-sub PF_IMPLINK() ;
-sub PF_ISO() ;
-sub PF_LAST() ;
-sub PF_LAT() ;
-sub PF_LINK() ;
-sub PF_NBS() ;
-sub PF_NIT() ;
-sub PF_NS() ;
-sub PF_OSI() ;
-sub PF_OSINET() ;
-sub PF_PUP() ;
-sub PF_USER() ;
-sub PF_WAN() ;
-sub SCM_CONNECT() ;
-sub SCM_CREDS() ;
-sub SO_BACKLOG() ;
-sub SO_CHAMELEON() ;
-sub SO_DGRAM_ERRIND() ;
-sub SO_DONTLINGER() ;
-sub SO_FAMILY() ;
-sub SO_PASSIFNAME() ;
-sub SO_PROTOTYPE() ;
-sub SO_STATE() ;
-sub SO_USELOOPBACK() ;
-sub SO_XOPEN() ;
-sub SO_XSE() ;
-sub TCP_CONNECTIONTIMEOUT() ;
-sub TCP_INIT_CWND() ;
-sub TCP_KEEPALIVE() ;
-sub TCP_MAXRT() ;
-sub TCP_NOOPT() ;
-sub TCP_NOPUSH() ;
-sub TCP_SACK_ENABLE() ;
-sub TCP_STDURG() ;
-sub closelog_xs;
-sub constant;
-sub getaddrinfo;
-sub getnameinfo;
-sub inet_aton;
-sub inet_ntoa;
-sub inet_ntop;
-sub inet_pton;
-sub openlog_xs;
-sub pack_ip_mreq;
-sub pack_ip_mreq_source;
-sub pack_ipv6_mreq;
-sub pack_sockaddr_in6;
-sub pack_sockaddr_in;
-sub pack_sockaddr_un;
-sub setlocale;
-sub setlogmask_xs;
-sub sockaddr_family;
-sub strftime;
-sub syslog_xs;
-sub unpack_ip_mreq;
-sub unpack_ip_mreq_source;
-sub unpack_ipv6_mreq;
-sub unpack_sockaddr_in6;
-sub unpack_sockaddr_in;
-sub unpack_sockaddr_un;
 }
 package Text::CharWidth {
 sub mblen;
@@ -9715,44 +9596,6 @@ sub get_attr($$) ;
 sub raise_error($;@) ;
 sub retval($) ;
 sub set_attr($$$) ;
-}
-package Tie::Hash::NamedCapture {
-sub CLEAR;
-sub DELETE;
-sub EXISTS;
-sub FETCH;
-sub FIRSTKEY;
-sub NEXTKEY;
-sub SCALAR;
-sub STORE;
-sub TIEHASH;
-sub flags;
-}
-package Time::HiRes {
-sub alarm($;$) ;
-sub clock() ;
-sub clock_getres(;$) ;
-sub clock_gettime(;$) ;
-sub clock_nanosleep($$;$) ;
-sub constant($) ;
-sub getitimer($) ;
-sub gettimeofday() ;
-sub lstat(;$) ;
-sub nanosleep($) ;
-sub setitimer($$;$) ;
-sub sleep(;@) ;
-sub stat(;$) ;
-sub time() ;
-sub ualarm($;$) ;
-sub usleep($) ;
-}
-package Time::Piece {
-sub _crt_gmtime($) ;
-sub _crt_localtime($) ;
-sub _mini_mktime($$$$$$) ;
-sub _strftime($$$$$$$;$$$) ;
-sub _strptime($$) ;
-sub _tzset() ;
 }
 package UNIVERSAL {
 sub DOES;
@@ -9774,28 +9617,6 @@ sub unparse($$) ;
 sub unparse_lower($$) ;
 sub unparse_upper($$) ;
 sub uuid() ;
-}
-package Unicode::Collate {
-sub _decompHangul;
-sub _derivCE_14;
-sub _derivCE_18;
-sub _derivCE_20;
-sub _derivCE_22;
-sub _derivCE_24;
-sub _derivCE_8;
-sub _derivCE_9;
-sub _exists_simple;
-sub _fetch_rest;
-sub _fetch_simple;
-sub _getHexArray;
-sub _ignorable_simple;
-sub _isIllegal;
-sub _isUIdeo;
-sub _uideoCE_8;
-sub getHST;
-sub mk_SortKey;
-sub varCE;
-sub visualizeSortKey;
 }
 package XML::Parser::Expat {
 sub DefaultCurrent;
@@ -9880,14 +9701,6 @@ package YAML::XS::LibYAML {
 sub Dump;
 sub Load;
 }
-package arybase {
-sub FETCH;
-sub STORE;
-}
-package arybase::mg {
-sub FETCH;
-sub STORE;
-}
 package attributes {
 sub _fetch_attrs($) ;
 sub _guess_stash($) ;
@@ -9906,15 +9719,7 @@ package constant {
 sub _make_const(\[$@]) ;
 }
 package mro {
-sub _nextcan;
-sub get_isarev($) ;
-sub get_linear_isa($;$) ;
-sub get_mro($) ;
-sub get_pkg_gen($) ;
-sub invalidate_all_method_caches() ;
-sub is_universal($) ;
 sub method_changed_in($) ;
-sub set_mro($$) ;
 }
 package re {
 sub install;
@@ -9924,54 +9729,6 @@ sub regmust($) ;
 sub regname(;$$) ;
 sub regnames(;$) ;
 sub regnames_count() ;
-}
-package threads {
-sub DESTROY;
-sub _handle;
-sub create;
-sub detach;
-sub equal;
-sub error;
-sub get_stack_size;
-sub is_detached;
-sub is_joinable;
-sub is_running;
-sub join;
-sub kill;
-sub list;
-sub new;
-sub object;
-sub self;
-sub set_stack_size;
-sub set_thread_exit_only;
-sub tid;
-sub wantarray;
-sub yield;
-}
-package threads::shared {
-sub _id(\[$@%]) ;
-sub _refcnt(\[$@%]) ;
-sub bless($;$) ;
-sub blessed($) ;
-sub cond_broadcast(\[$@%]) ;
-sub cond_signal(\[$@%]) ;
-sub cond_timedwait(\[$@%]$;\[$@%]) ;
-sub cond_wait(\[$@%];\[$@%]) ;
-sub is_shared(\[$@%]) ;
-sub refaddr($) ;
-sub reftype($) ;
-sub share(\[$@%]) ;
-}
-package threads::shared::tie {
-sub EXISTS;
-sub EXTEND;
-sub FIRSTKEY;
-sub NEXTKEY;
-sub POP;
-sub PUSH;
-sub SHIFT;
-sub STORESIZE;
-sub UNSHIFT;
 }
 package utf8 {
 sub decode;

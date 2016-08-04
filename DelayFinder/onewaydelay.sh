@@ -1,5 +1,5 @@
 #!/bin/bash
-input="$(tail -1 /mnt/LONTAS/ExpControl/dire15//info/details.txt)"
+input="$(tail -1 /mnt/LONTAS/ExpControl/dire15/info/details.txt)"
 set -f
 array=(${input// / })
 exp=(${array[0]//:/ })
