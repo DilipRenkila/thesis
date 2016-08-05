@@ -112,7 +112,7 @@ sub table_callback()
          return;
     }
     my $JSON = JSON->new->utf8;
-
+    printf"before entering the loop\n";
     if ($host == $ingress_switch)
     {   printf"entering the loop\n";
         my $In1    = $list->{$ingress_oid[1]};
