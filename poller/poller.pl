@@ -74,7 +74,7 @@ while(1) {
       $session1->close();
       exit 1;
    }
-    print "before snmp dispatcher\n";
+
     my $result2 = $session2->get_request(-varbindlist => \@egress_oid,-callback =>[ \&table_callback ,$egress_switch]);
     if (!defined $result2) {
       printf "ERROR: %s.\n", $session2->error();
@@ -85,7 +85,7 @@ while(1) {
     my ($seconds, $microseconds) = gettimeofday;
     my $time1 = $seconds * 1000000 + $microseconds ;
     snmp_dispatcher();
-    print "after snmp dispatcher\n";
+
     my ($seconds1, $microseconds1) = gettimeofday;
     my $time2 = $seconds1 * 1000000 + $microseconds1 ;
     my $delta = ($time2-$time1); #in microsecond
@@ -102,8 +102,7 @@ sub table_callback()
 {
     my ($session,$host) = @_;
     my @names = $session->var_bind_names();
-    my $next  = undef;
-    my $InOctet="1.3.6.1.2.1.2.2.1.10";
+    print "@names\n";
     my $list = $session->var_bind_list();
     my ($second, $microsecond) = gettimeofday;
     my $time = sprintf('%d.%d',$second,$microsecond);
