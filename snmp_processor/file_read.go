@@ -28,7 +28,7 @@ func read_file () ([]string, error) {
 }
 
 func main() {
-	x,_ := read_file()
-	x = "Hi"
-	fmt.Println(x)
+	_,err := read_file()
+
+	fmt.Println(err)
 }
