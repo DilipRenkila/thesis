@@ -16,7 +16,7 @@ func read_file () ([]string, error) {
 	var lines []string
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		fmt.Println(scanner.Text())
+	//	fmt.Println(scanner.Text())
 //		infoarray  := strings.Split(scanner.Text(), " ")
 //		status := strings.Split(infoarray[9], ":")
 //		if status[1] == "pending" {
