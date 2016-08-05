@@ -114,7 +114,7 @@ sub table_callback()
     my $JSON = JSON->new->utf8;
 
     if ($host == $ingress_switch)
-    {
+    {   printf"entering the loop\n";
         my $In1    = $list->{$ingress_oid[1]};
         my $uptime = $list->{$sysUpTime}; # in microseconds
            $uptime = $uptime*0.01; # in seconds
