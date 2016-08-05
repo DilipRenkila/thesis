@@ -35,7 +35,8 @@ my $expid = $exp[1];
 my $sampling_interval = $sampling[1];
 my $foo = sprintf "/mnt/LONTAS/ExpControl/dire15/logs/in-%d-%d.txt",$expid,$runid;
 my $bar = sprintf "/mnt/LONTAS/ExpControl/dire15/logs/out-%d-%d.txt",$expid,$runid;
-printf $ingress_switch,$egress_switch ;
+printf ($ingress_switch,$egress_switch) ;
+printf  ($ingress_interface,$egress_interface);
 # initializing a session variable to probe ingress switch
 my ($session1,$error1) = Net::SNMP->session(
     -hostname => $ingress_switch,
