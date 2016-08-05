@@ -101,17 +101,20 @@ while(1) {
 sub table_callback()
 {
     my ($session,$host) = @_;
-    my @names = $session->var_bind_names();
-    print "@names\n";
     my $list = $session->var_bind_list();
-    my ($second, $microsecond) = gettimeofday;
-    my $time = sprintf('%d.%d',$second,$microsecond);
-    open FOO, ">>",$foo or die $!;
-    open BAR, ">>",$bar or die $!;
     if (!defined $list) {
          printf "ERROR: %s\n", $session->error();
          return;
     }
+
+    my ($second, $microsecond) = gettimeofday;
+    my $time = sprintf('%d.%d',$second,$microsecond);
+
+    printf ("before entering the open\n");
+    #opening files for printing the output
+    open FOO, ">>",$foo or die $!;
+    open BAR, ">>",$bar or die $!;
+
     my $JSON = JSON->new->utf8;
     printf ("before entering the loop\n");
     if ($host == $ingress_switch)
