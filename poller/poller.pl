@@ -4,6 +4,7 @@ use warnings FATAL => 'all';
 use YAML::Tiny;
 use Net::SNMP qw(snmp_dispatcher ticks_to_time);
 use Time::HiRes qw(usleep gettimeofday);
+use JSON;
 
 # Open the config yaml file
 my $yaml = YAML::Tiny->read( '/mnt/LONTAS/ExpControl/dire15/thesis/poller/config.yml' );
@@ -35,8 +36,7 @@ my $expid = $exp[1];
 my $sampling_interval = $sampling[1];
 my $foo = sprintf "/mnt/LONTAS/ExpControl/dire15/logs/in-%d-%d.txt",$expid,$runid;
 my $bar = sprintf "/mnt/LONTAS/ExpControl/dire15/logs/out-%d-%d.txt",$expid,$runid;
-printf ("$ingress_switch,$egress_switch\n") ;
-printf  ("$ingress_interface,$egress_interface\n");
+
 # initializing a session variable to probe ingress switch
 my ($session1,$error1) = Net::SNMP->session(
     -hostname => $ingress_switch,
@@ -113,9 +113,9 @@ sub table_callback()
     #opening files for printing the output
     open FOO, ">>",$foo or die $!;
     open BAR, ">>",$bar or die $!;
-    print "open ok\n";
+
     my $JSON = JSON->new->utf8;
-    printf ("before entering the loop\n");
+    printf "before entering the loop\n";
     if ($host == $ingress_switch)
     {   printf ("entering the loop\n");
         my $In1    = $list->{$ingress_oid[1]};
