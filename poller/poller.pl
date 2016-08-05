@@ -110,11 +110,10 @@ sub table_callback()
     my ($second, $microsecond) = gettimeofday;
     my $time = sprintf('%d.%d',$second,$microsecond);
 
-    printf ("before entering the open\n");
     #opening files for printing the output
     open FOO, ">>",$foo or die $!;
     open BAR, ">>",$bar or die $!;
-
+    print "open ok\n";
     my $JSON = JSON->new->utf8;
     printf ("before entering the loop\n");
     if ($host == $ingress_switch)
