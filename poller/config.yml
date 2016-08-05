@@ -1,8 +1,8 @@
 ingress_switch_details :
   switch_name: procurve2
-  switch_management_ip : 10.1.0.123
+  switch_management_ip : "10.1.0.123"
   interface_id : 1
 egress_switch_details  :
   switch_name : callisto
-  switch_management_ip : 10.1.0.127
+  switch_management_ip : "10.1.0.127"
   interface_id : 8
