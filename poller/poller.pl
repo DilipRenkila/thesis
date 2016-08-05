@@ -17,7 +17,7 @@ my $egress_interface = $yaml->[0]->{egress_switch_details}->{interface_id};
 my $sysUpTime = '1.3.6.1.2.1.1.3.0';
 my @ingress_oid = ($sysUpTime,(sprintf "1.3.6.1.2.1.2.2.1.10.%s",$ingress_interface));
 my @egress_oid =  ($sysUpTime,(sprintf "1.3.6.1.2.1.2.2.1.16.%s",$egress_interface));
-printf "@ingress_oid\n";
+
 open (FOO,"/mnt/LONTAS/ExpControl/dire15/info/details.txt") ||
     die "ERROR Unable to open file: $!\n";
 
@@ -122,7 +122,9 @@ sub table_callback()
         my $json = $JSON->encode($Output) ;
         print FOO "$json\n";
     }
-
+    else {
+        print "problem at line 116\n ";
+    }
     if ($host == $egress_switch)
     {
         my $Out1   = $list->{$egress_oid[1]};
