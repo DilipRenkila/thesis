@@ -2,7 +2,7 @@ package main
 
 import "os"
 import "bufio"
-import "strings"
+//import "strings"
 import "fmt"
 
 func read_file () ([]string, error) {
@@ -17,11 +17,11 @@ func read_file () ([]string, error) {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		fmt.Println(scanner.Text())
-		infoarray  := strings.Split(scanner.Text(), " ")
-		status := strings.Split(infoarray[9], ":")
-		if status[1] == "pending" {
+//		infoarray  := strings.Split(scanner.Text(), " ")
+//		status := strings.Split(infoarray[9], ":")
+//		if status[1] == "pending" {
 			lines = append(lines, scanner.Text())
-		}
+//		}
 	}
 	return lines, scanner.Err()
 }
