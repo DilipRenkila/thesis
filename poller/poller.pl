@@ -40,7 +40,7 @@ printf  ("$ingress_interface,$egress_interface\n");
 # initializing a session variable to probe ingress switch
 my ($session1,$error1) = Net::SNMP->session(
     -hostname => $ingress_switch,
-    -community => 'public',
+    -community => "public",
     -port => 161,
     -nonblocking => 1,
     -translate    => [-timeticks => 0x0 ]  # Turned off so  that the sysUpTime is numeric
@@ -54,7 +54,7 @@ if (!defined $session1) {
 # initializing a session variable to probe egress switch
 my ($session2,$error2) = Net::SNMP->session(
     -hostname => $egress_switch,
-    -community => 'public',
+    -community => "public",
     -port => 161,
     -nonblocking => 1,
     -translate    => [-timeticks => 0x0 ]  # Turned off so  that the sysUpTime is numeric
