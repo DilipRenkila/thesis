@@ -118,7 +118,6 @@ sub table_callback()
 
     if ($host eq $ingress_switch)
     {
-        printf ("entering the loop\n");
         my $In1    = $list->{$ingress_oid[1]};
         my $uptime = $list->{$sysUpTime}; # in microseconds
            $uptime = $uptime*0.01; # in seconds
@@ -127,7 +126,7 @@ sub table_callback()
         print FOO "$json\n";
     }
 
-    if ($host eq $egress_switch)
+    else
     {
         my $Out8   = $list->{$egress_oid[1]};
         my $uptime = $list->{$sysUpTime}; # in microseconds
