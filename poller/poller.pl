@@ -65,17 +65,18 @@ if (!defined $session2) {
     exit 1;
 }
 
+my $pointer=0;
 
 while(1) {
 
-    my $result1 = $session1->get_request(-varbindlist => \@ingress_oid,-callback =>[ \&table_callback ,$ingress_switch]);
+    my $result1 = $session1->get_request(-varbindlist => \@ingress_oid,-callback =>[ \&table_callback ,$ingress_switch,$pointer]);
     if (!defined $result1) {
       printf "ERROR: %s.\n", $session1->error();
       $session1->close();
       exit 1;
    }
 
-    my $result2 = $session2->get_request(-varbindlist => \@egress_oid,-callback =>[ \&table_callback ,$egress_switch]);
+    my $result2 = $session2->get_request(-varbindlist => \@egress_oid,-callback =>[ \&table_callback ,$egress_switch,$pointer]);
     if (!defined $result2) {
       printf "ERROR: %s.\n", $session2->error();
       $session2->close();
@@ -96,11 +97,12 @@ while(1) {
     } else {
         usleep 0;
     }
+    $pointer = $pointer +1 ;
 }
 
 sub table_callback()
 {
-    my ($session,$host) = @_;
+    my ($session,$host,$x) = @_;
     my $list = $session->var_bind_list();
     if (!defined $list) {
          printf "ERROR: %s\n", $session->error();
@@ -121,7 +123,7 @@ sub table_callback()
         my $In1    = $list->{$ingress_oid[1]};
         my $uptime = $list->{$sysUpTime}; # in microseconds
            $uptime = $uptime*0.01; # in seconds
-        my $Output = {switch_management_ip=>$ingress_switch,uptime=>$uptime,unixtime=>$time,in_1=>$In1};
+        my $Output = {switch_management_ip=>$ingress_switch,uptime=>$uptime,unixtime=>$time,in_1=>$In1,serial_id=>$x};
         my $json = $JSON->encode($Output) ;
         print FOO "$json\n";
     }
@@ -131,7 +133,7 @@ sub table_callback()
         my $Out8   = $list->{$egress_oid[1]};
         my $uptime = $list->{$sysUpTime}; # in microseconds
            $uptime = $uptime*0.01; # in seconds
-        my $Output = {switch_management_ip=>$egress_switch,uptime=>$uptime,unixtime=>$time,out_8=>$Out8};
+        my $Output = {switch_management_ip=>$egress_switch,uptime=>$uptime,unixtime=>$time,out_8=>$Out8,serial_id=>$x};
         my $json = $JSON->encode($Output) ;
         print BAR "$json\n";
     }
