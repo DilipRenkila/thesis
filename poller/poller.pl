@@ -115,9 +115,10 @@ sub table_callback()
     open BAR, ">>",$bar or die $!;
 
     my $JSON = JSON->new->utf8;
-    printf "before entering the loop\n";
+
     if ($host == $ingress_switch)
-    {   printf ("entering the loop\n");
+    {
+        printf ("entering the loop\n");
         my $In1    = $list->{$ingress_oid[1]};
         my $uptime = $list->{$sysUpTime}; # in microseconds
            $uptime = $uptime*0.01; # in seconds
@@ -125,9 +126,7 @@ sub table_callback()
         my $json = $JSON->encode($Output) ;
         print FOO "$json\n";
     }
-    else {
-        print ("problem at line 116\n ");
-    }
+
     if ($host == $egress_switch)
     {
         my $Out1   = $list->{$egress_oid[1]};
