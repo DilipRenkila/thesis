@@ -18,7 +18,7 @@ func read_file () ([]string, error) {
 	for scanner.Scan() {
 	//
 		infoarray  := strings.Split(scanner.Text(), " ")
-		fmt.Println(infoarray[8])
+		fmt.Println(infoarray)
 //		status := strings.Split(infoarray[9], ":")
 //		if status[1] == "pending" {
 			lines = append(lines, scanner.Text())
