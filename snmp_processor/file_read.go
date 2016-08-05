@@ -19,7 +19,7 @@ func read_file () ([]string, error) {
 		var current_line []string
 		current_line = append(current_line,scanner.Text())
 		infoarray  := strings.Split(current_line[0], " ")
-		fmt.Println(infoarray[0])
+		fmt.Println(infoarray[9])
 //		status := strings.Split(infoarray[9], ":")
 //		if status[1] == "pending" {
 			lines = append(lines, scanner.Text())
