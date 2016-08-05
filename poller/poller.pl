@@ -35,7 +35,7 @@ my $expid = $exp[1];
 my $sampling_interval = $sampling[1];
 my $foo = sprintf "/mnt/LONTAS/ExpControl/dire15/logs/in-%d-%d.txt",$expid,$runid;
 my $bar = sprintf "/mnt/LONTAS/ExpControl/dire15/logs/out-%d-%d.txt",$expid,$runid;
-
+printf $ingress_switch,$egress_switch ;
 # initializing a session variable to probe ingress switch
 my ($session1,$error1) = Net::SNMP->session(
     -hostname => $ingress_switch,
@@ -112,9 +112,9 @@ sub table_callback()
          return;
     }
     my $JSON = JSON->new->utf8;
-    printf"before entering the loop\n";
+    printf ("before entering the loop\n");
     if ($host == $ingress_switch)
-    {   printf"entering the loop\n";
+    {   printf ("entering the loop\n");
         my $In1    = $list->{$ingress_oid[1]};
         my $uptime = $list->{$sysUpTime}; # in microseconds
            $uptime = $uptime*0.01; # in seconds
@@ -123,7 +123,7 @@ sub table_callback()
         print FOO "$json\n";
     }
     else {
-        print "problem at line 116\n ";
+        print ("problem at line 116\n ");
     }
     if ($host == $egress_switch)
     {
