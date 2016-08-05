@@ -129,10 +129,10 @@ sub table_callback()
 
     if ($host eq $egress_switch)
     {
-        my $Out1   = $list->{$egress_oid[1]};
+        my $Out8   = $list->{$egress_oid[1]};
         my $uptime = $list->{$sysUpTime}; # in microseconds
            $uptime = $uptime*0.01; # in seconds
-        my $Output = {switch_management_ip=>$egress_switch,uptime=>$uptime,unixtime=>$time,in_1=>$Out1};
+        my $Output = {switch_management_ip=>$egress_switch,uptime=>$uptime,unixtime=>$time,out_8=>$Out8};
         my $json = $JSON->encode($Output) ;
         print BAR "$json\n";
     }
