@@ -92,6 +92,9 @@ fi
 echo Delay on the shaper is "${DELAY}".
 echo This will probe for every "${SAMPLING_INTERVAL}" ms.
 echo expid:$EXPID runid:$RUNID keyid:$KEY_ID delay-on-shaper:$DELAY packets-sent:$COUNT min-packet-length:$MIN_LENGTH max-packet-lenth:$MAX_LENGTH packet-distribution:$PACKET_DISTRIBUTION sampling-interval:$SAMPLING_INTERVAL min-intergramegap:$MIN_INTERFRAMEGAP max-intergramegap:$MAX_INTERFRAMEGAP interframegap-distribution:$INTERFRAMEGAP_DISTRIBUTION destination:$DESTINATION  >> /mnt/LONTAS/ExpControl/dire15/info/details.txt
+mysql -u root -p1 thesis << EOF
+    INSERT INTO info (expid,runid,keyid,delay_on_shaper,packets_sent,min_packet_length,max_packet_lenth,packet_distribution,sampling_interval,min_intergramegap,max_intergramegap,interframegap_distribution,destination,status,when_to_process)VALUES ($EXPID,$RUNID,$KEY_ID,'$DELAY',$COUNT,$MIN_LENGTH,$MAX_LENGTH,'$PACKET_DISTRIBUTION',$SAMPLING_INTERVAL,$MIN_INTERFRAMEGAP,$MAX_INTERFRAMEGAP,'$INTERFRAMEGAP_DISTRIBUTION','$DESTINATION',0,0);
+EOF
 curl http://10.1.0.119:8080/set_delay_0
 curl http://10.1.0.119:8080/delay/$DELAY
 sudo service thesis start
