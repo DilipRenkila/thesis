@@ -30,7 +30,7 @@ close FOO;
 my @words = split / /,$last;
 my @exp = split (':',$words[0]);
 my @run = split (':',$words[1]);
-my @sampling = split(':',$words[6]);
+my @sampling = split(':',$words[8]);
 my $runid = $run[1];
 my $expid = $exp[1];
 my $sampling_interval = $sampling[1];
@@ -90,7 +90,7 @@ while(1) {
     my ($seconds1, $microseconds1) = gettimeofday;
     my $time2 = $seconds1 * 1000000 + $microseconds1 ;
     my $delta = ($time2-$time1); #in microsecond
-    my $Delta = $sampling_interval*1000000 - $delta ;
+    my $Delta = $sampling_interval*1000 - $delta ;
 
     if ( $Delta > 0 ) {
         usleep   $Delta;
