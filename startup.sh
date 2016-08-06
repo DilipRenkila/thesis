@@ -26,6 +26,9 @@ OPTIONS:
 
 EOF
 }
+PORT=1500
+PACKET_DISTRIBUTION='default'
+INTERFRAMEGAP_DISTRIBUTION='default'
 
 while getopts "hd:s:p:n:l:L:m:f:k:i:I:v" OPTION
 do
@@ -84,21 +87,6 @@ then
      usage
      echo "SUCCESS"
      exit 1
-fi
-
-if [[ -z $PORT ]]
-then
-    PORT = 1500
-fi
-
-if  [[ -z $PACKET_DISTRIBUTION ]]
-then
-    PACKET_DISTRIBUTION = 'default'
-fi
-
-if  [[ -z $INTERFRAMEGAP_DISTRIBUTION ]]
-then
-    INTERFRAMEGAP_DISTRIBUTION = 'default'
 fi
 
 echo Delay on the shaper is "${DELAY}".
