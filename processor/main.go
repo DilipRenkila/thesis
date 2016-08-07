@@ -32,6 +32,13 @@ func main() {
 				fmt.Errorf("error: %s", err)
 				os.Exit(1)
 			}
+			filename := fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/trace-%d-%d.trace",expid,runid)
+			_ , error := read_file(filename)
+			if error != nil {
+				fmt.Errorf("error: %s", err)
+				os.Exit(1)
+			}
+
 		}else {
 			time.Sleep( time.Second * 60 )
 			fmt.Println(expid,runid)
