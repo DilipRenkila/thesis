@@ -7,67 +7,27 @@ import (
 )
 
 func main() {
-    db, err := sql.Open("mysql", "root:astaxie@/test?charset=utf8")
-    checkErr(err)
+	db, err := sql.Open("mysql", "root:1@(127.0.0.1:3306)/thesis?charset=utf8")
+	checkErr(err)
+	// query
+	rows, err := db.Query("SELECT * FROM info")
+	checkErr(err)
 
-    // insert
-    stmt, err := db.Prepare("INSERT userinfo SET username=?,departname=?,created=?")
-    checkErr(err)
+	for rows.Next() {
+		var expid,runid,keyid,packets_sent,min_packet_length,max_packet_lenth int
+		var sampling_interval,min_intergramegap,max_intergramegap,status,when_to_process int
+		var delay_on_shaper,packet_distribution,interframegap_distribution,destination string
+		err = rows.Scan(&expid,&runid,&keyid,&delay_on_shaper,&packets_sent,&min_packet_length,&max_packet_lenth,&packet_distribution,&sampling_interval,&min_intergramegap,&max_intergramegap,&interframegap_distribution,&destination,&status,&when_to_process)
+		checkErr(err)
+		fmt.Println(when_to_process)
+	}
 
-    res, err := stmt.Exec("astaxie", "研发部门", "2012-12-09")
-    checkErr(err)
-
-    id, err := res.LastInsertId()
-    checkErr(err)
-
-    fmt.Println(id)
-    // update
-    stmt, err = db.Prepare("update userinfo set username=? where uid=?")
-    checkErr(err)
-
-    res, err = stmt.Exec("astaxieupdate", id)
-    checkErr(err)
-
-    affect, err := res.RowsAffected()
-    checkErr(err)
-
-    fmt.Println(affect)
-
-    // query
-    rows, err := db.Query("SELECT * FROM userinfo")
-    checkErr(err)
-
-    for rows.Next() {
-        var uid int
-        var username string
-        var department string
-        var created string
-        err = rows.Scan(&uid, &username, &department, &created)
-        checkErr(err)
-        fmt.Println(uid)
-        fmt.Println(username)
-        fmt.Println(department)
-        fmt.Println(created)
-    }
-
-    // delete
-    stmt, err = db.Prepare("delete from userinfo where uid=?")
-    checkErr(err)
-
-    res, err = stmt.Exec(id)
-    checkErr(err)
-
-    affect, err = res.RowsAffected()
-    checkErr(err)
-
-    fmt.Println(affect)
-
-    db.Close()
+	db.Close()
 
 }
 
 func checkErr(err error) {
-    if err != nil {
-        panic(err)
-    }
+	if err != nil {
+		panic(err)
+	}
 }
