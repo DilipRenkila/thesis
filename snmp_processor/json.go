@@ -33,6 +33,7 @@ func main() {
 	}
 
 	for i := len(uptime)-1; i > 0; i-- {
+		fmt.Println(float64(Bytes_in[i]-Bytes_in[i-1]))
 		bitrate=append(bitrate,(float64(Bytes_in[i]-Bytes_in[i-1])/uptime[i]-uptime[i-1]))
 	}
 	fmt.Println(bitrate)
