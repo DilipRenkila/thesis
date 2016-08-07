@@ -5,34 +5,112 @@ import (
 	"database/sql"
 	"fmt"
 	"time"
+	"os"
 )
 
-func main() {
-	db, err := sql.Open("mysql", "root:1@(127.0.0.1:3306)/thesis?charset=utf8")
-	checkErr(err)
-	// query
-	rows, err := db.Query("SELECT * FROM info where status=0")
-	checkErr(err)
+// Global variables
+var db *sql.DB
 
-	for rows.Next() {
-		var expid,runid,keyid,packets_sent,min_packet_length,max_packet_lenth int32
-		var sampling_interval,min_intergramegap,max_intergramegap,status,when_to_process int32
-		var delay_on_shaper,packet_distribution,interframegap_distribution,destination string
-		err = rows.Scan(&expid,&runid,&keyid,&delay_on_shaper,&packets_sent,&min_packet_length,&max_packet_lenth,&packet_distribution,&sampling_interval,&min_intergramegap,&max_intergramegap,&interframegap_distribution,&destination,&status,&when_to_process)
-		checkErr(err)
-		unixtime := int32(time.Now().Unix())
-		if unixtime > when_to_process {
-			fmt.Println("ok, you can process")
-		}
+func dbOpen() error {
+	var err error
 
+	db, err = sql.Open("mysql", "root:1@(127.0.0.1:3306)/thesis?charset=utf8")
+	if err != nil {
+		return err
 	}
-
-	db.Close()
-
+	return nil
 }
 
-func checkErr(err error) {
+func main() {
+
+	var err error
+	err = dbOpen()
 	if err != nil {
-		panic(err)
+		fmt.Errorf("error: %s\n", err)
+	}
+	os.Exit(1)
+
+	// Experiments
+	experiments, err := todo_experiments()
+	if err != nil {
+		fmt.Errorf("error: %s", err)
+	}
+
+	for _, entry := range experiments {
+		expid := (entry[0].(int))
+		runid := entry[1].(int)
+		when_to_process := int64(entry[2].(int))
+
+		if  time.Now().Unix() > when_to_process{
+			fmt.Println(expid,runid)
+		}
+	}
+}
+
+func todo_experiments() ([][]interface{}, error) {
+	q := fmt.Sprintf("SELECT expid, runid, when_to_process FROM info WHERE status=0;")
+	var expid int
+	var runid int
+	var when_to_process int
+	outfmt := []interface{}{expid, runid, when_to_process}
+	result, err := dbQueryScan(db, q, nil, outfmt)
+	if err != nil {
+		return nil, err
+	}
+
+	return result, nil
+}
+func dbDoQueryScan(db *sql.DB, q string, args []interface{}, outargs []interface{}) ([][]interface{}, error) {
+	rows, err := db.Query(q, args...)
+	if err != nil {
+		return [][]interface{}{}, err
+	}
+	defer rows.Close()
+	result := [][]interface{}{}
+	for rows.Next() {
+		ptrargs := make([]interface{}, len(outargs))
+		for i := range outargs {
+			switch t := outargs[i].(type) {
+			case string:
+				str := ""
+				ptrargs[i] = &str
+			case int:
+				integer := 0
+				ptrargs[i] = &integer
+			default:
+				return [][]interface{}{}, fmt.Errorf("Bad interface type: %s\n", t)
+			}
+		}
+		err = rows.Scan(ptrargs...)
+		if err != nil {
+			return [][]interface{}{}, err
+		}
+		newargs := make([]interface{}, len(outargs))
+		for i := range ptrargs {
+			switch t := outargs[i].(type) {
+			case string:
+				newargs[i] = *ptrargs[i].(*string)
+			case int:
+				newargs[i] = *ptrargs[i].(*int)
+			default:
+				return [][]interface{}{}, fmt.Errorf("Bad interface type: %s\n", t)
+			}
+		}
+		result = append(result, newargs)
+	}
+	err = rows.Err()
+	if err != nil {
+		return [][]interface{}{}, err
+	}
+	return result, nil
+}
+
+func dbQueryScan(db *sql.DB, q string, inargs []interface{}, outfmt []interface{}) ([][]interface{}, error) {
+	for {
+		result, err := dbDoQueryScan(db, q, inargs, outfmt)
+		if err == nil {
+			return result, nil
+		}
+		time.Sleep(1 * time.Second)
 	}
 }
