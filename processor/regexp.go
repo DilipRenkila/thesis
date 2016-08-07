@@ -30,7 +30,10 @@ func extract(filename string) error {
 		}
 
 		if re_2.MatchString(line) == true && re.MatchString(line) == true && reg.MatchString(line) == false {
-			fmt.Println(line)
+			x := strings.Split(line, ":")
+                	y := strings.Split(line, "=")
+			z := strings.Split(y[1]," ")
+			fmt.Println(x[3],z[0])
 		}
 	}
 	return nil
