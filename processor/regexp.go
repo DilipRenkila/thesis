@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 import "regexp"
-
+import "strings"
 
 func extract(filename string) error {
 
@@ -23,7 +23,9 @@ func extract(filename string) error {
 
 	for _, line := range lines {
 		if re_1.MatchString(line) == true && re.MatchString(line) == true && reg.MatchString(line) == false {
-			fmt.Println(line)
+			x := strings.Split(line, ":")
+                	y := strings.Split(line, "=")
+			fmt.Println(x[3],y[1])
 		}
 
 		if re_2.MatchString(line) == true && re.MatchString(line) == true && reg.MatchString(line) == false {
