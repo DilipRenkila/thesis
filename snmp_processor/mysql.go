@@ -21,7 +21,7 @@ func main() {
 		err = rows.Scan(&expid,&runid,&keyid,&delay_on_shaper,&packets_sent,&min_packet_length,&max_packet_lenth,&packet_distribution,&sampling_interval,&min_intergramegap,&max_intergramegap,&interframegap_distribution,&destination,&status,&when_to_process)
 		checkErr(err)
 		unixtime := int64(time.Now().Unix())
-		if (unixtime > when_to_process ){
+		if unixtime > when_to_process {
 			fmt.Println("ok, you can process")
 		}
 
