@@ -33,9 +33,8 @@ func main() {
 				os.Exit(1)
 			}
 			filename := fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/trace-%d-%d.trace",expid,runid)
-			_ , error := read_file(filename)
-			fmt.Println("Hi")
-			if error != nil {
+			err = extract(filename)
+			if err != nil {
 				fmt.Errorf("error: %s", err)
 				os.Exit(1)
 			}
