@@ -40,12 +40,13 @@ func main() {
 	for _, entry := range experiments {
 		expid := (entry[0].(int))
 		runid := entry[1].(int)
-		when_to_process := (entry[2].(int))
+		when_to_process := int64(entry[2].(int))
 
 		if  time.Now().Unix() > when_to_process{
 			fmt.Println(expid,runid)
 		}else {
-			duration := when_to_process - int(time.Now().Unix())
+			duration := when_to_process - (time.Now().Unix())
+			duration = int(duration)
 			time.Sleep( time.Second*duration )
 			fmt.Println("slept for %s seconds", duration)
 			fmt.Println(expid,runid)
