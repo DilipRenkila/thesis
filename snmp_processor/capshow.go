@@ -45,7 +45,7 @@ func main() {
 
 	//converting tracefile to a text file
 	tracefile := fmt.Sprintf("/mnt/LONTAS/traces/trace-7754-1.cap")
-	tracedestiny := fmt.Sprintf("/mnt/LONTAS/dire15/thesis/logs/trace-7754-1.trace")
+	tracedestiny := fmt.Sprintf("/mnt/LONTAS/dire15/logs/trace-7754-1.trace")
 	cmd := exec.Command("capshow", tracefile)
 	// Create an *exec.Cmd for executing os commands
 	// Combine stdout and stderr
