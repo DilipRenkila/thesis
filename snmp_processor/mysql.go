@@ -5,7 +5,6 @@ import (
 	"database/sql"
 	"fmt"
 	"time"
-	"os"
 	"os/exec"
 )
 
@@ -22,7 +21,7 @@ func dbOpen() error {
 	return nil
 }
 
-func capshow(expid int,runid int) error {
+func capshows(expid int,runid int) error {
 	cmd := "capshow"
 	tracefile := fmt.Sprintf("/mnt/LONTAS/traces/trace-%d-%d.cap",expid,runid)
 	tracedest := fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/trace-%d-%d.trace",expid,runid)
@@ -34,40 +33,6 @@ func capshow(expid int,runid int) error {
 	return nil
 }
 
-func main() {
-
-	var err error
-	err = dbOpen()
-	if err != nil {
-		fmt.Errorf("error: %s\n", err)
-		os.Exit(1)
-	}
-
-
-	// Experiments
-	experiments, err := todo_experiments()
-	if err != nil {
-		fmt.Errorf("error: %s", err)
-	}
-
-	for _, entry := range experiments {
-		expid := (entry[0].(int))
-		runid := entry[1].(int)
-		when_to_process := int64(entry[2].(int))
-
-		if  time.Now().Unix() > when_to_process{
-			fmt.Println(expid,runid)
-			err = capshow(expid,runid)
-			if err != nil {
-				fmt.Errorf("error: %s", err)
-			}
-		}else {
-			time.Sleep( time.Second * 60 )
-			fmt.Println(expid,runid)
-
-		}
-	}
-}
 
 func todo_experiments() ([][]interface{}, error) {
 	q := fmt.Sprintf("SELECT expid, runid, when_to_process FROM info WHERE status=0;")
