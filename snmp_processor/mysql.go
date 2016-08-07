@@ -44,6 +44,11 @@ func main() {
 
 		if  time.Now().Unix() > when_to_process{
 			fmt.Println(expid,runid)
+		}else {
+			time.Sleep(time.Second * (when_to_process - time.Now().Unix()))
+			fmt.Println("slept")
+			fmt.Println(expid,runid)
+
 		}
 	}
 }
