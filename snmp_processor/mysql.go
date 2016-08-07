@@ -10,7 +10,7 @@ func main() {
 	db, err := sql.Open("mysql", "root:1@(127.0.0.1:3306)/thesis?charset=utf8")
 	checkErr(err)
 	// query
-	rows, err := db.Query("SELECT * FROM info")
+	rows, err := db.Query("SELECT * FROM info where status=0")
 	checkErr(err)
 
 	for rows.Next() {
