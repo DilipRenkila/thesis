@@ -6,8 +6,8 @@ import "fmt"
 func capshows(expid int,runid int) error {
 	cmd := "/usr/local/bin/capshow"
 	tracefile := fmt.Sprintf("/mnt/LONTAS/traces/trace-%d-%d.cap",expid,runid)
-	tracedest := fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/trace-%d-%d.trace",expid,runid)
-	args := []string{"-a",tracefile, ">>", tracedest}
+	//tracedest := fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/trace-%d-%d.trace",expid,runid)
+	args := []string{"-a",tracefile}
 	if err := exec.Command(cmd, args...).Run(); err != nil {
 		return err
 	}
