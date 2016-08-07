@@ -28,10 +28,9 @@ func capshow(expid int,runid int) error {
 	tracedest := fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/trace-%d-%d.trace",expid,runid)
 	args := []string{"-a",tracefile, ">>", tracedest}
 	if err := exec.Command(cmd, args...).Run(); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
+		return err
 	}
-	fmt.Println("Successfully halved image in size")
+	return nil
 }
 
 func main() {
@@ -57,6 +56,10 @@ func main() {
 
 		if  time.Now().Unix() > when_to_process{
 			fmt.Println(expid,runid)
+			err = capshow(expid,runid)
+			if err != nil {
+				fmt.Errorf("error: %s", err)
+			}
 		}else {
 			time.Sleep( time.Second * 60 )
 			fmt.Println(expid,runid)
