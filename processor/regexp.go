@@ -25,7 +25,8 @@ func extract(filename string) error {
 		if re_1.MatchString(line) == true && re.MatchString(line) == true && reg.MatchString(line) == false {
 			x := strings.Split(line, ":")
                 	y := strings.Split(line, "=")
-			fmt.Println(x[3],y[1])
+			z := strings.Split(y[1]," ")
+			fmt.Println(x[3],z[0])
 		}
 
 		if re_2.MatchString(line) == true && re.MatchString(line) == true && reg.MatchString(line) == false {
