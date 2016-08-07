@@ -40,7 +40,7 @@ func main() {
 	for _, entry := range experiments {
 		expid := (entry[0].(int))
 		runid := entry[1].(int)
-		when_to_process := int64(entry[2].(int))
+		when_to_process := (entry[2].(int))
 
 		if  time.Now().Unix() > when_to_process{
 			fmt.Println(expid,runid)
