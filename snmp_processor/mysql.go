@@ -45,10 +45,7 @@ func main() {
 		if  time.Now().Unix() > when_to_process{
 			fmt.Println(expid,runid)
 		}else {
-			duration := when_to_process - (time.Now().Unix())
-			timeDuration, _ := time.ParseDuration(fmt.Sprintf("%d", duration))
-			time.Sleep( time.Second* timeDuration )
-			fmt.Println("slept for %s seconds", duration)
+			time.Sleep( time.Second * 300 )
 			fmt.Println(expid,runid)
 
 		}
