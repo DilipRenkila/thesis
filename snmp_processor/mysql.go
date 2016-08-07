@@ -16,7 +16,6 @@ func dbOpen() error {
 
 	db, err = sql.Open("mysql", "root:1@(127.0.0.1:3306)/thesis?charset=utf8")
 	if err != nil {
-		fmt.Println("error in opening the database")
 		return err
 	}
 	return nil
@@ -28,8 +27,9 @@ func main() {
 	err = dbOpen()
 	if err != nil {
 		fmt.Errorf("error: %s\n", err)
+		os.Exit(1)
 	}
-	os.Exit(1)
+
 
 	// Experiments
 	experiments, err := todo_experiments()
