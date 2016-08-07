@@ -3,7 +3,7 @@ package main
 import "os/exec"
 import "fmt"
 
-func capshow(expid int,runid int) error {
+func capshows(expid int,runid int) error {
 	cmd := "capshow"
 	tracefile := fmt.Sprintf("/mnt/LONTAS/traces/trace-%d-%d.cap",expid,runid)
 	tracedest := fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/trace-%d-%d.trace",expid,runid)
@@ -15,7 +15,7 @@ func capshow(expid int,runid int) error {
 }
 func main(){
 	var err error
-	err = capshow(7754,1)
+	err = capshows(7754,1)
 	if err != nil {
 		fmt.Println(err)
 	}
