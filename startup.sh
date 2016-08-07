@@ -99,8 +99,8 @@ sudo service thesis start
 /home/ats/trafficgenerators/udpclient -e $EXPID -r $RUNID -k $KEY_ID -s $DESTINATION -p $PORT -n $COUNT -l $MIN_LENGTH -L $MAX_LENGTH -m $PACKET_DISTRIBUTION -w $MIN_INTERFRAMEGAP -W $MAX_INTERFRAMEGAP -v $INTERFRAMEGAP_DISTRIBUTION
 sudo service thesis stop
 epochTime=$(date +%s)
-$epochTime=$((epochTime+300))
+Time=$((epochTime+300))
 mysql -u root -p1 thesis << EOF
-    INSERT INTO info (expid,runid,keyid,delay_on_shaper,packets_sent,min_packet_length,max_packet_lenth,packet_distribution,sampling_interval,min_intergramegap,max_intergramegap,interframegap_distribution,destination,status,when_to_process)VALUES ($EXPID,$RUNID,$KEY_ID,'$DELAY',$COUNT,$MIN_LENGTH,$MAX_LENGTH,'$PACKET_DISTRIBUTION',$SAMPLING_INTERVAL,$MIN_INTERFRAMEGAP,$MAX_INTERFRAMEGAP,'$INTERFRAMEGAP_DISTRIBUTION','$DESTINATION',0,$epochTime);
+    INSERT INTO info (expid,runid,keyid,delay_on_shaper,packets_sent,min_packet_length,max_packet_lenth,packet_distribution,sampling_interval,min_intergramegap,max_intergramegap,interframegap_distribution,destination,status,when_to_process)VALUES ($EXPID,$RUNID,$KEY_ID,'$DELAY',$COUNT,$MIN_LENGTH,$MAX_LENGTH,'$PACKET_DISTRIBUTION',$SAMPLING_INTERVAL,$MIN_INTERFRAMEGAP,$MAX_INTERFRAMEGAP,'$INTERFRAMEGAP_DISTRIBUTION','$DESTINATION',0,$Time);
 EOF
 echo "SUCCESS"
