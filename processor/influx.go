@@ -11,7 +11,7 @@ import (
 )
 
 
-func Influx_Write(d [][]string,tablename string) (time,error)  {
+func Influx_Write(d [][]string,tablename string) (time.Time,error)  {
 	var firsttime time.Time
 	host, err := url.Parse(fmt.Sprintf("http://%s:%d", "localhost", 8086))
 	if err != nil {
