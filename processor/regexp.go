@@ -21,7 +21,7 @@ func extract(filename string) error {
 		return err
 	}
 	var d01_time,d10_time []string
-	var d01_lenth,d10_length []string
+	var d01_length,d10_length []string
 
 	for _, line := range lines {
 		if re_1.MatchString(line) == true && re.MatchString(line) == true && reg.MatchString(line) == false {
@@ -30,7 +30,7 @@ func extract(filename string) error {
 			z := strings.Split(y[1]," ")
 			//fmt.Println(x[3],z[0])
 			d01_time = append(d01_time,x[3])
-			d10_length=append(d10_length,z[0])
+			d01_length=append(d01_length,z[0])
 		}
 
 		if re_2.MatchString(line) == true && re.MatchString(line) == true && reg.MatchString(line) == false {
