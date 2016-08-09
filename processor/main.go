@@ -38,7 +38,17 @@ func main() {
 				fmt.Errorf("error: %s", err)
 				os.Exit(1)
 			}
-			fmt.Println(d01,d10)
+			err = Influx_Write(d01)
+			if err != nil {
+				fmt.Errorf("error: %s", err)
+				os.Exit(1)
+			}
+			err = Influx_Write(d10)
+			if err != nil {
+				fmt.Errorf("error: %s", err)
+				os.Exit(1)
+			}
+
 
 		}else {
 			time.Sleep( time.Second * 60 )

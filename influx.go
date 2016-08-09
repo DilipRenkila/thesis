@@ -13,7 +13,7 @@ import (
 )
 
 
-func Influx_Write() error  {
+func Influx_Write(d01 [][]string,d10 [][]string) error  {
 	host, err := url.Parse(fmt.Sprintf("http://%s:%d", "localhost", 8086))
 	if err != nil {
 		return err
