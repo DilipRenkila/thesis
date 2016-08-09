@@ -14,7 +14,7 @@ func extract(filename string) ([][]string,[][]string,error) {
 
 	re_1, err := regexp.Compile(`d01`)
 	re, err := regexp.Compile(`UDP`)
-	reg, err := regexp.Compile(`packets read.`)
+//	reg, err := regexp.Compile(`packets read.`)
 	re_2, err := regexp.Compile(`d10`)
 
 	if err != nil {
@@ -25,7 +25,7 @@ func extract(filename string) ([][]string,[][]string,error) {
 	var d01_length,d10_length []string
 
 	for _, line := range lines {
-		if re_1.MatchString(line) == true && re.MatchString(line) == true && reg.MatchString(line) == false {
+		if re_1.MatchString(line) == true && re.MatchString(line) == true  {
 			x := strings.Split(line, ":")
                 	y := strings.Split(line, "=")
 			z := strings.Split(y[1]," ")
@@ -34,7 +34,7 @@ func extract(filename string) ([][]string,[][]string,error) {
 			d01_length=append(d01_length,z[0])
 		}
 
-		if re_2.MatchString(line) == true && re.MatchString(line) == true && reg.MatchString(line) == false {
+		if re_2.MatchString(line) == true && re.MatchString(line) == true  {
 			x := strings.Split(line, ":")
                 	y := strings.Split(line, "=")
 			z := strings.Split(y[1]," ")
