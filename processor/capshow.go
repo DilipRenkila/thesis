@@ -6,6 +6,7 @@ import "fmt"
 import "log"
 import "strings"
 
+
 func printCommand(cmd *exec.Cmd) {
 	fmt.Printf("==> Executing: %s\n", strings.Join(cmd.Args, " "))
 }

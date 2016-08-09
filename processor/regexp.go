@@ -20,20 +20,24 @@ func extract(filename string) error {
 		fmt.Printf("There is a problem with your regexp.\n")
 		return err
 	}
+	var d01 [][]string
+	var d10 [][]string
 
 	for _, line := range lines {
 		if re_1.MatchString(line) == true && re.MatchString(line) == true && reg.MatchString(line) == false {
 			x := strings.Split(line, ":")
                 	y := strings.Split(line, "=")
 			z := strings.Split(y[1]," ")
-			fmt.Println(x[3],z[0])
+			//fmt.Println(x[3],z[0])
+			d01 = append(d01,x[3],z[0])
 		}
 
 		if re_2.MatchString(line) == true && re.MatchString(line) == true && reg.MatchString(line) == false {
 			x := strings.Split(line, ":")
                 	y := strings.Split(line, "=")
 			z := strings.Split(y[1]," ")
-			fmt.Println(x[3],z[0])
+			//fmt.Println(x[3],z[0])
+			d10 = append(d10,x[3],z[0])
 		}
 	}
 	return nil

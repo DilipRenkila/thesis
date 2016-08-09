@@ -1,55 +1,70 @@
+
 package main
 
 import (
-    "log"
-    "time"
+	"fmt"
+	"log"
+	"math/rand"
+	"net/url"
+	"strconv"
+	"time"
 
-    "github.com/influxdata/influxdb/client/v2"
+	"github.com/influxdata/influxdb/client"
 )
 
-const (
-    MyDB = "square_holes"
-//    username = "bubba"
-//    password = "bumblebeetuna"
-)
 
-func main() {
-    // Make client
-    c, err := client.NewHTTPClient(client.HTTPConfig{
-        Addr: "http://localhost:8086",
-     //   Username: username,
-     //   Password: password,
-    })
+func Influx_Write() error  {
+	host, err := url.Parse(fmt.Sprintf("http://%s:%d", "localhost", 8086))
+	if err != nil {
+		return err
+	}
+	con, err := client.NewClient(client.Config{URL: *host})
+	if err != nil {
+		return err
+	}
+//    I, err := strconv.ParseInt("1405544147", 10, 64)
+	// if err != nil {
+        //panic(err)
+    //}
+    //tm := time.Unix(I, 24767)
 
-    if err != nil {
-        log.Fatalln("Error: ", err)
-    }
+	var sampleSize int64
+	sampleSize = 1000
 
-    // Create a new point batch
-    bp, err := client.NewBatchPoints(client.BatchPointsConfig{
-        Database:  MyDB,
-        Precision: "s",
-    })
+	var (
+		//shapes     = []string{"circle", "rectangle", "square", "triangle"}
+		//colors     = []string{"red", "blue", "green"}
+		pts        = make([]client.Point, sampleSize)
+	)
 
-    if err != nil {
-        log.Fatalln("Error: ", err)
-    }
+	rand.Seed(42)
+	var i int64
+	for i = 0; i < sampleSize; i++ {
+		pts[i] = client.Point{
+			Measurement: "shapers1",
+		//	Tags: map[string]string{
+		//		"color": strconv.Itoa(rand.Intn(len(colors))),
+		//		"shape": strconv.Itoa(rand.Intn(len(shapes))),
+		//	},
+			Fields: map[string]interface{}{
+				"value": 123,
+			},
+			Time:      time.Unix(I,i),
+		}
+	}
 
-    // Create a point and add to batch
-    tags := map[string]string{"cpu": "cpu-total"}
-    fields := map[string]interface{}{
-        "idle":   10.1,
-        "system": 53.3,
-        "user":   46.6,
-    }
-    pt, err := client.NewPoint("cpu_usage", tags, fields, time.Now())
+	//fmt.Println(pts)
+	bps := client.BatchPoints{
+		Points:          pts,
+		Database:        "mydb",
+		RetentionPolicy: "default",
+	}
+	_, err = con.Write(bps)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
 
-    if err != nil {
-        log.Fatalln("Error: ", err)
-    }
-
-    bp.AddPoint(pt)
-
-    // Write the batch
-    c.Write(bp)
+func main(){
+	ExampleClient_Write()
 }
