@@ -20,8 +20,8 @@ func extract(filename string) error {
 		fmt.Printf("There is a problem with your regexp.\n")
 		return err
 	}
-	var d01 [][]string
-	var d10 [][]string
+	var d01_time,d10_time []string
+	var d01_lenth,d10_length []string
 
 	for _, line := range lines {
 		if re_1.MatchString(line) == true && re.MatchString(line) == true && reg.MatchString(line) == false {
@@ -29,7 +29,8 @@ func extract(filename string) error {
                 	y := strings.Split(line, "=")
 			z := strings.Split(y[1]," ")
 			//fmt.Println(x[3],z[0])
-			d01 = append(d01,x[3],z[0])
+			d01_time = append(d01_time,x[3])
+			d10_length=append(d10_length,z[0])
 		}
 
 		if re_2.MatchString(line) == true && re.MatchString(line) == true && reg.MatchString(line) == false {
@@ -37,7 +38,8 @@ func extract(filename string) error {
                 	y := strings.Split(line, "=")
 			z := strings.Split(y[1]," ")
 			//fmt.Println(x[3],z[0])
-			d10 = append(d10,x[3],z[0])
+			d10_time = append(d10_time,x[3],z[0])
+			d10_length=append(d10_length,z[0])
 		}
 	}
 	return nil
