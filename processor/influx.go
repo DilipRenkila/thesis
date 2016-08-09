@@ -11,14 +11,15 @@ import (
 )
 
 
-func Influx_Write(d [][]string,tablename string) error  {
+func Influx_Write(d [][]string,tablename string) (time,error)  {
+	var firsttime time.Time
 	host, err := url.Parse(fmt.Sprintf("http://%s:%d", "localhost", 8086))
 	if err != nil {
-		return err
+		return firsttime,err
 	}
 	con, err := client.NewClient(client.Config{URL: *host})
 	if err != nil {
-		return err
+		return firsttime,err
 	}
 
 	var sampleSize int
@@ -50,7 +51,7 @@ func Influx_Write(d [][]string,tablename string) error  {
 	}
 	_, err = con.Write(bps)
 	if err != nil {
-		return err
+		return firsttime,err
 	}
-	return nil
+	return firsttime,nil
 }

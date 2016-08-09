@@ -40,12 +40,12 @@ func main() {
 			}
 			in_table := fmt.Sprintf("in_%d_%d",expid,runid)
 			out_table := fmt.Sprintf("out_%d_%d",expid,runid)
-			err = Influx_Write(d01,in_table)
+			_,err = Influx_Write(d01,in_table)
 			if err != nil {
 				fmt.Errorf("error: %s", err)
 				os.Exit(1)
 			}
-			err = Influx_Write(d10,out_table)
+			_,err = Influx_Write(d10,out_table)
 			if err != nil {
 				fmt.Errorf("error: %s", err)
 				os.Exit(1)
