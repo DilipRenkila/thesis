@@ -21,7 +21,7 @@ func Influx_Write(d [][]string) error  {
 		return err
 	}
 
-	var sampleSize int64
+	var sampleSize int
 	sampleSize = len(d[0])
 
 	var pts = make([]client.Point, sampleSize)
