@@ -36,8 +36,9 @@ func extract(filename string) ([][]string,[][]string,error) {
 		if re_2.MatchString(line) == true && re.MatchString(line) == true && reg.MatchString(line) == true {
 			x := strings.Split(line, ":")
                 	y := strings.Split(line, "=")
-			z := strings.Split(y[1]," ")
 			fmt.Println(line)
+			z := strings.Split(y[1]," ")
+
 			d10_time = append(d10_time,x[3])
 			d10_length=append(d10_length,z[0])
 		}
