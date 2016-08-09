@@ -25,7 +25,7 @@ func Influx_Write(d [][]string) error  {
 	sampleSize = len(d[0])
 
 	var pts = make([]client.Point, sampleSize)
-	var i int64
+	var i int
 
 	for i = 0; i < sampleSize; i++ {
 		timestring := strings.Split(d[0][i], ".")
