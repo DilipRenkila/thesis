@@ -11,7 +11,7 @@ import (
 )
 
 
-func Influx_Write(d [][]string) error  {
+func Influx_Write(d [][]string,tablename string) error  {
 	host, err := url.Parse(fmt.Sprintf("http://%s:%d", "localhost", 8086))
 	if err != nil {
 		return err
@@ -34,7 +34,7 @@ func Influx_Write(d [][]string) error  {
 		value,_ := strconv.ParseInt(d[1][i],10,64)
 		unixtime := time.Unix(integer_part,decimal_part)
 		pts[i] = client.Point{
-			Measurement: "sample",
+			Measurement: tablename,
 			Fields: map[string]interface{}{
 				"value": value,
 			},
