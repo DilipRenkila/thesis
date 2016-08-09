@@ -37,7 +37,7 @@ func extract(filename string) ([][]string,[][]string,error) {
 			x := strings.Split(line, ":")
                 	y := strings.Split(line, "=")
 			z := strings.Split(y[1]," ")
-			//fmt.Println(x[3],z[0])
+			fmt.Println(line)
 			d10_time = append(d10_time,x[3])
 			d10_length=append(d10_length,z[0])
 		}
