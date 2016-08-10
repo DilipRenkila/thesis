@@ -20,7 +20,7 @@ func ExampleClient_Query() {
 	}
 
 	q := client.Query{
-		Command:  "select count(value) from in_7754_1",
+		Command:  "select  * from in_7754_1",
 		Database: "thesis",
 	}
 	if response, err := con.Query(q); err == nil && response.Error() == nil {
