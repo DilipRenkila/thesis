@@ -9,6 +9,7 @@ import (
 	"log"
 	//"reflect"
 	"github.com/influxdata/influxdb/client"
+	"github.com/altoros/gosigma/data"
 )
 func ExampleClient_Query() {
 
@@ -30,8 +31,8 @@ func ExampleClient_Query() {
 		fmt.Println(len(response.Results[0].Series[0].Values))
 		for i := 0;i < len(response.Results[0].Series[0].Values)-1 ; i ++ {
 			length := response.Results[0].Series[0].Values[i][1]
-			string := string(length)
-			value,_ := strconv.ParseInt(string,10,64)
+			str, _ := length.(string)
+			value,_ := strconv.ParseInt(str,10,64)
 			size = size + value
 			//fmt.Println(size)
 
