@@ -33,9 +33,9 @@ func main() {
 		uptime = append(uptime,x.Uptime)
 	}
 
-	for i := len(uptime)-1; i > 0; i-- {
-		bitrate=append(bitrate,(float64(Bytes_in[i]-Bytes_in[i-1])/uptime[i]-uptime[i-1]))
-		interval = append(interval,uptime[i]-uptime[i-1])
+	for i := 0; i < len(uptime)-1; i++ {
+		bitrate=append(bitrate,(float64(Bytes_in[i+1]-Bytes_in[i])/uptime[i+1]-uptime[i]))
+		interval = append(interval,uptime[i+1]-uptime[i])
 	}
 	fmt.Println(interval)
 }

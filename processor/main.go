@@ -51,7 +51,7 @@ func main() {
 				fmt.Errorf("error: %s", err)
 				os.Exit(1)
 			}
-
+			fmt.Println(outtime-intime)
 
 		}else {
 			time.Sleep( time.Second * 60 )
