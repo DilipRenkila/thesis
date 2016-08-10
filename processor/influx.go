@@ -29,7 +29,7 @@ func ExampleClient_Query() {
 	if response, err := con.Query(q); err == nil && response.Error() == nil {
 		fmt.Println(len(response.Results[0].Series[0].Values))
 		for i := 0;i < len(response.Results[0].Series[0].Values)-1 ; i ++ {
-			length := response.Results[0].Series[0].Values[0][i]
+			length := response.Results[0].Series[0].Values[i][1]
 
 			fmt.Println(length)
 			//value,_ := strconv.ParseInt(string,10,64)
