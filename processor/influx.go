@@ -7,13 +7,13 @@ import (
 	"strings"
 	"time"
 	"log"
-	//"reflect"
+	"encoding/json"
 	"github.com/influxdata/influxdb/client"
 
 )
 func ExampleClient_Query() {
 
-	var size int64 =0
+	var size json.Number = 0
 	host, err := url.Parse(fmt.Sprintf("http://%s:%d", "localhost", 8086))
 	if err != nil {
 		log.Fatal(err)
@@ -30,10 +30,10 @@ func ExampleClient_Query() {
 	if response, err := con.Query(q); err == nil && response.Error() == nil {
 		for i := 0;i < len(response.Results[0].Series[0].Values)-1 ; i ++ {
 			length := response.Results[0].Series[0].Values[i][1]
-			str, _ := length.(int64)
+			//str, _ := length.(i)
 			//value,_ := strconv.ParseInt(str,10,64)
-			size = size + str
-			fmt.Println(str)
+			size = size + length
+			//fmt.Println(str)
 
 		}
 		fmt.Println("Number of Bytes :", size )
