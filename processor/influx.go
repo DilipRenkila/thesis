@@ -24,7 +24,7 @@ func ExampleClient_Query() {
 		Database: "thesis",
 	}
 	if response, err := con.Query(q); err == nil && response.Error() == nil {
-		log.Println(response.Results)
+		log.Println(response.Results[1])
 	}
 }
 
