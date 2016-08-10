@@ -27,11 +27,11 @@ func ExampleClient_Query() {
 		Database: "thesis",
 	}
 	if response, err := con.Query(q); err == nil && response.Error() == nil {
-		//fmt.Println(reflect.TypeOf(response.Results[0].Series[0].Values[0][1]))
+		fmt.Println(len(response.Results[0].Series[0].Values))
 		for i := 0;i < len(response.Results[0].Series[0].Values)-1 ; i ++ {
 			length := response.Results[0].Series[0].Values[0][i]
 
-			fmt.Println(reflect.TypeOf(length))
+			fmt.Println(reflect.TypeOf(length), i)
 			//value,_ := strconv.ParseInt(string,10,64)
 			//size = size + value
 			//fmt.Println(size)
