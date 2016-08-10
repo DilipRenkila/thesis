@@ -11,6 +11,8 @@ import (
 	"github.com/influxdata/influxdb/client"
 )
 func ExampleClient_Query() {
+
+	var size int64 =0
 	host, err := url.Parse(fmt.Sprintf("http://%s:%d", "localhost", 8086))
 	if err != nil {
 		log.Fatal(err)
@@ -26,7 +28,13 @@ func ExampleClient_Query() {
 	}
 	if response, err := con.Query(q); err == nil && response.Error() == nil {
 		fmt.Println(reflect.TypeOf(response.Results[0].Series[0].Values[0][1]))
-		fmt.Println(response.Results[0].Series[0].Values[0][1] + 1)
+		for i := 0;i < len(response.Results[0].Series[0].Values) - 1; i ++ {
+			string := string(response.Results[0].Series[0].Values[0][i])
+			value,_ := strconv.ParseInt(string,10,64)
+			size = size + value
+
+		}
+		fmt.Println("Number of Bytes :", size )
 	}
 }
 
