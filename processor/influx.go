@@ -21,12 +21,11 @@ func ExampleClient_Query() {
 	}
 
 	q := client.Query{
-		Command:  "select  * from in_7754_1",
+		Command:  "select  * from in_7754_1 where time > 1470591666770117750 ",
 		Database: "thesis",
 	}
 	if response, err := con.Query(q); err == nil && response.Error() == nil {
 		fmt.Println(reflect.TypeOf(response.Results))
-
 		fmt.Println(response.Results[0].Series[0].Values[0][1])
 	}
 }
