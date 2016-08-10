@@ -13,7 +13,7 @@ import (
 )
 func ExampleClient_Query() {
 
-	var size json.Number = 0
+	var size int64 = 0
 	host, err := url.Parse(fmt.Sprintf("http://%s:%d", "localhost", 8086))
 	if err != nil {
 		log.Fatal(err)
@@ -29,14 +29,14 @@ func ExampleClient_Query() {
 	}
 	if response, err := con.Query(q); err == nil && response.Error() == nil {
 		for i := 0;i < len(response.Results[0].Series[0].Values)-1 ; i ++ {
-			length := response.Results[0].Series[0].Values[i][1]
-			//str, _ := length.(i)
+			length,_ := response.Results[0].Series[0].Values[i][1].(json.Number).Int64()
+			//str, _ := length.(i)[1].(json.Number).Float64()
 			//value,_ := strconv.ParseInt(str,10,64)
 			size = size + length
 			//fmt.Println(str)
 
 		}
-		fmt.Println("Number of Bytes :", size )
+		fmt.Println("Number of Bytes :",size  )
 	}
 }
 
