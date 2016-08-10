@@ -12,7 +12,7 @@ import (
 )
 func ExampleClient_Query() {
 
-	var size int64 =0
+	var size int =0
 	host, err := url.Parse(fmt.Sprintf("http://%s:%d", "localhost", 8086))
 	if err != nil {
 		log.Fatal(err)
