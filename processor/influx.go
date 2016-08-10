@@ -12,7 +12,7 @@ import (
 )
 func ExampleClient_Query() {
 
-	var size int =0
+	var size int64 =0
 	host, err := url.Parse(fmt.Sprintf("http://%s:%d", "localhost", 8086))
 	if err != nil {
 		log.Fatal(err)
@@ -32,8 +32,8 @@ func ExampleClient_Query() {
 			length := response.Results[0].Series[0].Values[i][1]
 
 			fmt.Println(reflect.TypeOf( length))
-			//value,_ := strconv.ParseInt(string,10,64)
-			//size = size + length
+			value,_ := strconv.ParseInt(length,10,64)
+			size = size + value
 			//fmt.Println(size)
 
 		}
