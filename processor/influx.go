@@ -9,7 +9,7 @@ import (
 	"log"
 	//"reflect"
 	"github.com/influxdata/influxdb/client"
-	"github.com/altoros/gosigma/data"
+
 )
 func ExampleClient_Query() {
 
