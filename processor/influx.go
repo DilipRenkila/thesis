@@ -29,7 +29,8 @@ func ExampleClient_Query() {
 	if response, err := con.Query(q); err == nil && response.Error() == nil {
 		fmt.Println(reflect.TypeOf(response.Results[0].Series[0].Values[0][1]))
 		for i := 0;i < len(response.Results[0].Series[0].Values) - 1; i ++ {
-			string := string(response.Results[0].Series[0].Values[0][i])
+			length := response.Results[0].Series[0].Values[0][i]
+			string := string(length)
 			value,_ := strconv.ParseInt(string,10,64)
 			size = size + value
 
