@@ -26,7 +26,7 @@ func ExampleClient_Query() {
 	}
 	if response, err := con.Query(q); err == nil && response.Error() == nil {
 		fmt.Println(reflect.TypeOf(response.Results))
-		fmt.Println(response.Results[0].Series[0].Values[0][1])
+		fmt.Println(len(response.Results[0].Series[0].Values))
 	}
 }
 
