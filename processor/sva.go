@@ -30,7 +30,7 @@ func sva(expid int,runid int,intime time.Time) {
 	var Bytes_in []int64
 	var uptime []float64
 	var bitrate []float64
-	var interval []float64 = 0.0
+	var interval float64 = 0.0
 	var intervals []float64
 	f, _ := os.Open(fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/in-%d-%d.txt",expid,runid))
 	scanner := bufio.NewScanner(f)
