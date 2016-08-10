@@ -22,10 +22,11 @@ func Decode(r []byte) (x *Record, err error) {
 func timemachine(intime time.Time, interval float64) time.Time {
 	ttt := fmt.Sprintf("%fs",interval)
 	dur, _ := time.ParseDuration(ttt)
-	_ := intime.Add(dur)
+	outtime := intime.Add(dur)
+	return outtime
 }
 
-func main() {
+func mains() {
 	var Bytes_in []int64
 	var uptime []float64
 	var bitrate []float64

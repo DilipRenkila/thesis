@@ -6,10 +6,27 @@ import (
 	"strconv"
 	"strings"
 	"time"
-
+	"log"
 	"github.com/influxdata/influxdb/client"
 )
+func ExampleClient_Query() {
+	host, err := url.Parse(fmt.Sprintf("http://%s:%d", "localhost", 8086))
+	if err != nil {
+		log.Fatal(err)
+	}
+	con, err := client.NewClient(client.Config{URL: *host})
+	if err != nil {
+		log.Fatal(err)
+	}
 
+	q := client.Query{
+		Command:  "select count(value) from in_7754_1",
+		Database: "thesis",
+	}
+	if response, err := con.Query(q); err == nil && response.Error() == nil {
+		log.Println(response.Results)
+	}
+}
 
 func Influx_Write(d [][]string,tablename string) (time.Time,error)  {
 	var firsttime time.Time
