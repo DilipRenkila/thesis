@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 	"log"
-	//"reflect"
+	"reflect"
 	"github.com/influxdata/influxdb/client"
 )
 func ExampleClient_Query() {
@@ -31,9 +31,9 @@ func ExampleClient_Query() {
 		for i := 0;i < len(response.Results[0].Series[0].Values)-1 ; i ++ {
 			length := response.Results[0].Series[0].Values[i][1]
 
-			fmt.Println(length)
+			fmt.Println(reflect.TypeOf( length))
 			//value,_ := strconv.ParseInt(string,10,64)
-			size = size + length
+			//size = size + length
 			//fmt.Println(size)
 
 		}
