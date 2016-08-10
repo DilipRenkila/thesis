@@ -33,7 +33,7 @@ func ExampleClient_Query() {
 			str, _ := length.(int64)
 			//value,_ := strconv.ParseInt(str,10,64)
 			size = size + str
-			//fmt.Println(size)
+			fmt.Println(str)
 
 		}
 		fmt.Println("Number of Bytes :", size )
