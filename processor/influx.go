@@ -30,6 +30,7 @@ func ExampleClient_Query() {
 		fmt.Println(reflect.TypeOf(response.Results[0].Series[0].Values[0][1]))
 		for i := 0;i < len(response.Results[0].Series[0].Values) ; i ++ {
 			length := response.Results[0].Series[0].Values[0][i]
+
 			fmt.Println(reflect.TypeOf(length))
 			//value,_ := strconv.ParseInt(string,10,64)
 			//size = size + value
