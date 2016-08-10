@@ -23,6 +23,7 @@ func main() {
 	var Bytes_in []int64
 	var uptime []float64
 	var bitrate []float64
+	var interval []float64
 	f, _ := os.Open("/mnt/LONTAS/ExpControl/dire15/logs/in-7742-1.txt")
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
@@ -32,8 +33,9 @@ func main() {
 		uptime = append(uptime,x.Uptime)
 	}
 
-	for i := len(uptime)-1; i > 0; i-- {
-		bitrate=append(bitrate,(float64(Bytes_in[i]-Bytes_in[i-1])/uptime[i]-uptime[i-1]))
+	for i := 0; i < len(uptime); i++ {
+		bitrate=append(bitrate,(float64(Bytes_in[i+1]-Bytes_in[i])/uptime[i+1]-uptime[i]))
+		interval = append(interval,uptime[i+1]-uptime[i])
 	}
-	fmt.Println(bitrate)
+	fmt.Println(interval)
 }
