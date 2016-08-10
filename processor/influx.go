@@ -31,8 +31,8 @@ func ExampleClient_Query() {
 		for i := 0;i < len(response.Results[0].Series[0].Values) - 1; i ++ {
 			length := response.Results[0].Series[0].Values[0][i]
 			string := length.(int)
-			value,_ := strconv.ParseInt(string,10,64)
-			size = size + value
+			//value,_ := strconv.ParseInt(string,10,64)
+			size = size + string
 
 		}
 		fmt.Println("Number of Bytes :", size )
