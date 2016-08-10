@@ -26,12 +26,13 @@ func timemachine(intime time.Time, interval float64) time.Time {
 	return outtime
 }
 
-func mains() {
+func sva(expid int,runid int,intime time.Time) {
 	var Bytes_in []int64
 	var uptime []float64
 	var bitrate []float64
-	var interval []float64
-	f, _ := os.Open("/mnt/LONTAS/ExpControl/dire15/logs/in-7742-1.txt")
+	var interval []float64 =0
+	var intervals []float64
+	f, _ := os.Open(fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/in-%d-%d.txt",expid,runid))
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
 		input := []byte(scanner.Text())
@@ -42,7 +43,8 @@ func mains() {
 
 	for i := 0; i < len(uptime)-1; i++ {
 		bitrate=append(bitrate,(float64(Bytes_in[i+1]-Bytes_in[i])/uptime[i+1]-uptime[i]))
-		interval = append(interval,uptime[i+1]-uptime[i])
+		interval = interval + uptime[i+1]-uptime[i]
+		intervals = append(intervals,timemachine(intime,interval))
 	}
-	fmt.Println(interval)
+	fmt.Println(intervals)
 }
