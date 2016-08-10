@@ -26,7 +26,7 @@ func main() {
 		when_to_process := int64(entry[2].(int))
 
 		if  time.Now().Unix() > when_to_process{
-			fmt.Println(expid,runid)
+
 			err = capshow(expid,runid)
 			if err != nil {
 				fmt.Errorf("error: %s", err)

@@ -57,7 +57,6 @@ func Influx_Write(d [][]string,tablename string) (time.Time,error)  {
 
 	var pts = make([]client.Point, sampleSize)
 	var i int
-	fmt.Println(len(d[0]),len(d[1]))
 	for i = 0; i < sampleSize  ; i++ {
 		timestring := strings.Split(d[0][i], ".")
 		integer_part, _ := strconv.ParseInt(timestring[0], 10, 64)
