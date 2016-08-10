@@ -33,7 +33,7 @@ func ExampleClient_Query() {
 
 			fmt.Println(length)
 			//value,_ := strconv.ParseInt(string,10,64)
-			//size = size + value
+			size = size + length
 			//fmt.Println(size)
 
 		}
