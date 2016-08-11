@@ -29,7 +29,7 @@ func Influx_Query(query string) {
 	}
 	response, err := con.Query(q)
 	if err == nil && response.Error() == nil {
-		fmt.Println(response.Results[0].Series[0].Values)
+		fmt.Println("Hi")
 		for i := 0;i < len(response.Results[0].Series[0].Values)-1 ; i ++ {
 			length,_ := response.Results[0].Series[0].Values[i][1].(json.Number).Int64()
 			size = size + length
