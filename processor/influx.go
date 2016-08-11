@@ -27,13 +27,16 @@ func Influx_Query(query string) {
 		Command:  query,
 		Database: "thesis",
 	}
-	if response, err := con.Query(q); err == nil && response.Error() == nil {
+	response, err := con.Query(q)
+	if err == nil && response.Error() == nil {
 		for i := 0;i < len(response.Results[0].Series[0].Values)-1 ; i ++ {
 			length,_ := response.Results[0].Series[0].Values[i][1].(json.Number).Int64()
 			size = size + length
 
 		}
 		fmt.Println("Number of Bytes :",size  )
+	} else {
+		fmt.Println(err)
 	}
 }
 
