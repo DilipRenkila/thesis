@@ -11,7 +11,7 @@ import (
 	"github.com/influxdata/influxdb/client"
 
 )
-func Influx_Query() {
+func Influx_Query(query string) {
 
 	var size int64 = 0
 	host, err := url.Parse(fmt.Sprintf("http://%s:%d", "localhost", 8086))
