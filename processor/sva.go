@@ -4,6 +4,7 @@ import "os"
 import "fmt"
 import "bufio"
 import "time"
+import "reflect"
 type Record struct {
 	In1 int64 `json:"in_1"`
 	SerialID int `json:"serial_id"`
@@ -44,6 +45,7 @@ func sva(expid int,runid int,intime time.Time) {
 		interval := uptime[i+1]-uptime[i]
 		outtime := timemachine(intime,interval)
 		str:=fmt.Sprintf("select * from in_%d_%d where time > \"%s\" and t < \"%s\" ",expid,runid,intime,outtime)
+		fmt.Println(reflect.TypeOf(intime))
 		Influx_Query(str)
 		intime = outtime
 		
