@@ -44,7 +44,7 @@ func sva(expid int,runid int,intime time.Time) {
 		bitrate=append(bitrate,(float64(Bytes_in[i+1]-Bytes_in[i])/uptime[i+1]-uptime[i]))
 		interval := uptime[i+1]-uptime[i]
 		outtime := timemachine(intime,interval)
-		str:=fmt.Sprintf("select * from in_%d_%d where time > %s and t < %s",expid,runid,intime.String(),outtime.String())
+		str:=fmt.Sprintf("select * from in_%d_%d where time > %s and t < %s",expid,runid,intime.Nanosecond(),outtime.Nanosecond())
 		fmt.Println(str)
 		Influx_Query(str)
 		intime = outtime
