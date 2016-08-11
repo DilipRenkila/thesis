@@ -44,6 +44,7 @@ func sva(expid int,runid int,intime time.Time) {
 		interval := uptime[i+1]-uptime[i]
 		outtime := timemachine(intime,interval)
 		str:=fmt.Sprintf("select * from in_%d_%d where time > %s and t < %s ",expid,runid,intime,outtime)
+		fmt.Println(str)
 		Influx_Query(str)
 		intime = outtime
 		
