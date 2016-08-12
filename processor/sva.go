@@ -47,7 +47,7 @@ func sva(expid int,runid int,intime time.Time) {
 		str:=fmt.Sprintf("select * from in_%d_%d where time > %v and time < %v",expid,runid,intime.UnixNano(),outtime.UnixNano())
 		str1:=fmt.Sprintf("select * from out_%d_%d where time > %v and time < %v",expid,runid,intime.UnixNano(),outtime.UnixNano())
 		diff := Influx_Query(str,str1)
-		fmt.Println(float64(diff)/bitrate[i])
+		fmt.Println("aditional delay:",float64(diff)/bitrate[i])
 		intime = outtime
 		
 	}
