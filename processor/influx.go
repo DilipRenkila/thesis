@@ -35,7 +35,8 @@ func Influx_Query(query string,query1 string) int64 {
 			size = size + length
 
 		}
-		fmt.Println("Number of Bytes in :",size  )
+		fmt.Println("Number of Bytes sent at source : ",size  )
+		fmt.Println(query)
 	} else {
 		fmt.Println(err)
 	}
@@ -50,7 +51,8 @@ func Influx_Query(query string,query1 string) int64 {
 			size1 = size1 + length1
 
 		}
-		fmt.Println("Number of Bytes out :",size1  )
+		fmt.Println("Number of Bytes received at the destination :",size1  )
+		fmt.Println(query1)
 	} else {
 		fmt.Println(err)
 	}
