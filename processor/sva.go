@@ -27,11 +27,14 @@ func timemachine(intime time.Time, interval float64) time.Time {
 	return outtime
 }
 
-func sva(expid int,runid int,intime time.Time) {
+func sva(expid int,runid int,intime time.Time) error {
 	var Bytes_in []int64
 	var uptime []float64
 	var bitrate []float64
-	f, _ := os.Open(fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/in-%d-%d.txt",expid,runid))
+	f, err := os.Open(fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/in-%d-%d.txt",expid,runid))
+	if err!= nil{
+		return err
+	}
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
 		input := []byte(scanner.Text())
@@ -46,9 +49,13 @@ func sva(expid int,runid int,intime time.Time) {
 		outtime := timemachine(intime,interval)
 		str:=fmt.Sprintf("select * from in_%d_%d where time > %v and time < %v",expid,runid,intime.UnixNano(),outtime.UnixNano())
 		str1:=fmt.Sprintf("select * from out_%d_%d where time > %v and time < %v",expid,runid,intime.UnixNano(),outtime.UnixNano())
-		size,size1 := Influx_Query(str,str1)
+		size,size1,err := Influx_Query(str,str1)
+		if err!=nil{
+			return err
+		}
 		fmt.Println(fmt.Sprintf("interval:%d,range:%v - %v,Bytes_src:%d,Bytes_dest:%d,aditional delay: %f ",i+1,intime.UnixNano(),outtime.UnixNano(),size,size1,float64(size-size1)/bitrate[i]))
 		intime = outtime
 		
 	}
+	return nil
 }

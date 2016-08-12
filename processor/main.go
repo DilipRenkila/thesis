@@ -51,9 +51,11 @@ func main() {
 				fmt.Errorf("error: %s", err)
 				os.Exit(1)
 			}
-			sva(expid,runid,intime)
-			//ExampleClient_Query()
-
+			err=sva(expid,runid,intime)
+			if err != nil {
+				fmt.Errorf("error: %s", err)
+				os.Exit(1)
+			}
 		}else {
 			time.Sleep( time.Second * 60 )
 			fmt.Println(expid,runid)

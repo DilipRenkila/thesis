@@ -6,22 +6,21 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	"log"
 	"encoding/json"
 	"github.com/influxdata/influxdb/client"
 
 )
-func Influx_Query(query string,query1 string) (int64,int64) {
+func Influx_Query(query string,query1 string) (int64,int64,error) {
 
 	var size int64 = 0
 	var size1 int64= 0
 	host, err := url.Parse(fmt.Sprintf("http://%s:%d", "localhost", 8086))
 	if err != nil {
-		log.Fatal(err)
+		return size,size1,err
 	}
 	con, err := client.NewClient(client.Config{URL: *host})
 	if err != nil {
-		log.Fatal(err)
+		return size,size1,err
 	}
 
 	q := client.Query{
@@ -37,7 +36,7 @@ func Influx_Query(query string,query1 string) (int64,int64) {
 		}
 
 	} else {
-		fmt.Println(err)
+		return size,size1,err
 	}
 	q1 := client.Query{
 		Command:  query1,
@@ -52,9 +51,9 @@ func Influx_Query(query string,query1 string) (int64,int64) {
 		}
 
 	} else {
-		fmt.Println(err)
+		return size,size1,err
 	}
-	return size,size1
+	return size,size1,err
 }
 
 func Influx_Write(d [][]string,tablename string) (time.Time,error)  {
