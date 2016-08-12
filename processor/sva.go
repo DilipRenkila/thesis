@@ -46,8 +46,8 @@ func sva(expid int,runid int,intime time.Time) {
 		outtime := timemachine(intime,interval)
 		str:=fmt.Sprintf("select * from in_%d_%d where time > %v and time < %v",expid,runid,intime.UnixNano(),outtime.UnixNano())
 		str1:=fmt.Sprintf("select * from out_%d_%d where time > %v and time < %v",expid,runid,intime.UnixNano(),outtime.UnixNano())
-		diff := Influx_Query(str,str1)
-		fmt.Println("aditional delay:",float64(diff)/bitrate[i])
+		size,size1 := Influx_Query(str,str1)
+		fmt.Sprintf("interval:%d,range:%v - %v,packets_at_source:%s,packets_received_at_destination:%s,aditional delay: %f ",i+1,intime,outtime,size,size1,float64(size-size1)/bitrate[i])
 		intime = outtime
 		
 	}

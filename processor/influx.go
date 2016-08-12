@@ -11,7 +11,7 @@ import (
 	"github.com/influxdata/influxdb/client"
 
 )
-func Influx_Query(query string,query1 string) int64 {
+func Influx_Query(query string,query1 string) (int64,int64) {
 
 	var size int64 = 0
 	var size1 int64= 0
@@ -35,8 +35,6 @@ func Influx_Query(query string,query1 string) int64 {
 			size = size + length
 
 		}
-		fmt.Println(query)
-		fmt.Println("Number of Bytes sent at source : ",size  )
 
 	} else {
 		fmt.Println(err)
@@ -52,13 +50,11 @@ func Influx_Query(query string,query1 string) int64 {
 			size1 = size1 + length1
 
 		}
-		fmt.Println(query1)
-		fmt.Println("Number of Bytes received at the destination :",size1  )
 
 	} else {
 		fmt.Println(err)
 	}
-	return size - size1
+	return size,size1
 }
 
 func Influx_Write(d [][]string,tablename string) (time.Time,error)  {
