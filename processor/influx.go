@@ -46,8 +46,8 @@ func Influx_Query(query string,query1 string) int64 {
 	response1, err := con.Query(q1)
 	if err == nil && response1.Error() == nil {
 		for i := 0;i < len(response1.Results[0].Series[0].Values)-1 ; i ++ {
-			length,_ := response1.Results[0].Series[0].Values[i][1].(json.Number).Int64()
-			size1 = size1 + length
+			length1,_ := response1.Results[0].Series[0].Values[i][1].(json.Number).Int64()
+			size1 = size1 + length1
 
 		}
 		fmt.Println("Number of Bytes out :",size1  )
