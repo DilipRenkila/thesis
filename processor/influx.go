@@ -11,9 +11,10 @@ import (
 	"github.com/influxdata/influxdb/client"
 
 )
-func Influx_Query(query string) {
+func Influx_Query(query string,query1 string) int64 {
 
 	var size int64 = 0
+	var size1 int64= 0
 	host, err := url.Parse(fmt.Sprintf("http://%s:%d", "localhost", 8086))
 	if err != nil {
 		log.Fatal(err)
@@ -29,7 +30,6 @@ func Influx_Query(query string) {
 	}
 	response, err := con.Query(q)
 	if err == nil && response.Error() == nil {
-		fmt.Println("Hi")
 		for i := 0;i < len(response.Results[0].Series[0].Values)-1 ; i ++ {
 			length,_ := response.Results[0].Series[0].Values[i][1].(json.Number).Int64()
 			size = size + length
@@ -39,6 +39,22 @@ func Influx_Query(query string) {
 	} else {
 		fmt.Println(err)
 	}
+	q1 := client.Query{
+		Command:  query1,
+		Database: "thesis",
+	}
+	response1, err := con.Query(q1)
+	if err == nil && response1.Error() == nil {
+		for i := 0;i < len(response1.Results[0].Series[0].Values)-1 ; i ++ {
+			length,_ := response1.Results[0].Series[0].Values[i][1].(json.Number).Int64()
+			size1 = size1 + length
+
+		}
+		fmt.Println("Number of Bytes :",size  )
+	} else {
+		fmt.Println(err)
+	}
+	return size - size1
 }
 
 func Influx_Write(d [][]string,tablename string) (time.Time,error)  {
