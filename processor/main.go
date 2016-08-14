@@ -14,16 +14,17 @@ func main() {
 	}
 
 
-	// Experiments
+	// searching for experiments todo
 	experiments, err := todo_experiments()
 	if err != nil {
 		fmt.Errorf("error: %s", err)
+		os.Exit(1)
 	}
 
 	for _, entry := range experiments {
-		expid := (entry[0].(int))
-		runid := entry[1].(int)
-		when_to_process := int64(entry[2].(int))
+		expid := entry[0].(int64)
+		runid := entry[1].(int64)
+		when_to_process := entry[2].(int64)
 
 		if  time.Now().Unix() > when_to_process{
 

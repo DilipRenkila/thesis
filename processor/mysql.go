@@ -36,9 +36,9 @@ func capshows(expid int,runid int) error {
 
 func todo_experiments() ([][]interface{}, error) {
 	q := fmt.Sprintf("SELECT expid, runid, when_to_process FROM info WHERE status=0;")
-	var expid int
-	var runid int
-	var when_to_process int
+	var expid int64
+	var runid int64
+	var when_to_process int64
 	outfmt := []interface{}{expid, runid, when_to_process}
 	result, err := dbQueryScan(db, q, nil, outfmt)
 	if err != nil {
@@ -77,7 +77,7 @@ func dbDoQueryScan(db *sql.DB, q string, args []interface{}, outargs []interface
 			switch t := outargs[i].(type) {
 			case string:
 				newargs[i] = *ptrargs[i].(*string)
-			case int:
+			case int64:
 				newargs[i] = *ptrargs[i].(*int)
 			default:
 				return [][]interface{}{}, fmt.Errorf("Bad interface type: %s\n", t)
