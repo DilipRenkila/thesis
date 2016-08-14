@@ -29,7 +29,7 @@ func printOutput(outs []byte,filename string) {
 	}
 }
 
-func capshow(expid int,runid int) error {
+func capshow(expid int64,runid int64) error {
 
 	//converting tracefile to a text file
 	tracefile := fmt.Sprintf("/mnt/LONTAS/traces/trace-%d-%d.cap",expid,runid)
