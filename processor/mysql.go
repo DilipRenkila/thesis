@@ -21,7 +21,7 @@ func dbOpen() error {
 	return nil
 }
 
-func capshows(expid int,runid int) error {
+func capshows(expid int64,runid int64) error {
 	cmd := "capshow"
 	tracefile := fmt.Sprintf("/mnt/LONTAS/traces/trace-%d-%d.cap",expid,runid)
 	tracedest := fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/trace-%d-%d.trace",expid,runid)

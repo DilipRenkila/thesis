@@ -27,7 +27,7 @@ func timemachine(intime time.Time, interval float64) time.Time {
 	return outtime
 }
 
-func sva(expid int,runid int,intime time.Time) error {
+func sva(expid int64,runid int64,intime time.Time) error {
 	var Bytes_in []int64
 	var uptime []float64
 	var bitrate []float64
