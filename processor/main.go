@@ -25,7 +25,7 @@ func main() {
 		expid := entry[0].(int64)
 		runid := entry[1].(int64)
 		when_to_process := entry[2].(int64)
-
+		fmt.Println(expid,runid,when_to_process)
 		if  time.Now().Unix() > when_to_process{
 
 			err = capshow(expid,runid)
