@@ -52,7 +52,7 @@ func sva(expid int,runid int) error {
 			intime = time.Unix(integer_part,decimal_part)
 		}
 	}
-
+	fmt.Println(intime)
 	for i := 0; i < len(in_uptime)-1; i++ {
 		inbitrate=append(inbitrate,float64(Bytes_in[i+1]-Bytes_in[i])/(in_uptime[i+1]-in_uptime[i]))
 		interval := in_uptime[i+1]-in_uptime[i]
