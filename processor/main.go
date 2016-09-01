@@ -52,6 +52,7 @@ func main() {
 				fmt.Errorf("error: %s", err)
 				os.Exit(1)
 			}
+			intime := firsttime(expid,runid)
 			err=sva(expid,runid,intime)
 			if err != nil {
 				fmt.Errorf("error: %s", err)
