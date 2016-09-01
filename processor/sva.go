@@ -27,13 +27,31 @@ func timemachine(intime time.Time, interval float64) time.Time {
 	outtime := intime.Add(dur)
 	return outtime
 }
-
-func sva(expid int,runid int) error {
+func firsttime(expid int,runid int)(time.Time){
+	var intime time.Time
+	f, err := os.Open(fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/in-%d-%d.txt",expid,runid))
+	if err!= nil{
+		return err
+	}
+	scanner := bufio.NewScanner(f)
+	for scanner.Scan() {
+		input := []byte(scanner.Text())
+		x, _ := InDecode(input)
+		if x.SerialID == 0 {
+			timestring := strings.Split(x.Unixtime, ".")
+			integer_part, _ := strconv.ParseInt(timestring[0], 10, 64)
+			decimal_part, _ := strconv.ParseInt(timestring[1], 10, 64)
+			intime = time.Unix(integer_part,decimal_part)
+			break
+		}
+		return intime
+	}
+}
+func sva(expid int,runid int,intime time.Time) error {
 	var Bytes_in []int64
 	var X []float64
 	var in_uptime []float64
 	var inbitrate []float64
-	var intime time.Time
 
 	f, err := os.Open(fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/in-%d-%d.txt",expid,runid))
 	if err!= nil{
@@ -45,12 +63,6 @@ func sva(expid int,runid int) error {
 		x, _ := InDecode(input)
 		Bytes_in = append(Bytes_in,x.In1)
 		in_uptime = append(in_uptime,x.Uptime)
-		if x.SerialID == 0 {
-			timestring := strings.Split(x.Unixtime, ".")
-			integer_part, _ := strconv.ParseInt(timestring[0], 10, 64)
-			decimal_part, _ := strconv.ParseInt(timestring[1], 10, 64)
-			intime = time.Unix(integer_part,decimal_part)
-		}
 	}
 
 	for i := 0; i < len(in_uptime)-1; i++ {
@@ -59,7 +71,6 @@ func sva(expid int,runid int) error {
 		outtime := timemachine(intime,interval)
 		str:=fmt.Sprintf("select * from in_%d_%d where time > %v and time < %v",expid,runid,intime.UnixNano(),outtime.UnixNano())
 		str1:=fmt.Sprintf("select * from out_%d_%d where time > %v and time < %v",expid,runid,intime.UnixNano(),outtime.UnixNano())
-		fmt.Println(str,str1)
 		size,size1,err := Influx_Query(str,str1)
 		if err!=nil{
 			return err
