@@ -1,0 +1,1 @@
+{"serial_id":0,"switch_management_ip":"10.1.0.123","out_8":426391796,"unixtime":"1471023470.176781","uptime":12791464.19}

@@ -53,7 +53,8 @@ func sva(expid int,runid int,intime time.Time) error {
 		if err!=nil{
 			return err
 		}
-		fmt.Println(fmt.Sprintf("interval:%d,range:%v - %v,Bytes_src:%d,Bytes_dest:%d,aditional delay: %f ",i+1,intime.UnixNano(),outtime.UnixNano(),size,size1,float64(size-size1)/bitrate[i]))
+		fmt.Println(fmt.Sprintf("interval:%d,range:%v - %v,Bytes_src:%d,Bytes_dest:%d,aditional delay: %f ",i,intime.UnixNano(),outtime.UnixNano(),size,size1,float64(size-size1)/bitrate[i]))
+
 		intime = outtime
 		
 	}
