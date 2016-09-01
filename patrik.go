@@ -36,7 +36,7 @@ func Decode(r []byte,y string) (x *InRecord,X *OutRecord,err error) {
 
 func main(){
 	args := os.Args
-	f, err := os.Open(fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/%s-%d-%d.txt",args[3],args[1],args[2]))
+	f, err := os.Open(fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/%s-%s-%s.txt",args[3],args[1],args[2]))
 	if err!= nil{
 		os.Exit(1)
 	}

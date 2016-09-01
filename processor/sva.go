@@ -29,8 +29,14 @@ func timemachine(intime time.Time, interval float64) time.Time {
 
 func sva(expid int,runid int,intime time.Time) error {
 	var Bytes_in []int64
-	var uptime []float64
-	var bitrate []float64
+	var Bytes_out []int64
+
+	var in_uptime []float64
+	var out_uptime []float64
+
+	var inbitrate []float64
+	var outbitrate []float64
+
 	f, err := os.Open(fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/in-%d-%d.txt",expid,runid))
 	if err!= nil{
 		return err
@@ -40,12 +46,12 @@ func sva(expid int,runid int,intime time.Time) error {
 		input := []byte(scanner.Text())
 		x, _ := Decode(input)
 		Bytes_in = append(Bytes_in,x.In1)
-		uptime = append(uptime,x.Uptime)
+		in_uptime = append(in_uptime,x.Uptime)
 	}
 
-	for i := 0; i < len(uptime)-1; i++ {
-		bitrate=append(bitrate,(float64(Bytes_in[i+1]-Bytes_in[i])/uptime[i+1]-uptime[i]))
-		interval := uptime[i+1]-uptime[i]
+	for i := 0; i < len(in_uptime)-1; i++ {
+		inbitrate=append(inbitrate,(float64(Bytes_in[i+1]-Bytes_in[i])/in_uptime[i+1]-in_uptime[i]))
+		interval := in_uptime[i+1]-in_uptime[i]
 		outtime := timemachine(intime,interval)
 		str:=fmt.Sprintf("select * from in_%d_%d where time > %v and time < %v",expid,runid,intime.UnixNano(),outtime.UnixNano())
 		str1:=fmt.Sprintf("select * from out_%d_%d where time > %v and time < %v",expid,runid,intime.UnixNano(),outtime.UnixNano())
@@ -53,7 +59,7 @@ func sva(expid int,runid int,intime time.Time) error {
 		if err!=nil{
 			return err
 		}
-		fmt.Println(fmt.Sprintf("interval:%d,range:%v - %v,Bytes_src:%d,Bytes_dest:%d,aditional delay: %f ",i,intime.UnixNano(),outtime.UnixNano(),size,size1,float64(size-size1)/bitrate[i]))
+		fmt.Println(fmt.Sprintf("interval:%d,range:%v - %v,Bytes_src:%d,Bytes_dest:%d,aditional delay: %f ",i,intime.UnixNano(),outtime.UnixNano(),size,size1,float64(size-size1)/inbitrate[i]))
 
 		intime = outtime
 		
