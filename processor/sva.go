@@ -44,8 +44,9 @@ func firsttime(expid int,runid int)(time.Time){
 			intime = time.Unix(integer_part,decimal_part)
 			break
 		}
-		return intime
+		break
 	}
+	return intime
 }
 func sva(expid int,runid int,intime time.Time) error {
 	var Bytes_in []int64
