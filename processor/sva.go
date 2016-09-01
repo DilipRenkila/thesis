@@ -31,7 +31,7 @@ func firsttime(expid int,runid int)(time.Time){
 	var intime time.Time
 	f, err := os.Open(fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/in-%d-%d.txt",expid,runid))
 	if err!= nil{
-		return err
+		return intime
 	}
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
