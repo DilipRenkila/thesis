@@ -8,7 +8,7 @@ import "time"
 type InRecord struct {
 	In1 int64 `json:"in_1"`
 	SerialID int `json:"serial_id"`
-	Unixtime string `json:"unixtime"`
+	Unixtime float64 `json:"unixtime"`
 	Uptime float64 `json:"uptime"`
 	SwitchManagementIP string `json:"switch_management_ip"`
 }
