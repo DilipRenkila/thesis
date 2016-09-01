@@ -87,11 +87,11 @@ func sva(expid int,runid int,intime time.Time) error {
 			return err
 		}
 		if i==0 {
-			X=append(X,0.0)
+			X=append(X,float64(size-size1))
 		} else {
-			X=append(X,(X[i-1]+(inbitrate[i]-outbitrate[i])*interval))
+			X=append(X,X[i-1]+float64(size-size1))
 		}
-		fmt.Println(fmt.Sprintf("interval:%d,range:%v - %v,Bytes_src:%d,Bytes_dest:%d,aditional delay: %f ",i,intime.UnixNano(),outtime.UnixNano(),size,size1,X[i]/inbitrate[i]))
+		fmt.Println(fmt.Sprintf("interval:%d, range:%v-%v, Bytes_src:%d, Bytes_dest:%d, inbitrate:%d, outbitrate:%d, aditional delay: %f ", i+1,intime.UnixNano(),outtime.UnixNano(),size,size1,inbitrate[i],outbitrate[i],X[i]/inbitrate[i]))
 
 		intime = outtime
 		
