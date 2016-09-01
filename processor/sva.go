@@ -4,6 +4,8 @@ import "os"
 import "fmt"
 import "bufio"
 import "time"
+import "strings"
+import "strconv"
 //import "reflect"
 type InRecord struct {
 	In1 int64 `json:"in_1"`
@@ -26,11 +28,12 @@ func timemachine(intime time.Time, interval float64) time.Time {
 	return outtime
 }
 
-func sva(expid int,runid int,intime time.Time) error {
+func sva(expid int,runid int) error {
 	var Bytes_in []int64
 	var X []float64
 	var in_uptime []float64
 	var inbitrate []float64
+	var intime time.Time
 
 	f, err := os.Open(fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/in-%d-%d.txt",expid,runid))
 	if err!= nil{
@@ -42,6 +45,12 @@ func sva(expid int,runid int,intime time.Time) error {
 		x, _ := InDecode(input)
 		Bytes_in = append(Bytes_in,x.In1)
 		in_uptime = append(in_uptime,x.Uptime)
+		if x.SerialID == 0 {
+			timestring := strings.Split(x.Unixtime, ".")
+			integer_part, _ := strconv.ParseInt(timestring[0], 10, 64)
+			decimal_part, _ := strconv.ParseInt(timestring[1], 10, 64)
+			intime = time.Unix(integer_part,decimal_part)
+		}
 	}
 
 	for i := 0; i < len(in_uptime)-1; i++ {
