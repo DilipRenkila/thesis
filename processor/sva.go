@@ -28,9 +28,7 @@ func timemachine(intime time.Time, interval float64) time.Time {
 
 func sva(expid int,runid int,intime time.Time) error {
 	var Bytes_in []int64
-	var Bytes_out []int64
 	var X []float64
-
 	var in_uptime []float64
 	var inbitrate []float64
 
