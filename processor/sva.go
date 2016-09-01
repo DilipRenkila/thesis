@@ -76,8 +76,8 @@ func sva(expid int,runid int,intime time.Time) error {
 	}
 
 	for i := 0; i < len(in_uptime)-1; i++ {
-		inbitrate=append(inbitrate,(float64(Bytes_in[i+1]-Bytes_in[i])/in_uptime[i+1]-in_uptime[i]))
-		outbitrate=append(outbitrate,(float64(Bytes_out[i+1]-Bytes_out[i])/out_uptime[i+1]-out_uptime[i]))
+		inbitrate=append(inbitrate,float64(Bytes_in[i+1]-Bytes_in[i])/(in_uptime[i+1]-in_uptime[i]))
+		outbitrate=append(outbitrate,float64(Bytes_out[i+1]-Bytes_out[i])/(out_uptime[i+1]-out_uptime[i]))
 		interval := in_uptime[i+1]-in_uptime[i]
 		outtime := timemachine(intime,interval)
 		str:=fmt.Sprintf("select * from in_%d_%d where time > %v and time < %v",expid,runid,intime.UnixNano(),outtime.UnixNano())
