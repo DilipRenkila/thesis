@@ -37,17 +37,11 @@ func firsttime(expid int,runid int)(time.Time){
 	for scanner.Scan() {
 		input := []byte(scanner.Text())
 		x, _ := InDecode(input)
-		if x.SerialID == 0 {
-			timestring := strings.Split(x.Unixtime, ".")
-			integer_part, _ := strconv.ParseInt(timestring[0], 10, 64)
-			decimal_part, _ := strconv.ParseInt(timestring[1], 10, 64)
-			intime = time.Unix(integer_part,decimal_part)
-			fmt.Println("1")
-			fmt.Println(intime)
-		}
-		fmt.Println("2")
-		fmt.Println(intime)
-
+		timestring := strings.Split(x.Unixtime, ".")
+		integer_part, _ := strconv.ParseInt(timestring[0], 10, 64)
+		decimal_part, _ := strconv.ParseInt(timestring[1], 10, 64)
+		intime = time.Unix(integer_part,decimal_part)
+		break
 	}
 	fmt.Println("3")
 	fmt.Println(intime)
