@@ -41,7 +41,8 @@ func main() {
 			}
 			in_table := fmt.Sprintf("in_%d_%d",expid,runid)
 			out_table := fmt.Sprintf("out_%d_%d",expid,runid)
-			_,err = Influx_Write(d01,in_table)
+			intime,err := Influx_Write(d01,in_table)
+			fmt.Println(intime)
 			if err != nil {
 				fmt.Errorf("error: %s", err)
 				os.Exit(1)
@@ -52,7 +53,7 @@ func main() {
 				fmt.Errorf("error: %s", err)
 				os.Exit(1)
 			}
-			intime := firsttime(expid,runid)
+			//intime := firsttime(expid,runid)
 			err=sva(expid,runid,intime)
 			if err != nil {
 				fmt.Errorf("error: %s", err)
