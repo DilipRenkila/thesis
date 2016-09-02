@@ -32,7 +32,7 @@ func printOutput(outs []byte,filename string) {
 func capshow(expid int,runid int) error {
 
 	//converting tracefile to a text file
-	tracefile := fmt.Sprintf("/mnt/LONTAS/traces/trace-%d-%d.cap",expid,runid)
+	tracefile := fmt.Sprintf("-",expid,runid)
 	tracedestiny := fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/trace-%d-%d.trace",expid,runid)
 	cmd := exec.Command("capshow","-a",tracefile)
 	// Create an *exec.Cmd for executing os commands
