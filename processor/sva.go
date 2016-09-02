@@ -48,7 +48,7 @@ func firsttime(expid int,runid int)(time.Time){
 		}
 		fmt.Println("2")
 		fmt.Println(intime)
-		break
+
 	}
 	fmt.Println("3")
 	fmt.Println(intime)
