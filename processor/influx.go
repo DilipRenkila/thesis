@@ -25,7 +25,7 @@ func Influx_Query(query string,query1 string) (int64,int64,error) {
 
 	q := client.Query{
 		Command:  query,
-		Database: "thesis",
+		Database: "dire15",
 	}
 	response, err := con.Query(q)
 	if err == nil && response.Error() == nil {
@@ -40,7 +40,7 @@ func Influx_Query(query string,query1 string) (int64,int64,error) {
 	}
 	q1 := client.Query{
 		Command:  query1,
-		Database: "thesis",
+		Database: "dire15",
 	}
 	response1, err := con.Query(q1)
 	if err == nil && response1.Error() == nil {
@@ -78,7 +78,6 @@ func Influx_Write(d [][]string,tablename string) (time.Time,error)  {
 		decimal_part, _ := strconv.ParseInt(timestring[1], 10, 64)
 		value,_ := strconv.ParseInt(d[1][i],10,64)
 		unixtime := time.Unix(integer_part,decimal_part)
-		fmt.Println(timestring,unixtime)
 		pts[i] = client.Point{
 			Measurement: tablename,
 			Fields: map[string]interface{}{
@@ -91,7 +90,7 @@ func Influx_Write(d [][]string,tablename string) (time.Time,error)  {
 	//fmt.Println(pts)
 	bps := client.BatchPoints{
 		Points:          pts,
-		Database:        "thesis",
+		Database:        "dire15",
 		RetentionPolicy: "default",
 	}
 	_, err = con.Write(bps)
