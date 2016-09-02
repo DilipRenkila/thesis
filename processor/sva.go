@@ -59,6 +59,7 @@ func sva(expid int,runid int,intime time.Time) error {
 	}
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
+
 		input := []byte(scanner.Text())
 		x, _ := InDecode(input)
 		Bytes_in = append(Bytes_in,x.In1)
