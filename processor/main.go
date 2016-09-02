@@ -52,7 +52,7 @@ func main() {
 				fmt.Errorf("error: %s", err)
 				os.Exit(1)
 			}
-			time := firsttime(expid,runid)
+			time := firsttime(expid,runid) // from snmp logs
 			fmt.Println(time,intime)
 			err=sva(expid,runid,intime)
 			if err != nil {
