@@ -43,8 +43,6 @@ func firsttime(expid int,runid int)(time.Time){
 		intime = time.Unix(integer_part,decimal_part)
 		break
 	}
-	fmt.Println("3")
-	fmt.Println(intime)
 	return intime
 }
 func sva(expid int,runid int,intime time.Time) error {
@@ -59,7 +57,6 @@ func sva(expid int,runid int,intime time.Time) error {
 	}
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
-
 		input := []byte(scanner.Text())
 		x, _ := InDecode(input)
 		Bytes_in = append(Bytes_in,x.In1)
@@ -72,6 +69,7 @@ func sva(expid int,runid int,intime time.Time) error {
 		outtime := timemachine(intime,interval)
 		str:=fmt.Sprintf("select * from in_%d_%d where time > %v and time < %v",expid,runid,intime.UnixNano(),outtime.UnixNano())
 		str1:=fmt.Sprintf("select * from out_%d_%d where time > %v and time < %v",expid,runid,intime.UnixNano(),outtime.UnixNano())
+		fmt.Println(str,str1)
 		size,size1,err := Influx_Query(str,str1)
 		if err!=nil{
 			return err
