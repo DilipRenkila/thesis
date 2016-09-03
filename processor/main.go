@@ -41,7 +41,7 @@ func main() {
 			}
 			in_table := fmt.Sprintf("in_%d_%d",expid,runid)
 			out_table := fmt.Sprintf("out_%d_%d",expid,runid)
-			intime,err := Influx_Write(d01,in_table)
+			intime,err := Influx_Write(d01,in_table) // from influx tables
 			if err != nil {
 				fmt.Errorf("error: %s", err)
 				os.Exit(1)
@@ -53,7 +53,9 @@ func main() {
 				os.Exit(1)
 			}
 			time := firsttime(expid,runid) // from snmp logs
-			fmt.Println(time,intime)
+			fmt.Println("snmp logs",time.UnixNano())
+			fmt.Println("influx db time",intime.UnixNano())
+
 			err=sva(expid,runid,intime)
 			if err != nil {
 				fmt.Errorf("error: %s", err)

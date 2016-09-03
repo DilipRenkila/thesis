@@ -97,9 +97,12 @@ func Influx_Write(d [][]string,tablename string) (time.Time,error)  {
 	if err != nil {
 		return firsttime,err
 	}
+	fmt.Println("from mp",d[0][0])
 	timestring := strings.Split(d[0][0], ".")
 	integer_part, _ := strconv.ParseInt(timestring[0], 10, 64)
 	decimal_part, _ := strconv.ParseInt(timestring[1], 10, 64)
 	firsttime = time.Unix(integer_part,decimal_part)
+	
+	fmt.Println(firsttime)
 	return firsttime,nil
 }
