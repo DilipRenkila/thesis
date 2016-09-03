@@ -56,7 +56,7 @@ func Influx_Query(query string,query1 string) (int64,int64,error) {
 	return size,size1,err
 }
 
-func Influx_Write(d [][]string,tablename string) (time.Time,error)  {
+func Influx_Write(d [][2]string,tablename string) (time.Time,error)  {
 	var firsttime time.Time
 	host, err := url.Parse(fmt.Sprintf("http://%s:%d", "localhost", 8086))
 	if err != nil {
@@ -69,7 +69,7 @@ func Influx_Write(d [][]string,tablename string) (time.Time,error)  {
 
 	var sampleSize int
 	sampleSize = len(d[0])
-
+	fmt.Println(sampleSize)
 	var pts = make([]client.Point, sampleSize)
 	var i int
 	for i = 0; i < sampleSize  ; i++ {
@@ -97,12 +97,9 @@ func Influx_Write(d [][]string,tablename string) (time.Time,error)  {
 	if err != nil {
 		return firsttime,err
 	}
-	fmt.Println("from mp",d[0][0])
 	timestring := strings.Split(d[0][0], ".")
 	integer_part, _ := strconv.ParseInt(timestring[0], 10, 64)
 	decimal_part, _ := strconv.ParseInt(timestring[1], 10, 64)
 	firsttime = time.Unix(integer_part,decimal_part)
-	
-	fmt.Println(firsttime)
 	return firsttime,nil
 }

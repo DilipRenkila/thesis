@@ -6,7 +6,7 @@ import "strings"
 
 func extract(filename string) ([][]string,[][]string,error) {
 
-	var d01,d10 [][]string
+	var d01,d10 [][2]string
 	lines, err := read_file(filename)
 	if err != nil {
 		return d01,d10,err
