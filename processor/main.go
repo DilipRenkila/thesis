@@ -34,20 +34,20 @@ func main() {
 				os.Exit(1)
 			}
 			filename := fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/trace-%d-%d.trace",expid,runid)
-			d01,d10,err := extract(filename)
+			d01_time,d01_length,d10_time,d10_length,err := extract(filename)
 			if err != nil {
 				fmt.Errorf("error: %s", err)
 				os.Exit(1)
 			}
 			in_table := fmt.Sprintf("in_%d_%d",expid,runid)
 			out_table := fmt.Sprintf("out_%d_%d",expid,runid)
-			intime,err := Influx_Write(d01,in_table) // from influx tables
+			intime,err := Influx_Write(d01_time,d01_length,in_table) // from influx tables
 			if err != nil {
 				fmt.Errorf("error: %s", err)
 				os.Exit(1)
 			}
 
-			_,err = Influx_Write(d10,out_table)
+			_,err = Influx_Write(d10_time,d10_length,out_table)
 			if err != nil {
 				fmt.Errorf("error: %s", err)
 				os.Exit(1)

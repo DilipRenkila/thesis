@@ -4,12 +4,12 @@ import "fmt"
 import "regexp"
 import "strings"
 
-func extract(filename string) ([][]string,[][]string,error) {
-
-	var d01,d10 [][2]string
+func extract(filename string) ([]string,[]string,[]string,[]string,error) {
+	var d01_time,d10_time []string
+	var d01_length,d10_length []string
 	lines, err := read_file(filename)
 	if err != nil {
-		return d01,d10,err
+		return d01_time,d01_length,d10_time,d10_length,nil
 	}
 
 	re_1, err := regexp.Compile(`d01`)
@@ -19,10 +19,9 @@ func extract(filename string) ([][]string,[][]string,error) {
 
 	if err != nil {
 		fmt.Printf("There is a problem with your regexp.\n")
-		return d01,d10,err
+		return d01_time,d01_length,d10_time,d10_length,nil
 	}
-	var d01_time,d10_time []string
-	var d01_length,d10_length []string
+
 
 	for _, line := range lines {
 		if re_1.MatchString(line) == true && re.MatchString(line) == true && reg.MatchString(line) == false {
@@ -42,7 +41,5 @@ func extract(filename string) ([][]string,[][]string,error) {
 			d10_length=append(d10_length,z[0])
 		}
 	}
-	d01 = append(d01,d01_time,d01_length)
-	d10 = append(d10,d10_time,d10_length)
-	return d01,d10,nil
+	return d01_time,d01_length,d10_time,d10_length,nil
 }

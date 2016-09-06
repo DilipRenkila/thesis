@@ -56,7 +56,7 @@ func Influx_Query(query string,query1 string) (int64,int64,error) {
 	return size,size1,err
 }
 
-func Influx_Write(d [][2]string,tablename string) (time.Time,error)  {
+func Influx_Write(d []string,d_l []string,tablename string) (time.Time,error)  {
 	var firsttime time.Time
 	host, err := url.Parse(fmt.Sprintf("http://%s:%d", "localhost", 8086))
 	if err != nil {
@@ -68,15 +68,14 @@ func Influx_Write(d [][2]string,tablename string) (time.Time,error)  {
 	}
 
 	var sampleSize int
-	sampleSize = len(d[0])
-	fmt.Println(sampleSize)
+	sampleSize = len(d)
 	var pts = make([]client.Point, sampleSize)
 	var i int
 	for i = 0; i < sampleSize  ; i++ {
-		timestring := strings.Split(d[0][i], ".")
+		timestring := strings.Split(d[0], ".")
 		integer_part, _ := strconv.ParseInt(timestring[0], 10, 64)
 		decimal_part, _ := strconv.ParseInt(timestring[1], 10, 64)
-		value,_ := strconv.ParseInt(d[1][i],10,64)
+		value,_ := strconv.ParseInt(d_l[i],10,64)
 		unixtime := time.Unix(integer_part,decimal_part)
 		pts[i] = client.Point{
 			Measurement: tablename,
@@ -97,7 +96,7 @@ func Influx_Write(d [][2]string,tablename string) (time.Time,error)  {
 	if err != nil {
 		return firsttime,err
 	}
-	timestring := strings.Split(d[0][0], ".")
+	timestring := strings.Split(d[0], ".")
 	integer_part, _ := strconv.ParseInt(timestring[0], 10, 64)
 	decimal_part, _ := strconv.ParseInt(timestring[1], 10, 64)
 	firsttime = time.Unix(integer_part,decimal_part)
