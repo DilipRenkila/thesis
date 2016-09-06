@@ -55,38 +55,17 @@ func Influx_Query(query string,query1 string) (int64,int64,error) {
 	}
 	return size,size1,err
 }
- func chunkSplit(body string, limit int) string {
+ func chunksplit(s string) string {
+	res := ""
+	for i, r := range s {
+		res = res + string(r)
+		if i > 0 && (i+1)%9 == 0 {
+			break
+		}
+	}
+	return res
+}
 
-         var charSlice []rune
-
-         // push characters to slice
-         for _, char := range body {
-                 charSlice = append(charSlice, char)
-         }
-
-         var result string = ""
-
-         for len(charSlice) >= 1 {
-                 // convert slice/array back to string
-                 // but insert end at specified limit
-
-                 result = result + string(charSlice[:limit])
-
-                 // discard the elements that were copied over to result
-                 charSlice = charSlice[limit:]
-
-                 // change the limit
-                 // to cater for the last few words in
-                 // charSlice
-                 if len(charSlice) < limit {
-                         limit = len(charSlice)
-                 }
-
-         }
-
-         return result
-
- }
 
 func Influx_Write(d []string,d_l []string,tablename string) (time.Time,error)  {
 	var firsttime time.Time
@@ -105,7 +84,7 @@ func Influx_Write(d []string,d_l []string,tablename string) (time.Time,error)  {
 	var i int
 	for i = 0; i < sampleSize  ; i++ {
 		timestring := strings.Split(d[i], ".")
-		nano:=chunkSplit(timestring[1],9)
+		nano:=chunksplit(timestring[1])
 		fmt.Println(nano)
 		integer_part, _ := strconv.ParseInt(timestring[0],10,64)
 		decimal_part, _ := strconv.ParseInt(nano,10,64)
