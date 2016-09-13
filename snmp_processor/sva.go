@@ -44,7 +44,7 @@ func firsttime(expid int,runid int)(time.Time){
 		timestring := strings.Split(x.Unixtime, ".")
 		integer_part, _ := strconv.ParseInt(timestring[0], 10, 64)
 		decimal_part, _ := strconv.ParseInt(timestring[1], 10, 64)
-		intime = time.Unix(integer_part,decimal_part)
+		intime = time.Unix(integer_part,decimal_part).UTC()
 		break
 	}
 	return intime
