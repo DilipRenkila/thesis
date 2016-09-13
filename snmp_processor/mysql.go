@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 	"time"
-	"os/exec"
+
 )
 
 // Global variables
