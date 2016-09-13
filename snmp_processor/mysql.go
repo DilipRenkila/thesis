@@ -11,6 +11,7 @@ import (
 // Global variables
 var db *sql.DB
 
+// Opens the database and returns err if there is.
 func dbOpen() error {
 	var err error
 
@@ -21,19 +22,7 @@ func dbOpen() error {
 	return nil
 }
 
-func capshows(expid int,runid int) error {
-	cmd := "capshow"
-	tracefile := fmt.Sprintf("/mnt/LONTAS/traces/trace-%d-%d.cap",expid,runid)
-	tracedest := fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/trace-%d-%d.trace",expid,runid)
-	fmt.Println(tracedest)
-	args := []string{"-a",tracefile, ">>", tracedest}
-	if err := exec.Command(cmd, args...).Run(); err != nil {
-		return err
-	}
-	return nil
-}
-
-
+// Lists todo experiments
 func todo_experiments() ([][]interface{}, error) {
 	q := fmt.Sprintf("SELECT expid, runid, when_to_process FROM info WHERE status=0;")
 	var expid int
@@ -47,6 +36,8 @@ func todo_experiments() ([][]interface{}, error) {
 
 	return result, nil
 }
+
+
 func dbDoQueryScan(db *sql.DB, q string, args []interface{}, outargs []interface{}) ([][]interface{}, error) {
 	rows, err := db.Query(q, args...)
 	if err != nil {
@@ -91,6 +82,7 @@ func dbDoQueryScan(db *sql.DB, q string, args []interface{}, outargs []interface
 	}
 	return result, nil
 }
+
 
 func dbQueryScan(db *sql.DB, q string, inargs []interface{}, outfmt []interface{}) ([][]interface{}, error) {
 	for {

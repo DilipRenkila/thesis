@@ -10,8 +10,10 @@ import (
 	"github.com/influxdata/influxdb/client"
 
 )
-func Influx_Query(query string,query1 string) (int64,int64,error) {
 
+// Querying Influx db
+
+func Influx_Query(query string,query1 string) (int64,int64,error) {
 	var size int64 = 0
 	var size1 int64= 0
 	host, err := url.Parse(fmt.Sprintf("http://%s:%d", "localhost", 8086))
@@ -55,7 +57,9 @@ func Influx_Query(query string,query1 string) (int64,int64,error) {
 	}
 	return size,size1,err
 }
- func chunksplit(s string) string {
+
+
+func chunksplit(s string) string {
 	res := ""
 	for i, r := range s {
 		res = res + string(r)
@@ -69,7 +73,7 @@ func Influx_Query(query string,query1 string) (int64,int64,error) {
 
 func Influx_Write(d []string,d_l []string,tablename string) (time.Time,error)  {
 	var firsttime time.Time
-	host, err := url.Parse(fmt.Sprintf("http://%s:%d", "localhost", 8086))
+	host, err := url.Parse(fmt.Sprintf("http://%s:%d","localhost",8086))
 	if err != nil {
 		return firsttime,err
 	}
@@ -88,7 +92,7 @@ func Influx_Write(d []string,d_l []string,tablename string) (time.Time,error)  {
 		integer_part, _ := strconv.ParseInt(timestring[0],10,64)
 		decimal_part, _ := strconv.ParseInt(nano,10,64)
 		value,_ := strconv.ParseInt(d_l[i],10,64)
-		unixtime := time.Unix(integer_part,decimal_part)
+		unixtime := time.Unix(integer_part,decimal_part).UTC()
 
 		pts[i] = client.Point{
 			Measurement: tablename,
@@ -98,8 +102,6 @@ func Influx_Write(d []string,d_l []string,tablename string) (time.Time,error)  {
 			Time:  unixtime,
 		}
 	}
-
-	//fmt.Println(pts)
 	bps := client.BatchPoints{
 		Points:          pts,
 		Database:        "dire15",
@@ -112,84 +114,7 @@ func Influx_Write(d []string,d_l []string,tablename string) (time.Time,error)  {
 	timestring := strings.Split(d[0], ".")
 	integer_part, _ := strconv.ParseInt(timestring[0], 10, 64)
 	decimal_part, _ := strconv.ParseInt(timestring[1], 10, 64)
-	firsttime = time.Unix(integer_part,decimal_part)
-
-	fmt.Println(d[0])
+	firsttime = time.Unix(integer_part,decimal_part).UTC()
+	fmt.Println(d[0],"original timestamp from tracefile")
 	return firsttime,nil
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

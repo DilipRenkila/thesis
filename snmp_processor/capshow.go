@@ -6,10 +6,13 @@ import "fmt"
 import "log"
 import "strings"
 
+
+// Prints the shell command used in os.exec
 func printCommand(cmd *exec.Cmd) {
 	fmt.Printf("==> Executing: %s\n", strings.Join(cmd.Args, " "))
 }
 
+// Prints the console output to a file.
 func printOutput(outs []byte,filename string) {
 	if len(outs) > 0 {
 		file, err := os.OpenFile(filename, os.O_WRONLY|os.O_TRUNC|os.O_CREATE, 0666 )
@@ -19,7 +22,6 @@ func printOutput(outs []byte,filename string) {
 		defer file.Close()
 
 		// Write bytes to file
-
 		bytesWritten, err := file.Write(outs)
 		if err != nil {
 			log.Fatal(err)
@@ -28,14 +30,11 @@ func printOutput(outs []byte,filename string) {
 	}
 }
 
+// Converts a tracefile to a text file
 func capshow(expid int,runid int) error {
-
-	//converting tracefile to a text file
 	tracefile := fmt.Sprintf("/mnt/LONTAS/traces/trace-%d-%d.cap",expid,runid)
 	tracedestiny := fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/trace-%d-%d.trace",expid,runid)
 	cmd := exec.Command("capshow","-a",tracefile)
-	// Create an *exec.Cmd for executing os commands
-	// Combine stdout and stderr
 	printCommand(cmd)
 	output, err := cmd.CombinedOutput()
 	if err != nil {
@@ -43,5 +42,5 @@ func capshow(expid int,runid int) error {
 	}
 	printOutput(output, tracedestiny)
 	return nil
-
 }
+
