@@ -34,7 +34,7 @@ func printOutput(outs []byte,filename string) {
 func capshow(expid int,runid int) error {
 	tracefile := fmt.Sprintf("/mnt/LONTAS/traces/trace-%d-%d.cap",expid,runid)
 	tracedestiny := fmt.Sprintf("/mnt/LONTAS/ExpControl/dire15/logs/trace-%d-%d.trace",expid,runid)
-	cmd := exec.Command("capshow","-a",tracefile)
+	cmd := exec.Command("capshow","-a","-p",20,tracefile)
 	printCommand(cmd)
 	output, err := cmd.CombinedOutput()
 	if err != nil {
