@@ -93,7 +93,6 @@ func Influx_Write(d []string,d_l []string,tablename string) (time.Time,error)  {
 		decimal_part, _ := strconv.ParseInt(nano,10,64)
 		value,_ := strconv.ParseInt(d_l[i],10,64)
 		unixtime := time.Unix(integer_part,decimal_part)
-		fmt.Println(unixtime)
 		pts[i] = client.Point{
 			Measurement: tablename,
 			Fields: map[string]interface{}{
