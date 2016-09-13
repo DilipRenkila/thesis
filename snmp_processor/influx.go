@@ -115,6 +115,6 @@ func Influx_Write(d []string,d_l []string,tablename string) (time.Time,error)  {
 	integer_part, _ := strconv.ParseInt(timestring[0], 10, 64)
 	decimal_part, _ := strconv.ParseInt(timestring[1], 10, 64)
 	firsttime = time.Unix(integer_part,decimal_part)
-	fmt.Println(d[0],"original timestamp from tracefile")
+	fmt.Println(d[0],"original timestamp from tracefile",integer_part)
 	return firsttime,nil
 }

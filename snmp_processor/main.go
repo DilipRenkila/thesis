@@ -42,8 +42,8 @@ func main(){
 			Panic(err)
 
 			time := firsttime(expid, runid) // from snmp logs
-			fmt.Println("snmp logs", time.UTC().UnixNano())
-			fmt.Println("influx db time", intime.UTC().UnixNano())
+			fmt.Println("snmp logs", time.UnixNano())
+			fmt.Println("influx db time", intime.UnixNano())
 
 			err = sva(expid, runid, intime)
 			Panic(err)
