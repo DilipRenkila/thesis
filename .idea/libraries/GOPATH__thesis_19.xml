@@ -1,15 +1,13 @@
 <component name="libraryTable">
   <library name="GOPATH &lt;thesis&gt;">
     <CLASSES>
-      <root url="file://$USER_HOME$/GO/src/golang-book" />
-      <root url="file://$USER_HOME$/GO/src/gopkg.in" />
-      <root url="file://$USER_HOME$/GO/src/dilip" />
-      <root url="file://$USER_HOME$/GO/src/google.golang.org" />
-      <root url="file://$USER_HOME$/GO/src/github.com" />
-      <root url="file://$USER_HOME$/GO/src/launchpad.net" />
-      <root url="file://$USER_HOME$/GO/src/golang.org" />
+      <root url="file://$USER_HOME$/go/src/gopkg.in" />
+      <root url="file://$USER_HOME$/go/src/github.com" />
     </CLASSES>
-    <SOURCES />
+    <SOURCES>
+      <root url="file://$USER_HOME$/go/src/gopkg.in" />
+      <root url="file://$USER_HOME$/go/src/github.com" />
+    </SOURCES>
     <excluded>
       <root url="file://$PROJECT_DIR$" />
     </excluded>

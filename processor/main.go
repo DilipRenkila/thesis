@@ -14,7 +14,7 @@ func main() {
 	}
 
 
-	// searching for experiments todo
+	// searching for todo experiments
 	experiments, err := todo_experiments()
 	if err != nil {
 		fmt.Errorf("error: %s", err)
